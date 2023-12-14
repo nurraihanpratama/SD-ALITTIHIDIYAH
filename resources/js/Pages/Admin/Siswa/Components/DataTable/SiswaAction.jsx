@@ -11,18 +11,18 @@ export default function SiswaAction({ row }) {
         <Fragment>
             <MenuDropdown>
                 <Menu.Item>
-                    {({ active }) => {
+                    {({ active }) => (
                         <MenuItemButtonDropdown
                             icon={<FaEdit size={20} />}
-                            lable="Update Data Siswa"
+                            label="Update Data"
                             onClick={() => setVisible(true)}
-                        />;
-                    }}
+                        />
+                    )}
                 </Menu.Item>
             </MenuDropdown>
             <Modal visible={visible} setVisible={setVisible} noescape>
                 <SiswaForm
-                    action={"update"}
+                    action="update"
                     row={row}
                     closeForm={() => setVisible(false)}
                 />
