@@ -1,0 +1,173 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+
+/* Additional styles */
+@import "additional-styles/utility-patterns.css";
+@import "additional-styles/range-slider.css";
+@import "additional-styles/toggle-switch.css";
+@import "additional-styles/flatpickr.css";
+@import "additional-styles/theme.css";
+@import "additional-styles/loader.css";
+
+@import "tailwindcss/utilities";
+
+@font-face {
+    font-family: "Caprasimo";
+    src: url("../assets/fonts/Caprasimo-Regular.ttf");
+}
+
+@font-face {
+    font-family: "Poppins";
+    src: url("../assets/fonts/Poppins-Light.ttf");
+}
+
+.font-caprasimo {
+    font-family: "Caprasimo";
+}
+
+.font-poppins {
+    font-family: "Poppins";
+}
+
+/* Inject some classes */
+@layer components {
+    .flex-start {
+        @apply flex items-center justify-start;
+    }
+    .flex-center {
+        @apply flex items-center justify-center;
+    }
+    .flex-between {
+        @apply flex items-center justify-between;
+    }
+    .flex-end {
+        @apply flex items-center justify-end;
+    }
+    .nice-shadow {
+        @apply rounded-sm shadow-lg;
+    }
+}
+
+.content-header-elevate {
+    box-shadow: 0 0.5rem 0.5rem -0.5rem rgba(0, 0, 0, 0.2) !important;
+}
+
+/* body scroll */
+body::-webkit-scrollbar-track {
+    background-color: #efefef;
+    border-radius: 5px 5px 5px 5px;
+}
+
+body::-webkit-scrollbar {
+    width: 4px;
+    height: 4px;
+    border-radius: 5px 5px 5px 5px;
+}
+
+body::-webkit-scrollbar-thumb {
+    background-color: rgb(3, 170, 126);
+    border-radius: 5px 5px 5px 5px;
+}
+
+/* sidebar scroll */
+#sidebar::-webkit-scrollbar-track {
+    background-color: #efefef;
+    border-radius: 5px 5px 5px 5px;
+}
+
+#sidebar::-webkit-scrollbar {
+    width: 0px;
+    height: 0px;
+    border-radius: 5px 5px 5px 5px;
+}
+
+#sidebar::-webkit-scrollbar-thumb {
+    background-color: rgb(3, 170, 126);
+    border-radius: 5px 5px 5px 5px;
+}
+
+#sidebar:hover::-webkit-scrollbar {
+    width: 2px;
+}
+
+.button-shadow {
+    box-shadow: 0 0 0 1px rgba(43, 45, 80, 0.1),
+        0 2px 5px 0 rgba(43, 45, 80, 0.08), 0 1px 1.5px 0 rgba(0, 0, 0, 0.07),
+        0 1px 2px 0 rgba(0, 0, 0, 0.08);
+}
+
+.modal-overlay {
+    backdrop-filter: blur(20px) saturate(200%);
+    -webkit-backdrop-filter: blur(20px) saturate(200%);
+    background-color: rgba(17, 25, 40, 0.7);
+}
+
+.divider {
+    height: inherit;
+    border: 2px solid #fff;
+}
+
+.bg-dark {
+    color: #fff;
+    background-color: #343a40;
+}
+
+.green-pill {
+    background: #00ff91;
+    color: #000;
+}
+
+.blue-pill {
+    background: #006dc6;
+    color: #fff;
+}
+
+.gray-pill {
+    background: #909293;
+    color: #000;
+}
+
+.yellow-pill {
+    background: #ffbf00;
+    color: #000;
+}
+
+.red-pill {
+    background: crimson;
+    color: #fff;
+}
+
+.purple-pill {
+    background: #5f1bbf;
+    color: #fff;
+}
+
+@media print {
+    body * {
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 0.8rem !important;
+    }
+
+    .bg-dark {
+        color: #fff;
+        background-color: #343a40;
+    }
+
+    .font-larger {
+        font-size: 1.2rem !important;
+    }
+
+    .font-smaller {
+        font-size: 0.6rem !important;
+    }
+
+    @page {
+        size: A4;
+        margin-top: 5cm;
+        margin-left: 2cm;
+        margin-bottom: 2cm;
+        margin-right: 2cm;
+    }
+}
