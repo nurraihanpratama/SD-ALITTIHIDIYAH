@@ -19,24 +19,38 @@ export default function SiswaForm({ action, row = null, closeForm }) {
     ];
 
     const form = useForm({
-        nisn: "",
-        nipd: "",
-        nama_siswa: "",
-        jk_siswa: dataJk[0].id,
+        nisn: row?.nisn ?? "",
+        nipd: row?.nipd ?? "",
+        nama_siswa: row?.nama_siswa ?? "",
+        jk_siswa: row?.jk?.id ?? dataJk[0].id,
         agama_siswa: dataAgama[0].id,
-        tempat_lahir: "",
+        tempat_lahir: row?.tempat_lahir ?? "",
         tanggal_lahir: dayjs().format("YYYY-MM-DD"),
-        status_siswa: statuses[0].id,
-        id_kelas: "",
+        status_siswa: row?.status?.id ?? statuses[0].id,
+        id_kelas: row?.id_kelas ?? "",
     });
     const handleOnChange = (event) => {
         form.setData(event.target.name, event.target.value);
     };
+
+    const titleHeader = () => {
+        if (action === "create") return "Tambah Data Siswa";
+        else return `Ubah Data Siswa`;
+    };
+    const submit = (e) => {
+        e.preventDefault();
+
+        if (action == "create") {
+            return console.log(form.data);
+        }
+    };
+
     return (
         <StandardFormModalTemplate
-            title="Data Siswa"
+            title={titleHeader(action)}
             closeForm={closeForm}
             processing={form.processing}
+            submit={submit}
         >
             <div className="flex flex-col gap-4 text-gray-700 dark:text-white">
                 <div className="block w-full grid-cols-2 gap-4 space-y-4 text-gray-700 lg:space-y-0 lg:grid dark:text-white">
@@ -48,6 +62,8 @@ export default function SiswaForm({ action, row = null, closeForm }) {
                         onChange={handleOnChange}
                         error={form.errors.nisn}
                     />
+
+                    {/* NIPD */}
                     <FormTextInput
                         name="nipd"
                         label={"NIPD"}
@@ -56,6 +72,8 @@ export default function SiswaForm({ action, row = null, closeForm }) {
                         error={form.errors.nipd}
                     />
                 </div>
+
+                {/* NAMA SISWA */}
                 <FormTextInput
                     name="nama_siswa"
                     label={"NAMA SISWA"}
@@ -64,6 +82,7 @@ export default function SiswaForm({ action, row = null, closeForm }) {
                     error={form.errors.nama_siswa}
                 />
 
+                {/* JENIS KELAMIN */}
                 <FormSelectInput
                     name="jk_siswa"
                     label="JENIS KELAMIN SISWA"
@@ -73,6 +92,8 @@ export default function SiswaForm({ action, row = null, closeForm }) {
                     error={form.errors.jk_siswa}
                     isRequired={true}
                 />
+
+                {/* AGAMA SISWA */}
                 <FormSelectInput
                     name="agama_siswa"
                     label="AGAMA SISWA"
@@ -83,6 +104,7 @@ export default function SiswaForm({ action, row = null, closeForm }) {
                     isRequired={true}
                 />
 
+                {/* TEMPAT LAHIR */}
                 <FormTextInput
                     name="tempat_lahir"
                     label={"TEMPAT LAHIR"}
@@ -90,6 +112,8 @@ export default function SiswaForm({ action, row = null, closeForm }) {
                     onChange={handleOnChange}
                     error={form.errors.tempat_lahir}
                 />
+
+                {/* TANGGAL LAHIR */}
                 <FormDatePicker
                     name={"tanggal_lahir"}
                     label={"TANGGAL LAHIR"}
@@ -97,6 +121,8 @@ export default function SiswaForm({ action, row = null, closeForm }) {
                     handleOnChange={(val) => form.setData("tanggal_lahir", val)}
                     error={form.errors.tanggal_lahir}
                 />
+
+                {/* STATUS */}
                 <FormSelectInput
                     name="status_siswa"
                     label="STATUS SISWA"

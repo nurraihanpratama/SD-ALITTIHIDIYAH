@@ -3,6 +3,7 @@ import DataTable from "@/Theme/Components/DataTable/DataTable";
 import { Fragment } from "react";
 import { BiPlus } from "react-icons/bi";
 import SiswaAction from "./SIswaAction";
+import { formatDate, localeDate } from "@/Helpers/helper";
 
 export default function SiswaDataTable({
     collection,
@@ -37,10 +38,12 @@ export default function SiswaDataTable({
         {
             header: "KELAS",
             field: "id_kelas",
+            render: (row) => <p>{row.kelas.nama}</p>,
         },
         {
             header: "TEMPAT TANGGAL LAHIR",
             field: "tanggal_lahir",
+            render: (row) => <TemplateTTL row={row} />,
         },
         {
             header: "STATUS",
@@ -68,5 +71,13 @@ const ActionsButton = ({ onClickNew }) => {
                 New
             </PrimaryButton>
         </Fragment>
+    );
+};
+
+const TemplateTTL = ({ row }) => {
+    return (
+        <p className=" nowrap">
+            {row.tempat_lahir}, {formatDate(row.tanggal_lahir, "DD MMMM YYYY")}
+        </p>
     );
 };

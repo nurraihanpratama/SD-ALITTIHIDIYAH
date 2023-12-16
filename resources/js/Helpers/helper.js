@@ -67,6 +67,11 @@ export const localeDate = (date) => {
     return dayjs(date).locale("id").format("dddd, D MMM YYYY");
 };
 
+export const formatDate = (date, format) => {
+    dayjs.locale("id");
+    return dayjs(date).locale("id").format(format);
+};
+
 export const fullDate = (date) => {
     return dayjs(date).format("dddd, D MMM YYYY HH:mm:ss");
 };
