@@ -10,6 +10,7 @@ class JadwalPelajaranDataTable
     public function generate($request)
     {
         $data = TblRoster::query()
+                ->with(['kelas', 'guru'])
                 ->paginate(15);
 
         $collection = JadwalPelajaranResource::collection($data);

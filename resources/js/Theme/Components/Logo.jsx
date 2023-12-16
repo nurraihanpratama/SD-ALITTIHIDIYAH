@@ -6,8 +6,8 @@ export default function Logo({ subname = null }) {
             <div className="gap-2 flex-start">
                 <img src={LogoImg} alt="Application Logo" width={45} />
                 <div className="text-2xl font-bold flex-start font-caprasimo">
-                    {/* <p className="text-gray-700 dark:text-white">SD</p> */}
-                    {/* <p className="text-primary">ALITTIHAD</p> */}
+                    <p className="text-gray-700 dark:text-white">SD</p>
+                    <p className="text-primary">ALITTIHAD</p>
                 </div>
             </div>
             {subname && (

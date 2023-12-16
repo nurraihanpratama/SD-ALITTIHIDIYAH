@@ -2,7 +2,7 @@ import PrimaryButton from "@/Theme/Components/Buttons/PrimaryButton";
 import DataTable from "@/Theme/Components/DataTable/DataTable";
 import { Fragment } from "react";
 import { BiPlus } from "react-icons/bi";
-import KelasAction from "./JadwalPelajaranAction"; 
+import KelasAction from "./JadwalPelajaranAction";
 
 export default function KelasDataTable({
     collection,
@@ -16,16 +16,16 @@ export default function KelasDataTable({
             sortable: false,
             searchable: false,
             bodyAlignment: "center",
-            render: (row) => <KelasAction row={row} />, 
+            render: (row) => <KelasAction row={row} />,
         },
         {
-            header: "Nama Kelas",
-            field: "nama",
+            header: "Kelas",
+            field: "kelas",
         },
         {
-            header: "Wali Kelas",
-            field: "wali_kelas",
-            render: (row) => row.guru.nama_guru,
+            header: "Mapel Guru",
+            field: "roaster_id",
+            render: (row) => console.log(row),
         },
     ];
 
@@ -34,7 +34,7 @@ export default function KelasDataTable({
             collection={collection}
             columns={KelasColumns}
             ActionsButton={<ActionsButton onClickNew={onClickNew} />}
-            withSearch
+            // withSearch
             withPagination
             resetRouteRedirect={route("admin.kelas.index")}
         />
