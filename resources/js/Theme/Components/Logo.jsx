@@ -1,11 +1,11 @@
-import LogoImg from "../../../assets/images/LOGO-YKPI.png";
+import LogoImg from "../../../assets/images/logosch.png";
 
 export default function Logo({ subname = null }) {
     return (
         <div className="gap-2 lg:flex-start">
             <div className="gap-2 flex-start">
-                <img src={LogoImg} alt="Application Logo" width={200} />
-                <div className="text-3xl font-bold flex-start font-caprasimo">
+                <img src={LogoImg} alt="Application Logo" width={45} />
+                <div className="text-2xl font-bold flex-start font-caprasimo">
                     {/* <p className="text-gray-700 dark:text-white">SD</p> */}
                     {/* <p className="text-primary">ALITTIHAD</p> */}
                 </div>

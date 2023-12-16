@@ -2,17 +2,19 @@
 
 namespace App\Modules\Admin\Pegawai\Actions;
 
+use App\Modules\Admin\Pegawai\Tables\PegawaiDataTable;
 use Inertia\Inertia;
 
 class PegawaiIndexAction
 {
-    public function index()
+    public function index($request)
     {
         $page = [
             "title" => "Data Pegawai"
         ];
 
-        $props = compact('page');
+        $collection = (new PegawaiDataTable)->generate($request);
+        $props = compact('page', 'collection');
 
         return Inertia::render('Admin/Pegawai/Index', $props);
     }
