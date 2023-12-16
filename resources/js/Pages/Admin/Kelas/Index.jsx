@@ -1,18 +1,17 @@
+import ContentCard from "@/Theme/Components/ContentCard";
 import ThemeLayout from "@/Theme/ThemeLayout";
+import KelasDataTable from "./Components/DataTable/KelasDataTable";
 
 export default function Index(props) {
-    const { page } = props;
+    const { page,collection } = props;
     const { title } = page;
-
+    console.log(collection);
+    
     return (
         <ThemeLayout title={title}>
-            <div className="overflow-hidden rounded-md shadow-lg">
-                <div className="px-4 py-2 bg-white dark:bg-[#162231]">
-                    <p className="text-xl font-bold text-gray-700 dark:text-white">
-                        {title}
-                    </p>
-                </div>
-            </div>
+            <ContentCard title={title} /> 
+            <KelasDataTable collection={collection} />
         </ThemeLayout>
     );
 }
+

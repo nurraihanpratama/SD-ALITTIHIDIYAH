@@ -2,17 +2,19 @@
 
 namespace App\Modules\Admin\JadwalPelajaran\Actions;
 
+use App\Modules\Admin\JadwalPelajaran\Tables\JadwalPelajaranDataTable;
 use Inertia\Inertia;
 
 class JadwalPelajaranIndexAction
 {
-    public function index()
+    public function index($request)
     {
         $page = [
-            "title" => "Jadwal Pelajaran"
+            "title" => "Data Jadwal Pelajaran"
         ];
 
-        $props = compact('page');
+        $collection = (new JadwalPelajaranDataTable)->generate($request);
+        $props = compact('page', 'collection');
 
         return Inertia::render('Admin/JadwalPelajaran/Index', $props);
     }
