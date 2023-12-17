@@ -11,16 +11,15 @@ export default function SiswaForm({
     row = null,
     closeForm,
 }) {
-    console.log(row);
     const form = useForm({
         nisn: row?.nisn ?? "",
         nipd: row?.nipd ?? "",
         nama_siswa: row?.nama_siswa ?? "",
-        jk_siswa: row?.jk_siswa ?? loadOptions?.jk[0].id,
-        agama_siswa: row?.agama_siswa ?? loadOptions.agama[0].id,
+        jk_siswa: row?.jk?.id ?? loadOptions?.jk[0].id,
+        agama_siswa: row?.agama?.id ?? loadOptions.agama[0].id,
         tempat_lahir: row?.tempat_lahir ?? "",
         tanggal_lahir: dayjs().format("YYYY-MM-DD"),
-        status_siswa: row?.status_siswa ?? loadOptions?.status[0].id,
+        status_siswa: row?.status?.id ?? loadOptions?.status[0].id,
         id_kelas: row?.id_kelas ?? loadOptions?.kelas[0].id,
     });
     const handleOnChange = (event) => {
