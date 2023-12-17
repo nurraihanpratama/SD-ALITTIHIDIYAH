@@ -44,6 +44,9 @@ Route::middleware(['auth', 'verified'])
             ->prefix('/kelas')
             ->group(function() {
                 Route::get('/', 'index')->name('index');
+                Route::get('/create', 'create')->name('create');
+                Route::post('/store', 'store')->name('store');
+                Route::patch('/update/{kelas}', 'update')->name('update');
         });
 
         Route::controller(SiswaController::class)
@@ -52,6 +55,9 @@ Route::middleware(['auth', 'verified'])
             ->prefix('/siswa')
             ->group(function() {
                 Route::get('/', 'index')->name('index');
+                Route::get('/create', 'create')->name('create');
+                Route::post('/store', 'store')->name('store');
+                Route::patch('/update/{siswa}', 'update')->name('update');
         });
 
         Route::controller(GuruController::class)

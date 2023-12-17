@@ -7,9 +7,11 @@ import { formatDate, localeDate } from "@/Helpers/helper";
 
 export default function SiswaDataTable({
     collection,
+    loadOptions,
     withNewButton = false,
     onClickNew,
 }) {
+    console.log(collection);
     const SiswaColumns = [
         {
             header: " ",
@@ -17,7 +19,9 @@ export default function SiswaDataTable({
             sortable: false,
             searchable: false,
             bodyAlignment: "center",
-            render: (row) => <SiswaAction row={row} />,
+            render: (row) => (
+                <SiswaAction row={row} loadOptions={loadOptions} />
+            ),
         },
         {
             header: "NISN",

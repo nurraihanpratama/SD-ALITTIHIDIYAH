@@ -4,30 +4,24 @@ import FormSelectInput from "@/Theme/Form/FormSelectInput";
 import FormTextInput from "@/Theme/Form/FormTextInput";
 import { useForm } from "@inertiajs/react";
 import dayjs from "dayjs";
-export default function SiswaForm({ action, row = null, closeForm }) {
-    const dataAgama = [
-        { id: "Islam", name: "ISLAM" },
-        { id: "Kristen", name: "KRISTEN" },
-    ];
-    const dataJk = [
-        { id: "L", name: "Laki-Laki" },
-        { id: "P", name: "Perempuan" },
-    ];
-    const statuses = [
-        { id: "Aktif", name: "AKTIF" },
-        { id: "Nonaktif", name: "NONAKTIF" },
-    ];
-
+import { useState } from "react";
+export default function SiswaForm({
+    action,
+    loadOptions = null,
+    row = null,
+    closeForm,
+}) {
+    console.log(row);
     const form = useForm({
         nisn: row?.nisn ?? "",
         nipd: row?.nipd ?? "",
         nama_siswa: row?.nama_siswa ?? "",
-        jk_siswa: row?.jk?.id ?? dataJk[0].id,
-        agama_siswa: dataAgama[0].id,
+        jk_siswa: row?.jk_siswa ?? loadOptions?.jk[0].id,
+        agama_siswa: row?.agama_siswa ?? loadOptions.agama[0].id,
         tempat_lahir: row?.tempat_lahir ?? "",
         tanggal_lahir: dayjs().format("YYYY-MM-DD"),
-        status_siswa: row?.status?.id ?? statuses[0].id,
-        id_kelas: row?.id_kelas ?? "",
+        status_siswa: row?.status_siswa ?? loadOptions?.status[0].id,
+        id_kelas: row?.id_kelas ?? loadOptions?.kelas[0].id,
     });
     const handleOnChange = (event) => {
         form.setData(event.target.name, event.target.value);
@@ -37,11 +31,18 @@ export default function SiswaForm({ action, row = null, closeForm }) {
         if (action === "create") return "Tambah Data Siswa";
         else return `Ubah Data Siswa`;
     };
+
     const submit = (e) => {
         e.preventDefault();
 
         if (action == "create") {
-            return console.log(form.data);
+            // return console.log(form.data)
+            if (window.confirm("Yakin untuk menambahkan Data Siswa baru?")) {
+                form.post(route("admin.siswa.store"), {
+                    onSuccess: (response) => console.log(response),
+                    onError: (err) => console.log("err", err),
+                });
+            }
         }
     };
 
@@ -82,11 +83,20 @@ export default function SiswaForm({ action, row = null, closeForm }) {
                     error={form.errors.nama_siswa}
                 />
 
+                {/* PILIH KELAS */}
+                <FormSelectInput
+                    name="id_kelas"
+                    label="PILIH KELAS"
+                    options={loadOptions?.kelas}
+                    value={form.data.id_kelas}
+                    onChange={(val) => form.setData("id_kelas", val.id)}
+                />
+
                 {/* JENIS KELAMIN */}
                 <FormSelectInput
                     name="jk_siswa"
                     label="JENIS KELAMIN SISWA"
-                    options={dataJk}
+                    options={loadOptions?.jk}
                     value={form.data.jk_siswa}
                     onChange={(val) => form.setData("jk_siswa", val.id)}
                     error={form.errors.jk_siswa}
@@ -97,7 +107,7 @@ export default function SiswaForm({ action, row = null, closeForm }) {
                 <FormSelectInput
                     name="agama_siswa"
                     label="AGAMA SISWA"
-                    options={dataAgama}
+                    options={loadOptions?.agama}
                     value={form.data.agama_siswa}
                     onChange={(val) => form.setData("agama_siswa", val.id)}
                     error={form.errors.agama_siswa}
@@ -126,7 +136,7 @@ export default function SiswaForm({ action, row = null, closeForm }) {
                 <FormSelectInput
                     name="status_siswa"
                     label="STATUS SISWA"
-                    options={statuses}
+                    options={loadOptions?.status}
                     value={form.data.status_siswa}
                     onChange={(val) => form.setData("status_siswa", val.id)}
                     error={form.errors.status_siswa}

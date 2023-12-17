@@ -13,4 +13,9 @@ class TblKelas extends Model
     {
         return $this->belongsTo(TblGuru::class ,'wali_kelas' ,'id_guru' );
     }
+
+    public function siswa()
+    {
+        return $this->hasMany(TblSiswa::class, 'id_kelas', 'id_kelas');
+    }
 }

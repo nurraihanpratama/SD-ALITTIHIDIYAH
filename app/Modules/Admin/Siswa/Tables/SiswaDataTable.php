@@ -10,8 +10,8 @@ class SiswaDataTable
     public function generate($request)
     {
         $data = TblSiswa::query()
-                ->with(['kelas' , 'status', 'jk'])
-                ->paginate(15);
+        ->with(['kelas', 'status', 'jk'])
+        ->paginate(15);
 
         $collection = SiswaResource::collection($data);
 
