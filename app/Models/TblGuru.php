@@ -8,4 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class TblGuru extends Model
 {
     use HasFactory;
+    
 }
