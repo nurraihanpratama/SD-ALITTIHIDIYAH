@@ -24,6 +24,44 @@ class TblSiswa extends Model
         'created_at'
         ];
 
+    
+        // * FILTERS
+	public function scopeWithSearch($query, $search, $guard = 'web')
+	{
+		if ($guard === 'web') {
+			$query->when(isset($search['v']), function ($q) use ($search) {
+                if($search['f'] === 'id_kelas'){
+                    $q->whereHas('kelas', function($qry) use($search){
+                        $qry->where('id_kelas', 'like', '%' . $search['v'] . '%')
+                            ->orWhere('nama', 'like', '%' . $search['v'] . '%');
+                    });
+                }
+				$q->where($search['f'], 'like', '%' . $search['v'] . '%');
+
+			});
+		}
+		
+	}
+
+	public function scopeWithSort(
+		$query,
+		$sort,
+		$defaultField = 'created_at',
+		$defaultDirection = 'desc'
+	) {
+		$query->when($sort, function ($q) use ($sort) {
+			$q->orderBy($sort['f'], $sort['d']);
+		}, function ($q) use ($defaultField, $defaultDirection) {
+			return $q->orderBy($defaultField, $defaultDirection);
+		});
+	}
+
+	public function scopeWithFilter($query, $filter, $field)
+	{
+		$query->when($filter, function ($q) use ($filter, $field) {
+			$q->whereIn($field, makeArray($filter));
+		});
+	}
     public function kelas()
     {
 

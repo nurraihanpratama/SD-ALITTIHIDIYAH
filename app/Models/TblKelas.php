@@ -16,6 +16,18 @@ class TblKelas extends Model
         'created_at'
         ];
 
+
+    // * FILTERS
+	public function scopeWithSearch($query, $search, $guard = 'web')
+	{
+		if ($guard === 'web') {
+			$query->when(isset($search['v']), function ($q) use ($search) {
+				$q->where($search['f'], 'like', '%' . $search['v'] . '%');
+			});
+		}
+		
+	}
+
     public function guru()
     {
         return $this->belongsTo(TblGuru::class ,'wali_kelas' ,'id_guru' );

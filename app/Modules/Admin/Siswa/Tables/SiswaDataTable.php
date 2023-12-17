@@ -9,9 +9,14 @@ class SiswaDataTable
 {
     public function generate($request)
     {
+        $search = $request->get('search');
         $data = TblSiswa::query()
         ->with(['kelas', 'status', 'jk'])
-        ->paginate(15);
+        ->withSearch($search)
+        ->paginate(15)
+        ->appends([
+            'search' => $search,
+        ]);
 
         $collection = SiswaResource::collection($data);
 

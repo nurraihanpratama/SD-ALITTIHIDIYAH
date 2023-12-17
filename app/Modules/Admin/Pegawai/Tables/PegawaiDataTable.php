@@ -9,8 +9,13 @@ class PegawaiDataTable
 {
     public function generate($request)
     {
+        $search = $request->get('search');
         $data = TblPegawai::query()
-                ->paginate(15);
+        ->withSearch($search)
+        ->paginate(15)
+        ->appends([
+            'search' => $search,
+        ]);
 
         $collection = PegawaiResource::collection($data);
 

@@ -9,8 +9,13 @@ class BeritaDataTable
 {
     public function generate($request)
     {
+        $search = $request->get('search');
         $data = TblBerita::query()
-                ->paginate(15);
+        ->withSearch($search)
+        ->paginate(15)
+        ->appends([
+            'search' => $search,
+        ]);
 
         $collection = BeritaResource::collection($data);
 

@@ -9,8 +9,15 @@ class BidangStudiDataTable
 {
     public function generate($request)
     {
+        
+        $search = $request->get('search');
         $data = TblBidangStudi::query()
-                ->paginate(15);
+                ->withSearch($search)
+                ->paginate(15)
+                ->appends([
+                    'search' => $search,
+                ]);
+
 
         $collection = BidangStudiResource::collection($data);
 

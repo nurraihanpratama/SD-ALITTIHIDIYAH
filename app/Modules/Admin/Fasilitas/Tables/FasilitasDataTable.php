@@ -9,8 +9,13 @@ class FasilitasDataTable
 {
     public function generate($request)
     {
+        $search = $request->get('search');
         $data = TblFasilitas::query()
-                ->paginate(15);
+                ->withSearch($search)
+                ->paginate(15)
+                ->appends([
+                    'search' => $search,
+                ]);
 
         $collection = FasilitasResource::collection($data);
 

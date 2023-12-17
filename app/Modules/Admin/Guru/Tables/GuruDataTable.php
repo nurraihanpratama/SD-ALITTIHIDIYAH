@@ -9,8 +9,13 @@ class GuruDataTable
 {
     public function generate($request)
     {
+        $search = $request->get('search');
         $data = TblGuru::query()
-                ->paginate(15);
+                ->withSearch($search)
+                ->paginate(15)
+                ->appends([
+                    'search' => $search,
+                ]);
 
         $collection = GuruResource::collection($data);
 

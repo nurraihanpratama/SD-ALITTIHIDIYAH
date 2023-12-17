@@ -9,8 +9,13 @@ class EkstrakurikulerDataTable
 {
     public function generate($request)
     {
+        $search = $request->get('searcg');
         $data = TblEkstrakurikuler::query()
-                ->paginate(15);
+        ->withSearch($search)
+        ->paginate(15)
+        ->appends([
+            'search' => $search,
+        ]);
 
         $collection = EkstrakurikulerResource::collection($data);
 

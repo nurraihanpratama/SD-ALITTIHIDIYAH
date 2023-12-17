@@ -9,9 +9,14 @@ class KelasDataTable
 {
     public function generate($request)
     {
+        $search = $request->get('search');
         $data = TblKelas::query()
                 ->with(['guru'])
-                ->paginate(15);
+                ->withSearch($search)
+                ->paginate(15)
+                ->appends([
+                    'search' => $search,
+                ]);
 
         $collection = KelasResource::collection($data);
 

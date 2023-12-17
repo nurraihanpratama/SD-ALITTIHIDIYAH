@@ -9,9 +9,14 @@ class JadwalPelajaranDataTable
 {
     public function generate($request)
     {
+        $search = $request->get('search');
         $data = TblRoster::query()
                 ->with(['kelas', 'guru'])
-                ->paginate(15);
+                ->withSearch($search)
+                ->paginate(15)
+                ->appends([
+                    'search' => $search,
+                ]);
 
         $collection = JadwalPelajaranResource::collection($data);
 
