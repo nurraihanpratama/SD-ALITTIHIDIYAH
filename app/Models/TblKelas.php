@@ -8,6 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 class TblKelas extends Model
 {
     use HasFactory;
+    protected $table = 'tbl_kelas';
+    public $timestamps = false;
+    protected $fillable = [
+        'nama',
+        'wali_kelas',
+        'created_at'
+        ];
 
     public function guru()
     {

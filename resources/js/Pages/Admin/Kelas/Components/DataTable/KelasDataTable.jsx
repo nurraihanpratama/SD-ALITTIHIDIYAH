@@ -6,6 +6,7 @@ import KelasAction from "./KelasAction";
 
 export default function KelasDataTable({
     collection,
+    loadOptions,
     withNewButton = false,
     onClickNew,
 }) {
@@ -16,7 +17,7 @@ export default function KelasDataTable({
             sortable: false,
             searchable: false,
             bodyAlignment: "center",
-            render: (row) => <KelasAction row={row} />, 
+            render: (row) => <KelasAction row={row} loadOptions={loadOptions} />, 
         },
         {
             header: "Nama Kelas",

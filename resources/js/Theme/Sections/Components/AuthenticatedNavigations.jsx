@@ -1,7 +1,7 @@
 import { Fragment } from "react";
 import { FiCodesandbox, FiTag } from "react-icons/fi";
 import { FaDoorOpen } from "react-icons/fa6";
-import { FaUserCircle, FaUsersCog } from "react-icons/fa";
+import { FaChalkboardTeacher, FaUserCircle, FaUsersCog } from "react-icons/fa";
 import NavLink from "@/Theme/Components/NavLink/NavLink";
 import { LuSchool } from "react-icons/lu";
 import { PiStudentBold, PiUserFill } from "react-icons/pi";
@@ -21,7 +21,7 @@ export default function AuthenticatedNavigations({ user }) {
                 label="Dashboard"
                 icon={<FiCodesandbox />}
             />
-
+            
             {/* Kelas */}
             <NavLink
                 navRoute={route("admin.kelas.index")}
@@ -29,56 +29,65 @@ export default function AuthenticatedNavigations({ user }) {
                 label="Data Kelas"
                 icon={<LuSchool />}
             />
-            {/* Kelas */}
+
+            {/* guru */}
+            <NavLink
+                navRoute={route("admin.guru.index")}
+                components={["admin.guru.index"]}
+                label="Data Guru"
+                icon={<FaChalkboardTeacher />}
+            />
+
+            {/* siswa */}
             <NavLink
                 navRoute={route("admin.siswa.index")}
                 components={["admin.siswa.index"]}
                 label="Data Siswa"
                 icon={<PiStudentBold />}
             />
-            {/* Kelas */}
+            {/* bidang studi */}
             <NavLink
                 navRoute={route("admin.bidang-studi.index")}
                 components={["admin.bidang-studi.index"]}
                 label="Data Bidang Studi"
                 icon={<MdLibraryBooks />}
             />
-            {/* Kelas */}
+            {/* jadwal pelajaran */}
             <NavLink
                 navRoute={route("admin.jadwal-pelajaran.index")}
                 components={["admin.jadwal-pelajaran.index"]}
                 label="Data Jadwal Pelajaran"
                 icon={<AiOutlineSchedule />}
             />
-            {/* Kelas */}
+            {/* pegawai */}
             <NavLink
                 navRoute={route("admin.pegawai.index")}
                 components={["admin.pegawai.index"]}
                 label="Data Pegawai"
                 icon={<PiUserFill />}
             />
-            {/* Kelas */}
+            {/* prestasi */}
             <NavLink
                 navRoute={route("admin.prestasi.index")}
                 components={["admin.prestasi.index"]}
                 label="Data Prestasi"
                 icon={<GiJeweledChalice />}
             />
-            {/* Kelas */}
+            {/* ekstrakurikuler */}
             <NavLink
                 navRoute={route("admin.ekstrakurikuler.index")}
                 components={["admin.ekstrakurikuler.index"]}
                 label="Data Ekstrakurikuler"
                 icon={<MdOutlineSportsGymnastics />}
             />
-            {/* Kelas */}
+            {/* fasilitas */}
             <NavLink
                 navRoute={route("admin.fasilitas.index")}
                 components={["admin.fasilitas.index"]}
                 label="Data Fasilitas"
                 icon={<BsHouses />}
             />
-            {/* Kelas */}
+            {/* berita */}
             <NavLink
                 navRoute={route("admin.berita.index")}
                 components={["admin.berita.index"]}
