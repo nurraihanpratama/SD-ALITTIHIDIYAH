@@ -7,6 +7,7 @@ import BeritaAction from "./BeritaAction";
 
 export default function BeritaDataTable({
     collection,
+    loadOptions,
     withNewButton = false,
     onClickNew,
 }) {
@@ -17,7 +18,7 @@ export default function BeritaDataTable({
             sortable: false,
             searchable: false,
             bodyAlignment: "center",
-            render: (row) => <BeritaAction row={row} />, 
+            render: (row) => <BeritaAction row={row} loadOptions={loadOptions} />, 
         },
         {
             header: "Nama Berita",

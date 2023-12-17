@@ -5,7 +5,7 @@ import MenuItemButtonDropdown from "@/Components/MenuItemButtonDropdown";
 import { FaEdit } from "react-icons/fa";
 import Modal from "@/Theme/Components/Modal";
 import BeritaForm from "../Form/BeritaForm";
-export default function BeritaAction({ row }) {
+export default function BeritaAction({ row, loadOptions }) {
     const [visible, setVisible] = useState(false);
     return (
         <Fragment>
@@ -25,6 +25,7 @@ export default function BeritaAction({ row }) {
                     action="update"
                     row={row}
                     closeForm={() => setVisible(false)}
+                    loadOptions={loadOptions}
                 />
             </Modal>
         </Fragment>

@@ -5,7 +5,7 @@ import MenuItemButtonDropdown from "@/Components/MenuItemButtonDropdown";
 import { FaEdit } from "react-icons/fa";
 import Modal from "@/Theme/Components/Modal";
 import PrestasiForm from "../Form/PrestasiForm";
-export default function PrestasiAction({ row }) {
+export default function PrestasiAction({ row, loadOptions }) {
     const [visible, setVisible] = useState(false);
     return (
         <Fragment>
@@ -25,6 +25,7 @@ export default function PrestasiAction({ row }) {
                     action="update"
                     row={row}
                     closeForm={() => setVisible(false)}
+                    loadOptions={loadOptions}
                 />
             </Modal>
         </Fragment>

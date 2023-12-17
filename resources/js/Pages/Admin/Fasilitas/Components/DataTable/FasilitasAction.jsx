@@ -5,7 +5,7 @@ import MenuItemButtonDropdown from "@/Components/MenuItemButtonDropdown";
 import { FaEdit } from "react-icons/fa";
 import Modal from "@/Theme/Components/Modal";
 import FasilitasForm from "../Form/FasilitasForm";
-export default function FasilitasAction({ row }) {
+export default function FasilitasAction({ row, loadOptions }) {
     const [visible, setVisible] = useState(false);
     return (
         <Fragment>
@@ -25,6 +25,7 @@ export default function FasilitasAction({ row }) {
                     action="update"
                     row={row}
                     closeForm={() => setVisible(false)}
+                    loadOptions={loadOptions}
                 />
             </Modal>
         </Fragment>

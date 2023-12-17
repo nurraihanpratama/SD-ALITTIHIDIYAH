@@ -9,7 +9,7 @@ export default function KelasForm({
   loadOptions = null,
   row = null,
   closeForm,
-}) { console.log(row);
+}) { 
   const form = useForm({
     nama: row?.nama ?? "",
     wali_kelas: row?.guru.id_guru ?? loadOptions?.gurus[0]?.id,

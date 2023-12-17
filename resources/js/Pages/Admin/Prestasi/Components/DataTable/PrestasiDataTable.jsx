@@ -7,6 +7,7 @@ import PrestasiAction from "./PrestasiAction";
 
 export default function PrestasiDataTable({
     collection,
+    loadOptions,
     withNewButton = false,
     onClickNew,
 }) {
@@ -17,7 +18,7 @@ export default function PrestasiDataTable({
             sortable: false,
             searchable: false,
             bodyAlignment: "center",
-            render: (row) => <PrestasiAction row={row} />, 
+            render: (row) => <PrestasiAction row={row} loadOptions={loadOptions} />, 
         },
         {
             header: "Nama Prestasi",

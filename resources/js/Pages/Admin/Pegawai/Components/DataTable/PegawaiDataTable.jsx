@@ -7,6 +7,7 @@ import PegawaiAction from "./PegawaiAction";
 
 export default function PegawaiDataTable({
     collection,
+    loadOptions,
     withNewButton = false,
     onClickNew,
 }) {
@@ -17,7 +18,7 @@ export default function PegawaiDataTable({
             sortable: false,
             searchable: false,
             bodyAlignment: "center",
-            render: (row) => <PegawaiAction row={row} />, 
+            render: (row) => <PegawaiAction row={row} loadOptions={loadOptions} />, 
         },
         {
             header: "Nama Pegawai",

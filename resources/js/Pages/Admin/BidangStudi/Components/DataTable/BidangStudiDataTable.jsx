@@ -7,6 +7,7 @@ import BidangStudiAction from "./BidangStudiAction";
 
 export default function BidangStudiDataTable({
     collection,
+    loadOptions,
     withNewButton = false,
     onClickNew,
 }) {
@@ -17,7 +18,7 @@ export default function BidangStudiDataTable({
             sortable: false,
             searchable: false,
             bodyAlignment: "center",
-            render: (row) => <BidangStudiAction row={row} />, 
+            render: (row) => <BidangStudiAction row={row} loadOptions={loadOptions} />, 
         },
         {
             header: "Nama Bidang Studi",

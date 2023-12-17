@@ -7,6 +7,7 @@ import FasilitasAction from "./FasilitasAction";
 
 export default function FasilitasDataTable({
     collection,
+    loadOptions,
     withNewButton = false,
     onClickNew,
 }) {
@@ -17,7 +18,7 @@ export default function FasilitasDataTable({
             sortable: false,
             searchable: false,
             bodyAlignment: "center",
-            render: (row) => <FasilitasAction row={row} />, 
+            render: (row) => <FasilitasAction row={row} loadOptions={loadOptions} />, 
         },
         {
             header: "Nama Fasilitas",
