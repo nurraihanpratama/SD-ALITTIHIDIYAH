@@ -16,7 +16,13 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'Laravel'),
+    'name'      => env('APP_NAME', 'Laravel'),
+    'version'   => env('APP_VERSION', '1.0.0'),
+    'currency'  => env('CURRENCY', 'IDR'),
+
+    'error_msg' => env('SYSTEM_ERROR_MESSAGE', 'ERROR'),
+
+
 
     /*
     |--------------------------------------------------------------------------
@@ -70,8 +76,8 @@ return [
     |
     */
 
-    'timezone' => 'UTC',
-
+    // 'timezone' => 'UTC',
+    'timezone' => env('TIMEZONE', 'Asia/Jakarta'),
     /*
     |--------------------------------------------------------------------------
     | Application Locale Configuration
@@ -83,7 +89,8 @@ return [
     |
     */
 
-    'locale' => 'en',
+    // 'locale' => 'en',
+    'locale' => 'id',
 
     /*
     |--------------------------------------------------------------------------

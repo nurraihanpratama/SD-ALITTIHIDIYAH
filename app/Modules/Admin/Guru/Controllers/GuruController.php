@@ -3,13 +3,34 @@
 namespace App\Modules\Admin\Guru\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Modules\Admin\Guru\Actions\GuruDeleteAction;
 use App\Modules\Admin\Guru\Actions\GuruIndexAction;
+use App\Modules\Admin\Guru\Actions\GuruStoreAction;
+use App\Modules\Admin\Guru\Actions\GuruUpdateAction;
+use Illuminate\Http\Request;
 
 class GuruController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        return (New GuruIndexAction)->index();
-        
+        return (New GuruIndexAction)->index($request);
+    }
+
+    // Store Data
+    public function store(Request $request)
+    {
+        return (New GuruStoreAction)->store($request);
+    }
+
+    // Edit Data
+    public function update(Request $request, String $id)
+    {
+        return (New GuruUpdateAction)->update($request,  $id);
+    }
+
+    // Delete Data
+    public function delete(Request $request, String $id)
+    {
+        return (New GuruDeleteAction)->delete($request,  $id);
     }
 }
