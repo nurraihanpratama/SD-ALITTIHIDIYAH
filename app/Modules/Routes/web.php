@@ -66,6 +66,9 @@ Route::middleware(['auth', 'verified'])
             ->prefix('/guru')
             ->group(function() {
                 Route::get('/', 'index')->name('index');
+                Route::get('/create', 'create')->name('create');
+                Route::post('/store', 'store')->name('store');
+                Route::patch('/update/{guru}', 'update')->name('update');
         });
 
         Route::controller(BidangStudiController::class)
@@ -74,6 +77,9 @@ Route::middleware(['auth', 'verified'])
             ->prefix('/bidang-studi')
             ->group(function() {
                 Route::get('/', 'index')->name('index');
+                Route::get('/create', 'create')->name('create');
+                Route::post('/store', 'store')->name('store');
+                Route::patch('/update/{bidang-studi}', 'update')->name('update');
         });
 
         Route::controller(JadwalPelajaranController::class)
@@ -82,6 +88,9 @@ Route::middleware(['auth', 'verified'])
             ->prefix('/jadwal-pelajaran')
             ->group(function() {
                 Route::get('/', 'index')->name('index');
+                Route::get('/create', 'create')->name('create');
+                Route::post('/store', 'store')->name('store');
+                Route::patch('/update/{jadwal-pelajaran}', 'update')->name('update');
         });
 
         Route::controller(PegawaiController::class)
@@ -90,6 +99,9 @@ Route::middleware(['auth', 'verified'])
             ->prefix('/pegawai')
             ->group(function() {
                 Route::get('/', 'index')->name('index');
+                Route::get('/create', 'create')->name('create');
+                Route::post('/store', 'store')->name('store');
+                Route::patch('/update/{pegawai}', 'update')->name('update');
         });
 
         Route::controller(PrestasiController::class)
@@ -98,6 +110,9 @@ Route::middleware(['auth', 'verified'])
             ->prefix('/prestasi')
             ->group(function() {
                 Route::get('/', 'index')->name('index');
+                Route::get('/create', 'create')->name('create');
+                Route::post('/store', 'store')->name('store');
+                Route::patch('/update/{prestasi}', 'update')->name('update');
         });
 
         Route::controller(EkstrakurikulerController::class)
@@ -106,6 +121,9 @@ Route::middleware(['auth', 'verified'])
             ->prefix('/ekstrakurikuler')
             ->group(function() {
                 Route::get('/', 'index')->name('index');
+                Route::get('/create', 'create')->name('create');
+                Route::post('/store', 'store')->name('store');
+                Route::patch('/update/{ekstrakurikuler}', 'update')->name('update');
         });
 
         Route::controller(FasilitasController::class)
@@ -114,6 +132,9 @@ Route::middleware(['auth', 'verified'])
             ->prefix('/fasilitas')
             ->group(function() {
                 Route::get('/', 'index')->name('index');
+                Route::get('/create', 'create')->name('create');
+                Route::post('/store', 'store')->name('store');
+                Route::patch('/update/{fasilitas}', 'update')->name('update');
         });
 
         Route::controller(BeritaController::class)
@@ -122,6 +143,9 @@ Route::middleware(['auth', 'verified'])
             ->prefix('/berita')
             ->group(function() {
                 Route::get('/', 'index')->name('index');
+                Route::get('/create', 'create')->name('create');
+                Route::post('/store', 'store')->name('store');
+                Route::patch('/update/{berita}', 'update')->name('update');
         });
 
         

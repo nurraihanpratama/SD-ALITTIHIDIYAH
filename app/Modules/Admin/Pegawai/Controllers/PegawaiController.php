@@ -3,6 +3,7 @@
 namespace App\Modules\Admin\Pegawai\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Modules\Admin\Pegawai\Actions\PegawaiCreateAction;
 use App\Modules\Admin\Pegawai\Actions\PegawaiDeleteAction;
 use App\Modules\Admin\Pegawai\Actions\PegawaiIndexAction;
 use App\Modules\Admin\Pegawai\Actions\PegawaiStoreAction;
@@ -14,6 +15,12 @@ class PegawaiController extends Controller
     public function index(Request $request)
     {
         return (New PegawaiIndexAction)->index($request);
+    }
+
+    // Show Option
+    public function create()
+    {
+        return (New PegawaiCreateAction)->options();
     }
 
     // Store Data

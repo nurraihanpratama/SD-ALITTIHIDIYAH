@@ -3,6 +3,7 @@
 namespace App\Modules\Admin\Guru\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Modules\Admin\Guru\Actions\GuruCreateAction;
 use App\Modules\Admin\Guru\Actions\GuruDeleteAction;
 use App\Modules\Admin\Guru\Actions\GuruIndexAction;
 use App\Modules\Admin\Guru\Actions\GuruStoreAction;
@@ -14,6 +15,12 @@ class GuruController extends Controller
     public function index(Request $request)
     {
         return (New GuruIndexAction)->index($request);
+    }
+
+    // Show Options
+    public function create()
+    {
+        return (New GuruCreateAction)->options();
     }
 
     // Store Data

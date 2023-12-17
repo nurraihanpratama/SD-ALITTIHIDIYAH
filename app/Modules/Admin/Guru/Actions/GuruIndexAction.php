@@ -13,7 +13,6 @@ class GuruIndexAction
             "title" => "Data Guru"
         ];
 
-
         $collection = (new GuruDataTable)->generate($request);
         $props = compact('page', 'collection');
 
