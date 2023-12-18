@@ -8,7 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class TblWaliSiswa extends Model
 {
     use HasFactory;
-
+	protected $table = 'tbl_wali_siswas';
+    protected $primaryKey = 'id_wali';
 
             // * FILTERS
 	public function scopeWithSearch($query, $search, $guard = 'web')
@@ -19,6 +20,12 @@ class TblWaliSiswa extends Model
 			});
 		}
 		
+	}
+
+
+	public function siswa()
+	{
+		return $this->belongsTo(TblSiswa::class, "nisn", 'nisn');
 	}
 
 }

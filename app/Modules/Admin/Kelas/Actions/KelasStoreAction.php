@@ -12,6 +12,7 @@ class KelasStoreAction
         try {
             $dataKelas = getValidatedData(new TblKelas, $request->toArray());
             DB::transaction(function() use($dataKelas){
+                // dd($dataKelas);
                 TblKelas::create($dataKelas);
             });
 

@@ -8,8 +8,16 @@ use Illuminate\Database\Eloquent\Model;
 class TblGuru extends Model
 {
     use HasFactory;
-    
-            // * FILTERS
+    protected $table = 'tbl_gurus';
+    protected $primaryKey = 'id_guru';
+    public $timestamps = false;
+	protected $fillable = [
+        'nama_guru',
+        'ket_guru',
+        'status_guru'
+        ];
+
+    // * FILTERS
 	public function scopeWithSearch($query, $search, $guard = 'web')
 	{
 		if ($guard === 'web') {

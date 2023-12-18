@@ -9,6 +9,8 @@ class TblEkstrakurikuler extends Model
 {
     use HasFactory;
 
+	protected $table = 'tbl_ekstrakurikulers';
+    protected $primaryKey = 'id_ekskul';
 
             // * FILTERS
 	public function scopeWithSearch($query, $search, $guard = 'web')

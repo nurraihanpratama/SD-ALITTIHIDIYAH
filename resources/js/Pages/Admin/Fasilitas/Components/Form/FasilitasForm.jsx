@@ -2,7 +2,6 @@ import React from "react";
 import StandardFormModalTemplate from "@/Theme/Components/ModalTemplates/StandardFormModalTemplate";
 import FormTextInput from "@/Theme/Form/FormTextInput";
 import FormSelectInput from "@/Theme/Form/FormSelectInput";
-import FormFileInput from "@/Theme/Form/FormFileInput"; // Import komponen FormFileInput yang sesuai
 import { useForm } from "@inertiajs/react";
 import dayjs from "dayjs";
 import { useState } from "react";
@@ -33,7 +32,9 @@ export default function FasilitasForm({
 
         if (action === "create") {
             // Lakukan operasi submit create
-            if (window.confirm("Yakin untuk menambahkan Data Fasilitas baru?")) {
+            if (
+                window.confirm("Yakin untuk menambahkan Data Fasilitas baru?")
+            ) {
                 form.post(route("admin.fasilitas.store"), {
                     onSuccess: (response) => console.log(response),
                     onError: (err) => console.log("err", err),
@@ -60,13 +61,13 @@ export default function FasilitasForm({
                 />
 
                 {/* FOTO FASILITAS */}
-                <FormFileInput
+                {/* <FormFileInput
                     name="foto_fasilitas"
                     label={"FOTO FASILITAS"}
                     value={form.data.foto_fasilitas}
                     onChange={(val) => form.setData("foto_fasilitas", val)}
                     error={form.errors.foto_fasilitas}
-                />
+                /> */}
 
                 {/* DESKRIPSI */}
                 <FormTextInput

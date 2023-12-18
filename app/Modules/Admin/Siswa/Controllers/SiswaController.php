@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Modules\Admin\Siswa\Actions\SiswaCreateAction;
 use App\Modules\Admin\Siswa\Actions\SiswaIndexAction;
 use App\Modules\Admin\Siswa\Actions\SiswaStoreAction;
+use App\Modules\Admin\Siswa\Actions\SiswaUpdateAction;
 use Illuminate\Http\Request;
 
 class SiswaController extends Controller
@@ -25,4 +26,10 @@ class SiswaController extends Controller
     {
         return (New SiswaStoreAction)->store($request);
     }
+
+     // Update Data from id
+     public function update(Request $request, string $id)
+     {
+        return (New SiswaUpdateAction)->update($request, $id);
+     }
 }

@@ -24,7 +24,7 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::middleware(['auth', 'verified'])
+Route::middleware(['auth', 'verified','ShareFlashes'])
     ->prefix('admin')
     ->name('admin.')
     ->group(function() {

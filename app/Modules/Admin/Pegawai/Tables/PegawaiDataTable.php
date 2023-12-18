@@ -11,6 +11,7 @@ class PegawaiDataTable
     {
         $search = $request->get('search');
         $data = TblPegawai::query()
+        ->with(['status','jk'])
         ->withSearch($search)
         ->paginate(15)
         ->appends([

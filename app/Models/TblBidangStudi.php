@@ -9,6 +9,8 @@ class TblBidangStudi extends Model
 {
     use HasFactory;
 
+	protected $table = 'tbl_bidang_studis';
+    protected $primaryKey = 'id_mapel';
 
             // * FILTERS
 	public function scopeWithSearch($query, $search, $guard = 'web')

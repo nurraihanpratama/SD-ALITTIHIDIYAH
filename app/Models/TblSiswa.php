@@ -10,6 +10,7 @@ class TblSiswa extends Model
     use HasFactory;
 
     protected $table = 'tbl_siswas';
+    protected $primaryKey = 'nisn';
     public $timestamps = false;
     protected $fillable = [
         'nisn',
@@ -24,7 +25,26 @@ class TblSiswa extends Model
         'created_at'
         ];
 
+        public static function boot()
+        {
+            parent::boot();
     
+            self::creating(function ($model) {
+                $model->created_at       = now();
+            });
+    
+            self::created(function ($model) {
+                $model->created_at = now();
+            });
+    
+            self::updating(function ($model) {
+                $model->updated_at = now();
+            });
+    
+            self::updated(function ($model) {
+                $model->updated_at = now();
+            });
+        }
         // * FILTERS
 	public function scopeWithSearch($query, $search, $guard = 'web')
 	{

@@ -3,7 +3,7 @@ import PrimaryButton from "@/Theme/Components/Buttons/PrimaryButton";
 import DataTable from "@/Theme/Components/DataTable/DataTable";
 import { Fragment } from "react";
 import { BiPlus } from "react-icons/bi";
-import FasilitasAction from "./FasilitasAction"; 
+import FasilitasAction from "./FasilitasAction";
 
 export default function FasilitasDataTable({
     collection,
@@ -18,7 +18,9 @@ export default function FasilitasDataTable({
             sortable: false,
             searchable: false,
             bodyAlignment: "center",
-            render: (row) => <FasilitasAction row={row} loadOptions={loadOptions} />, 
+            render: (row) => (
+                <FasilitasAction row={row} loadOptions={loadOptions} />
+            ),
         },
         {
             header: "Nama Fasilitas",

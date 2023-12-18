@@ -12,7 +12,7 @@ class PegawaiStoreAction
         try {
             $dataPegawai = getValidatedData(new TblPegawai, $request->toArray());
             DB::transaction(function() use($dataPegawai){
-                dd($dataPegawai);
+                // dd($dataPegawai);
                 TblPegawai::create($dataPegawai);
 
             });

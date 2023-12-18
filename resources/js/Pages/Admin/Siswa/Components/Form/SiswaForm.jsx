@@ -1,3 +1,4 @@
+import { onErrorFeedback, onSuccessFeedback } from "@/Helpers/formFeedback";
 import StandardFormModalTemplate from "@/Theme/Components/ModalTemplates/StandardFormModalTemplate";
 import FormDatePicker from "@/Theme/Form/FormDatePicker";
 import FormSelectInput from "@/Theme/Form/FormSelectInput";
@@ -18,7 +19,9 @@ export default function SiswaForm({
         jk_siswa: row?.jk?.id ?? loadOptions?.jk[0].id,
         agama_siswa: row?.agama?.id ?? loadOptions.agama[0].id,
         tempat_lahir: row?.tempat_lahir ?? "",
-        tanggal_lahir: dayjs().format("YYYY-MM-DD"),
+        tanggal_lahir:
+            dayjs(row?.tanggal_lahir).format("YYYY-MM-DD") ??
+            dayjs().format("YYYY-MM-DD"),
         status_siswa: row?.status?.id ?? loadOptions?.status[0].id,
         id_kelas: row?.id_kelas ?? loadOptions?.kelas[0].id,
     });
@@ -28,7 +31,7 @@ export default function SiswaForm({
 
     const titleHeader = () => {
         if (action === "create") return "Tambah Data Siswa";
-        else return `Ubah Data Siswa`;
+        if (action === "update") return `Ubah Data Siswa`;
     };
 
     const submit = (e) => {
@@ -36,10 +39,23 @@ export default function SiswaForm({
 
         if (action == "create") {
             // return console.log(form.data)
-            if (window.confirm("Yakin untuk menambahkan Data Siswa baru?")) {
-                form.post(route("admin.siswa.store"), {
-                    onSuccess: (response) => console.log(response),
-                    onError: (err) => console.log("err", err),
+            if (confirm("Yakin untuk menambahkan Data Siswa baru?")) {
+                return form.post(route("admin.siswa.store"), {
+                    preserveScroll: true,
+                    onSuccess: (response) =>
+                        onSuccessFeedback(response, closeForm()),
+                    onError: (err) => onErrorFeedback,
+                });
+            }
+        }
+
+        if (action == "update") {
+            if (confirm("Yakin untuk Mengubah Data Siswa?")) {
+                return form.patch(route("admin.siswa.update", row.nisn), {
+                    preserveScroll: true,
+                    onSuccess: (response) =>
+                        onSuccessFeedback(response, closeForm()),
+                    onError: (err) => onErrorFeedback,
                 });
             }
         }

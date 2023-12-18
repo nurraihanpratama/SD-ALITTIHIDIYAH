@@ -1,3 +1,4 @@
+import { onErrorFeedback, onSuccessFeedback } from "@/Helpers/formFeedback";
 import StandardFormModalTemplate from "@/Theme/Components/ModalTemplates/StandardFormModalTemplate";
 import FormSelectInput from "@/Theme/Form/FormSelectInput";
 import FormTextInput from "@/Theme/Form/FormTextInput";
@@ -10,10 +11,9 @@ export default function GuruForm({
     row = null,
     closeForm,
 }) {
-    console.log(row);
     const form = useForm({
         nama_guru: row?.nama_guru ?? "",
-        ket_guru: row?.ket_guru ?? "",
+        ket_guru: row?.ket_guru ?? loadOptions.ket_guru[0].id,
         status_guru: row?.status?.id ?? loadOptions?.status[0].id,
     });
 
@@ -30,10 +30,22 @@ export default function GuruForm({
         e.preventDefault();
 
         if (action === "create") {
-            if (window.confirm("Yakin untuk menambahkan Data Guru baru?")) {
-                form.post(route("admin.guru.store"), {
-                    onSuccess: (response) => console.log(response),
-                    onError: (err) => console.log("err", err),
+            if (confirm("Yakin untuk menambahkan Data Guru baru?")) {
+                return form.post(route("admin.guru.store"), {
+                    preserveScroll: true,
+                    onSuccess: (response) =>
+                        onSuccessFeedback(response, closeForm()),
+                    onError: (err) => onErrorFeedback,
+                });
+            }
+        }
+        if (action === "update") {
+            if (confirm("Yakin untuk mengubah Data Guru?")) {
+                return form.post(route("admin.guru.update", row.id_guru), {
+                    preserveScroll: true,
+                    onSuccess: (response) =>
+                        onSuccessFeedback(response, closeForm()),
+                    onError: (err) => onErrorFeedback,
                 });
             }
         }
@@ -57,11 +69,12 @@ export default function GuruForm({
                 />
 
                 {/* KETERANGAN GURU */}
-                <FormTextInput
+                <FormSelectInput
                     name="ket_guru"
                     label={"KETERANGAN GURU"}
+                    options={loadOptions?.ket_guru}
                     value={form.data.ket_guru}
-                    onChange={handleOnChange}
+                    onChange={(val) => form.setData("ket_guru", val.id)}
                     error={form.errors.ket_guru}
                 />
 

@@ -2,10 +2,24 @@
 
 namespace App\Modules\Admin\Guru\Actions;
 
+use App\Models\TblGuru;
+use Illuminate\Support\Facades\DB;
+
 class GuruUpdateAction
 {
     public function update($request, $id)
     {
-        dd($request->all(), $id);
+        try {
+            $dataGuru = getValidatedData(new TblGuru, $request->toArray());
+            DB::transaction(function() use($dataGuru, $id){
+                // dd($dataGuru);
+                $tblGuru = TblGuru::find($id);
+                $tblGuru->update($dataGuru);
+            });
+
+            return back()->withFlash('Berhasil Mendaftarkan Data Guru Baru');
+        } catch (\Throwable $th) {
+            dd($th);
+        }
     }
 }

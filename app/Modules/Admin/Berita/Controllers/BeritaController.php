@@ -3,6 +3,7 @@
 namespace App\Modules\Admin\Berita\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Modules\Admin\Berita\Actions\BeritaCreateAction;
 use App\Modules\Admin\Berita\Actions\BeritaDeleteAction;
 use App\Modules\Admin\Berita\Actions\BeritaIndexAction;
 use App\Modules\Admin\Berita\Actions\BeritaStoreAction;
@@ -14,6 +15,12 @@ class BeritaController extends Controller
     public function index(Request $request)
     {
         return (New BeritaIndexAction)->index($request);
+    }
+
+    // Show Options
+    public function create()
+    {
+        return (New BeritaCreateAction)->options();
     }
 
     // Store Data

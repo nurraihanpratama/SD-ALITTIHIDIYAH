@@ -8,6 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class TblPrestasi extends Model
 {
     use HasFactory;
+	protected $table = 'tbl_prestasis';
+    protected $primaryKey = 'id_prestasi';
 
             // * FILTERS
 	public function scopeWithSearch($query, $search, $guard = 'web')
