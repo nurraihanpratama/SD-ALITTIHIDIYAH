@@ -54,10 +54,10 @@ export default function BeritaForm({
             submit={submit}
         >
             <div className="flex flex-col gap-4 text-gray-700 dark:text-white">
-                {/* Nama Kelas */}
+                {/* Nama Berita */}
                 <FormTextInput
                     name="judul"
-                    label={"Nama Kelas"}
+                    label={"Nama Berita"}
                     value={form.data.judul}
                     onChange={handleOnChange}
                     error={form.errors.judul}
