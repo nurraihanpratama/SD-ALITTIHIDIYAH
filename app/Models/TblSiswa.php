@@ -45,6 +45,16 @@ class TblSiswa extends Model
                 $model->updated_at = now();
             });
         }
+
+
+    // * INHOUSE
+    public function scopeInhouse($query, $guruId)
+    {
+        $query->whereHas('kelas', function ($kelasQuery) use ($guruId) {
+            $kelasQuery->where('wali_kelas', $guruId);
+        });
+    }
+
         // * FILTERS
 	public function scopeWithSearch($query, $search, $guard = 'web')
 	{

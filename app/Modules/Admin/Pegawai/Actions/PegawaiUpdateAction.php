@@ -10,7 +10,7 @@ class PegawaiUpdateAction
     public function update($request, $id)
     {
         try {
-            $dataPegawai = getValidatedData(new TblPegawai(), $request->toArray());
+            $dataPegawai = getValidatedData(new TblPegawai, $request->toArray());
             DB::transaction(function() use($dataPegawai, $id){
                 // dd($dataPegawai);
                 $tblPegawai = TblPegawai::find($id);

@@ -3,14 +3,18 @@
 use App\Modules\Admin\Berita\Controllers\BeritaController;
 use App\Modules\Admin\BidangStudi\Controllers\BidangStudiController;
 use App\Modules\Admin\Dashboard\Controllers\DashboardController;
+use App\Modules\Admin\DataSiswa\Controllers\DataSiswaController;
 use App\Modules\Admin\Ekstrakurikuler\Controllers\EkstrakurikulerController;
 use App\Modules\Admin\Fasilitas\Controllers\FasilitasController;
 use App\Modules\Admin\Guru\Controllers\GuruController;
 use App\Modules\Admin\JadwalPelajaran\Controllers\JadwalPelajaranController;
 use App\Modules\Admin\Kelas\Controllers\KelasController;
+use App\Modules\Admin\LaporanNilai\Controllers\LaporanNilaiController;
 use App\Modules\Admin\Pegawai\Controllers\PegawaiController;
 use App\Modules\Admin\Prestasi\Controllers\PrestasiController;
 use App\Modules\Admin\Siswa\Controllers\SiswaController;
+use App\Modules\Siswa\DataNilai\Controllers\DataNilaiController;
+use App\Modules\Siswa\Mapel\Controllers\MapelController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -147,6 +151,53 @@ Route::middleware(['auth', 'verified','ShareFlashes'])
                 Route::post('/store', 'store')->name('store');
                 Route::patch('/update/{berita}', 'update')->name('update');
         });
-
         
     });
+
+    
+    // * UNTUK ROUTES GURU PANEL
+    Route::middleware(['auth', 'verified','ShareFlashes'])
+    ->prefix('guru')
+    ->name('guru.')
+    ->group(function() {
+
+        // * Data Siswa
+        Route::controller(DataSiswaController::class)
+            ->name('data-siswa.')
+            ->prefix('/data-siswa')
+            ->group(function () {
+                Route::get('/', 'index')->name('index');
+            });
+
+        // * Laporan Nilai
+        Route::controller(LaporanNilaiController::class)
+            ->name('laporan-nilai.')
+            ->prefix('/laporan-nilai')
+            ->group(function() {
+                Route::get('/', 'index')->name('index');
+            });
+    });
+    
+
+        // * UNTUK ROUTES SISWA PANEL
+        Route::middleware(['auth', 'verified','ShareFlashes'])
+        ->prefix('siswa')
+        ->name('siswa.')
+        ->group(function() {
+    
+            // * Data Mapel
+            Route::controller(MapelController::class)
+                ->name('mapel.')
+                ->prefix('/mapel')
+                ->group(function () {
+                    Route::get('/', 'index')->name('index');
+                });
+
+            Route::controller(DataNilaiController::class)
+                ->name('data-nilai.')
+                ->prefix('/data-nilai')
+                ->group(function () {
+                    Route::get('/', 'index')->name('index');
+                });
+        });
+        

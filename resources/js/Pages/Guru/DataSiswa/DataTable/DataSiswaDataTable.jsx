@@ -1,26 +1,17 @@
-import PrimaryButton from "@/Theme/Components/Buttons/PrimaryButton";
-import DataTable from "@/Theme/Components/DataTable/DataTable";
-import { Fragment } from "react";
-import { BiPlus } from "react-icons/bi";
-import SiswaAction from "./SIswaAction";
 import TemplateTtl from "@/Theme/Components/DataTable/Cell/TemplateTtl";
+import DataTable from "@/Theme/Components/DataTable/DataTable";
 
-export default function SiswaDataTable({
-    collection,
-    loadOptions,
-    withNewButton = false,
-    onClickNew,
-}) {
-    const SiswaColumns = [
+export default function DataSiswaDataTable({ collection, loadOptions }) {
+    const siswaColumns = [
         {
             header: " ",
             field: "__actions",
             sortable: false,
             searchable: false,
             bodyAlignment: "center",
-            render: (row) => (
-                <SiswaAction row={row} loadOptions={loadOptions} />
-            ),
+            // render: (row) => (
+            //     <SiswaAction row={row} loadOptions={loadOptions} />
+            // ),
         },
         {
             header: "NISN",
@@ -53,26 +44,13 @@ export default function SiswaDataTable({
             field: "status_siswa",
         },
     ];
-
     return (
         <DataTable
+            columns={siswaColumns}
             collection={collection}
-            columns={SiswaColumns}
-            ActionsButton={<ActionsButton onClickNew={onClickNew} />}
-            withSearch
             withPagination
-            resetRouteRedirect={route("admin.siswa.index")}
+            withSearch
+            resetRouteRedirect={"guru.data-siswa.index"}
         />
     );
 }
-
-const ActionsButton = ({ onClickNew }) => {
-    return (
-        <Fragment>
-            <PrimaryButton onClick={() => onClickNew(true)}>
-                <BiPlus />
-                New
-            </PrimaryButton>
-        </Fragment>
-    );
-};

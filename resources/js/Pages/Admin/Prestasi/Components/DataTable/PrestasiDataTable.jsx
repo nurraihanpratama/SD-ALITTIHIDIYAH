@@ -3,7 +3,7 @@ import PrimaryButton from "@/Theme/Components/Buttons/PrimaryButton";
 import DataTable from "@/Theme/Components/DataTable/DataTable";
 import { Fragment } from "react";
 import { BiPlus } from "react-icons/bi";
-import PrestasiAction from "./PrestasiAction"; 
+import PrestasiAction from "./PrestasiAction";
 
 export default function PrestasiDataTable({
     collection,
@@ -18,7 +18,9 @@ export default function PrestasiDataTable({
             sortable: false,
             searchable: false,
             bodyAlignment: "center",
-            render: (row) => <PrestasiAction row={row} loadOptions={loadOptions} />, 
+            render: (row) => (
+                <PrestasiAction row={row} loadOptions={loadOptions} />
+            ),
         },
         {
             header: "Nama Prestasi",
@@ -26,7 +28,7 @@ export default function PrestasiDataTable({
         },
         {
             header: "Deskripsi",
-            field: "ket_Deskripsi",
+            field: "deskripsi",
         },
     ];
 
