@@ -65,4 +65,9 @@ class TblAkun extends Authenticatable
 			$model->updated_at = now();
 		});
 	}
+
+    public function guru()
+    {
+        return $this->belongsTo(TblGuru::class, 'user_id', 'id_guru');
+    }
 }

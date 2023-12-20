@@ -2,6 +2,7 @@
 
 use App\Models\InvoicesWhatsappStatus;
 use App\Models\LogError;
+use App\Models\TblGuru;
 use App\Models\Team;
 use App\Services\UniqueIdGenerator;
 use Carbon\Carbon;
@@ -10,6 +11,22 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Str;
 
+
+function getIdGuru()
+{
+	return auth()->user()->user_id;
+}
+
+function getInhouseGuru(): array
+{
+    $guru = TblGuru::find(getIdGuru());
+
+    if ($guru) {
+        return [$guru->id_guru];
+    }
+
+    return [];
+}
 
 function getQueryFields($columns, $feature, $state = 'true')
 {

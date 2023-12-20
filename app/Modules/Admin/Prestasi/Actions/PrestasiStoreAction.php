@@ -12,11 +12,11 @@ class PrestasiStoreAction
         try {
             $dataPrestasi = getValidatedData(new TblPrestasi, $request->toArray());
             DB::transaction(function() use($dataPrestasi){
-                dd($dataPrestasi);
+                // dd($dataPrestasi);
                 TblPrestasi::create($dataPrestasi);
             });
 
-            return back()->withFlash('Berhasil Mendaftarkan Siswa Baru');
+            return back()->withFlash('Berhasil Mendaftarkan Prestasi Baru');
         } catch (\Throwable $th) {
             dd($th);
         }

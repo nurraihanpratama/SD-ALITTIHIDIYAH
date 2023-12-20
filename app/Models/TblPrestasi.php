@@ -10,6 +10,10 @@ class TblPrestasi extends Model
     use HasFactory;
 	protected $table = 'tbl_prestasis';
     protected $primaryKey = 'id_prestasi';
+	protected $fillable = [
+		'nama_prestasi',
+		'deskripsi'
+	];
 
             // * FILTERS
 	public function scopeWithSearch($query, $search, $guard = 'web')

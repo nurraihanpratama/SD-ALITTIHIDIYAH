@@ -7,6 +7,7 @@ import EkstrakurikulerAction from "./EkstrakurikulerAction";
 
 export default function EkstrakurikulerDataTable({
     collection,
+    loadOptions,
     withNewButton = false,
     onClickNew,
 }) {
@@ -17,7 +18,7 @@ export default function EkstrakurikulerDataTable({
             sortable: false,
             searchable: false,
             bodyAlignment: "center",
-            render: (row) => <EkstrakurikulerAction row={row} />, 
+            render: (row) => <EkstrakurikulerAction row={row} loadOptions={loadOptions} />, 
         },
         {
             header: "Nama Ekstrakurikuler",
