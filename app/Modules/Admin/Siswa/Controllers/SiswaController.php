@@ -34,8 +34,8 @@ class SiswaController extends Controller
         return (New SiswaUpdateAction)->update($request, $id);
      }
 
-     public function delete(string $id)
-    {
-        return (New SiswaDeleteAction)->delete($id);
-    }
+     public function delete(Request $request, string $id)
+     {
+        return (New SiswaDeleteAction)->delete($request, $id);
+     }
 }

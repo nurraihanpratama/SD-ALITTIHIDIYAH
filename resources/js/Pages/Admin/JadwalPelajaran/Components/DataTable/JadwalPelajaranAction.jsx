@@ -5,8 +5,35 @@ import MenuItemButtonDropdown from "@/Components/MenuItemButtonDropdown";
 import { FaEdit } from "react-icons/fa";
 import Modal from "@/Theme/Components/Modal";
 import KelasForm from "../Form/JadwalPelajaranForm";
+import { FaTrash } from "react-icons/fa6";
+
 export default function KelasAction({ row }) {
     const [visible, setVisible] = useState(false);
+
+    const submitDelete = async (e) => {
+        e.preventDefault();
+
+        if (confirm("Yakin Ingin Menghapus Data jadwal pelajaran ")) {
+            try {
+                const response = await axios.delete(
+                    route("admin.jadwal-pelajaran.delete", row.roster_id),
+                    {
+                        // additional configurations
+                    }
+                );
+
+                if (response.data.success) {
+                    toast.success(response.data.message);
+                    // Handle any additional actions you need on success
+                } else {
+                    toast.error(response.data.message);
+                    // Handle any additional actions you need on failure
+                }
+            } catch (error) {
+                onErrorFeedback;
+            }
+        }
+    };
     return (
         <Fragment>
             <MenuDropdown>
@@ -16,6 +43,15 @@ export default function KelasAction({ row }) {
                             icon={<FaEdit size={20} />}
                             label="Update Data"
                             onClick={() => setVisible(true)}
+                        />
+                    )}
+                </Menu.Item>
+                <Menu.Item>
+                    {({ active }) => (
+                        <MenuItemButtonDropdown
+                            icon={<FaTrash size={20} />}
+                            label="Delete Data"
+                            onClick={submitDelete}
                         />
                     )}
                 </Menu.Item>

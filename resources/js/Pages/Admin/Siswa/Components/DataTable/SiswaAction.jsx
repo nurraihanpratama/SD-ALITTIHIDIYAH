@@ -8,16 +8,18 @@ import SiswaForm from "../Form/SiswaForm";
 import { FaTrash } from "react-icons/fa6";
 import toast from "react-hot-toast";
 import { onErrorFeedback } from "@/Helpers/formFeedback";
+import { FaTrash } from "react-icons/fa6";
+
 export default function SiswaAction({ row, loadOptions }) {
     const [visible, setVisible] = useState(false);
 
-    const submitDelete = async (id) => {
+    const submitDelete = async (e) => {
         e.preventDefault();
 
-        if (confirm("Yakin Ingin Menghapus Data Kelas " + row.nama)) {
+        if (confirm("Yakin Ingin Menghapus Data Siswa ")) {
             try {
                 const response = await axios.delete(
-                    route("admin.kelas.delete", id),
+                    route("admin.siswa.delete", row.nisn),
                     {
                         // additional configurations
                     }
@@ -52,7 +54,7 @@ export default function SiswaAction({ row, loadOptions }) {
                         <MenuItemButtonDropdown
                             icon={<FaTrash size={20} />}
                             label="Delete Data"
-                            onClick={() => submitDelete(row.id_kelas)}
+                            onClick={submitDelete}
                         />
                     )}
                 </Menu.Item>

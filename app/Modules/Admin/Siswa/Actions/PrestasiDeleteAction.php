@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Modules\Admin\Pegawai\Actions;
+namespace App\Modules\Admin\Siswa\Actions;
 
-use App\Models\TblPegawai;
+use App\Models\TblSiswa;
 use Illuminate\Support\Facades\DB;
 
-class PegawaiDeleteAction
+class SiswaDeleteAction
 {
     public $data;
     public function delete($request, $id)
@@ -13,9 +13,9 @@ class PegawaiDeleteAction
         try {
             DB::transaction(function() use($id){
                 // dd($dataKelas);
-                $tblPegawai = TblPegawai::findOrFail($id);
-                $this->data = $tblPegawai;
-                $tblPegawai->delete();
+                $tblSiswa = TblSiswa::findOrFail($id);
+                $this->data = $tblSiswa;
+                $tblSiswa->delete();
             });
 
             return response()->json(['success' => true, 'message' => 'Berhasil Menghapus data Prestasi ' ]);
