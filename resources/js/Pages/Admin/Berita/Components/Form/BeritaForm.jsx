@@ -3,6 +3,7 @@ import FormTextInput from "@/Theme/Form/FormTextInput";
 import FormSelectInput from "@/Theme/Form/FormSelectInput";
 import { useForm } from "@inertiajs/react";
 import { useState } from "react";
+import FormUploadInput from "@/Theme/Form/FormUploadInput";
 
 export default function BeritaForm({
     action,
@@ -12,7 +13,7 @@ export default function BeritaForm({
 }) {
     const form = useForm({
         judul: row?.judul ?? "",
-        foto: "", // Initialize foto as an empty string
+        foto_filename: "", // Initialize foto as an empty string
         deskripsi: row?.deskripsi ?? "",
         // ... (existing form fields)
     });
@@ -63,15 +64,6 @@ export default function BeritaForm({
                     error={form.errors.judul}
                 />
 
-                {/* Foto */}
-                {/* <FormFileInput
-          name="foto"
-          label={"Foto"}
-          accept="image/*" 
-          onChange={handleFileChange}
-          error={form.errors.foto}
-        /> */}
-
                 {/* Deskripsi */}
                 <FormTextInput
                     name="deskripsi"
@@ -81,7 +73,16 @@ export default function BeritaForm({
                     error={form.errors.deskripsi}
                 />
 
-                {/* ... (existing form fields) */}
+                {/* Foto */}
+                <FormUploadInput
+                    id={"foto_filename"}
+                    label="Gambar Berita"
+                    onChange={(val) => form.setData("foto_filename", val)}
+                    onRemoveImage={() => form.setData("foto_filename", null)}
+                    withChange={action != "show"}
+                    withRemove={action != "show"}
+                    disabled={action == "show"}
+                />
             </div>
         </StandardFormModalTemplate>
     );

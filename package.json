@@ -21,6 +21,7 @@
     },
     "dependencies": {
         "@heroicons/react": "^2.0.18",
+        "compressorjs": "^1.2.1",
         "dayjs": "^1.11.10",
         "flatpickr": "^4.6.13",
         "moment": "github:moment/moment",
