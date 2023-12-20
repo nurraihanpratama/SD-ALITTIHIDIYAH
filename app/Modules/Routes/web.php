@@ -14,6 +14,7 @@ use App\Modules\Admin\LaporanNilai\Tables\DataSiswaDataTable;
 use App\Modules\Admin\Pegawai\Controllers\PegawaiController;
 use App\Modules\Admin\Prestasi\Controllers\PrestasiController;
 use App\Modules\Admin\Siswa\Controllers\SiswaController;
+use App\Modules\MyProfile\Controllers\MyProfileController;
 use App\Modules\Siswa\Dashboard\Controllers\SiswaDashboardController;
 use App\Modules\Siswa\DataNilai\Controllers\DataNilaiController;
 use App\Modules\Siswa\Mapel\Controllers\MapelController;
@@ -30,6 +31,20 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::prefix('/')
+	->middleware(['auth', 'verified'])
+	->group(function () {
+		Route::post('/my-profile/{user_id}', [MyProfileController::class, 'update'])
+			->name('my-profile.update');
+
+		Route::patch('/my-profile/update-password/{user_id}', [MyProfileController::class, 'updatePassword'])
+			->name('my-profile.update-password');
+
+		Route::resource('my-profile', MyProfileController::class)
+			->only(['index']);
+	});
+
+
 Route::middleware(['auth', 'verified','ShareFlashes'])
     ->prefix('admin')
     ->name('admin.')

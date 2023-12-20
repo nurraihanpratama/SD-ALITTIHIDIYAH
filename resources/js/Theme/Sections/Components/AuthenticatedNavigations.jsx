@@ -183,12 +183,12 @@ export default function AuthenticatedNavigations({ user }) {
                     icon={<FaBook />}
                 />
             )} */}
-            {/* <NavLink
-                navRoute={route("my-profile.index", team_slug)}
+            <NavLink
+                navRoute={route("my-profile.index")}
                 components={["my-profile.index"]}
                 label="My Profile"
                 icon={<FaUserCircle />}
-            /> */}
+            />
 
             {/* LOGOUT */}
             <NavLink

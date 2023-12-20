@@ -15,7 +15,7 @@ export default function UserHeaderMenu({ user }) {
                 <p>{user.nama}</p>
                 <p className="text-xs">{user.email}</p>
             </div>
-            <Dropdown.Link href={route("profile.edit")}>Profile</Dropdown.Link>
+            {/* <Dropdown.Link href={route("profile.edit")}>Profile</Dropdown.Link> */}
             <Dropdown.Link href={route("logout")} method="post" as="button">
                 Log Out
             </Dropdown.Link>

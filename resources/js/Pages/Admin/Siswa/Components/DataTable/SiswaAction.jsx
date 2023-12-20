@@ -5,7 +5,6 @@ import MenuItemButtonDropdown from "@/Components/MenuItemButtonDropdown";
 import { FaEdit } from "react-icons/fa";
 import Modal from "@/Theme/Components/Modal";
 import SiswaForm from "../Form/SiswaForm";
-import { FaTrash } from "react-icons/fa6";
 import toast from "react-hot-toast";
 import { onErrorFeedback } from "@/Helpers/formFeedback";
 import { FaTrash } from "react-icons/fa6";
