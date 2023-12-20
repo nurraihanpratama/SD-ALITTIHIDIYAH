@@ -27,12 +27,14 @@ export default function AuthenticatedNavigations({ user }) {
     return (
         <Fragment>
             {/* dashboard */}
-            <NavLink
-                navRoute={route("admin.dashboard.index")}
-                components={["admin.dashboard.index"]}
-                label="Dashboard"
-                icon={<FiCodesandbox />}
-            />
+            {isAdmin() && (
+                <NavLink
+                    navRoute={route("admin.dashboard.index")}
+                    components={["admin.dashboard.index"]}
+                    label="Dashboard"
+                    icon={<FiCodesandbox />}
+                />
+            )}
 
             {/* Kelas */}
             {isAdmin() && (
@@ -157,20 +159,30 @@ export default function AuthenticatedNavigations({ user }) {
             {/* Punya Siswa */}
             {isSiswa() && (
                 <NavLink
+                    navRoute={route("siswa.dashboard.index")}
+                    components={["siswa.dashboard.index"]}
+                    label="Dashboard"
+                    icon={<FiCodesandbox />}
+                />
+            )}
+
+            {isSiswa() && (
+                <NavLink
                     navRoute={route("siswa.data-nilai.index")}
                     components={["siswa.data-nilai.index"]}
                     label="Data Nilai Siswa"
                     icon={<FaBookOpen />}
                 />
             )}
-            {isSiswa() && (
+
+            {/* {isSiswa() && (
                 <NavLink
                     navRoute={route("siswa.mapel.index")}
                     components={["siswa.mapel.index"]}
                     label="Data Mapel Siswa"
                     icon={<FaBook />}
                 />
-            )}
+            )} */}
             {/* <NavLink
                 navRoute={route("my-profile.index", team_slug)}
                 components={["my-profile.index"]}

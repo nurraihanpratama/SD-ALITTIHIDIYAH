@@ -5,8 +5,35 @@ import MenuItemButtonDropdown from "@/Components/MenuItemButtonDropdown";
 import { FaEdit } from "react-icons/fa";
 import Modal from "@/Theme/Components/Modal";
 import BidangStudiForm from "../Form/BidangStudiForm";
+import { FaTrash } from "react-icons/fa6";
+
 export default function BidangStudiAction({ row, loadOptions }) {
     const [visible, setVisible] = useState(false);
+
+    const submitDelete = async (e) => {
+        e.preventDefault();
+
+        if (confirm("Yakin Ingin Menghapus Data bidang studi ")) {
+            try {
+                const response = await axios.delete(
+                    route("admin.bidang-studi.delete", row.id_mapel),
+                    {
+                        // additional configurations
+                    }
+                );
+
+                if (response.data.success) {
+                    toast.success(response.data.message);
+                    // Handle any additional actions you need on success
+                } else {
+                    toast.error(response.data.message);
+                    // Handle any additional actions you need on failure
+                }
+            } catch (error) {
+                onErrorFeedback;
+            }
+        }
+    };
     return (
         <Fragment>
             <MenuDropdown>
@@ -16,6 +43,15 @@ export default function BidangStudiAction({ row, loadOptions }) {
                             icon={<FaEdit size={20} />}
                             label="Update Data"
                             onClick={() => setVisible(true)}
+                        />
+                    )}
+                </Menu.Item>
+                <Menu.Item>
+                    {({ active }) => (
+                        <MenuItemButtonDropdown
+                            icon={<FaTrash size={20} />}
+                            label="Delete Data"
+                            onClick={submitDelete}
                         />
                     )}
                 </Menu.Item>

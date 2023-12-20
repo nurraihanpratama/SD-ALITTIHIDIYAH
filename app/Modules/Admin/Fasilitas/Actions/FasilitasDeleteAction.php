@@ -1,11 +1,26 @@
 <?php
 
-namespace App\Modules\Admin\Ekstrakurikuler\Actions;
+namespace App\Modules\Admin\Fasilitas\Actions;
 
-class EkstrakurikulerDeleteAction
+use App\Models\TblFasilitas;
+use Illuminate\Support\Facades\DB;
+
+class FasilitasDeleteAction
 {
+    public $data;
     public function delete($request, $id)
     {
-        dd($request->all(), $id);
+        try {
+            DB::transaction(function() use($id){
+                // dd($dataKelas);
+                $tblFasilitas = TblFasilitas::findOrFail($id);
+                $this->data = $tblFasilitas;
+                $tblFasilitas->delete();
+            });
+
+            return response()->json(['success' => true, 'message' => 'Berhasil Menghapus data Bidang Studi ' ]);
+        } catch (\Throwable $th) {
+            dd($th);
+        }
     }
 }
