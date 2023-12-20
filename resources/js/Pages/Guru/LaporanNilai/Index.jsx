@@ -1,7 +1,7 @@
 import ContentCard from "@/Theme/Components/ContentCard";
 import ThemeLayout from "@/Theme/ThemeLayout";
 import LaporanNilaiDataTable from "./Components/DataTable/LaporanNilaiDataTable";
-import { Fragment, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import Modal from "@/Theme/Components/Modal";
 import ProcessingLoader from "@/Theme/Components/ProcessingLoader";
 import LaporanNilaiForm from "./Components/Form/LaporanNilaiForm";
@@ -13,7 +13,24 @@ export default function Index(props) {
 
     const { title } = page;
 
-    console.log(collection);
+    const [data, setData] = useState([]);
+
+    const loadOptions = async () => {
+        try {
+            const response = await axios.get(
+                route("guru.laporan-nilai.datatable")
+            );
+            setData(response.data);
+        } catch (error) {
+            console.error("Error fetching data:", error);
+        }
+    };
+
+    useEffect(() => {
+        // Panggil loadOptions() saat komponen pertama kali dirender
+        loadOptions();
+    }, []);
+    console.log(data);
     return (
         <ThemeLayout title={title}>
             <ContentCard title={title} />
@@ -35,6 +52,8 @@ export default function Index(props) {
                     <LaporanNilaiForm
                         action="create"
                         closeForm={() => setShowCreateForm(false)}
+                        collection={data}
+
                         // loadOptions={data}
                     />
                 </Modal>

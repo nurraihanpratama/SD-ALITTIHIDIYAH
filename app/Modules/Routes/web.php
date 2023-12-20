@@ -10,6 +10,7 @@ use App\Modules\Admin\Guru\Controllers\GuruController;
 use App\Modules\Admin\JadwalPelajaran\Controllers\JadwalPelajaranController;
 use App\Modules\Admin\Kelas\Controllers\KelasController;
 use App\Modules\Admin\LaporanNilai\Controllers\LaporanNilaiController;
+use App\Modules\Admin\LaporanNilai\Tables\DataSiswaDataTable;
 use App\Modules\Admin\Pegawai\Controllers\PegawaiController;
 use App\Modules\Admin\Prestasi\Controllers\PrestasiController;
 use App\Modules\Admin\Siswa\Controllers\SiswaController;
@@ -177,6 +178,7 @@ Route::middleware(['auth', 'verified','ShareFlashes'])
             ->group(function() {
                 Route::get('/', 'index')->name('index');
             });
+        Route::get('laporan-nilai/datatabel', [DataSiswaDataTable::class, 'generate'])->name('laporan-nilai.datatable');
     });
     
 
