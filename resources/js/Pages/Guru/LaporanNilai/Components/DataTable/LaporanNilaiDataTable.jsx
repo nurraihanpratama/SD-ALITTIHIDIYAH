@@ -1,4 +1,7 @@
+import PrimaryButton from "@/Components/PrimaryButton";
 import DataTable from "@/Theme/Components/DataTable/DataTable";
+import { Fragment } from "react";
+import { BiPlus } from "react-icons/bi";
 
 export default function LaporanNilaiDataTable({
     collection,
@@ -47,9 +50,21 @@ export default function LaporanNilaiDataTable({
         <DataTable
             columns={laporanNilaiColumns}
             collection={collection}
+            ActionsButton={<ActionsButton onClickNew={onClickNew} />}
             withSearch
             withPagination
             resetRouteRedirect={route("guru.laporan-nilai.index")}
         />
     );
 }
+
+const ActionsButton = ({ onClickNew }) => {
+    return (
+        <Fragment>
+            <PrimaryButton onClick={() => onClickNew(true)}>
+                <BiPlus />
+                Input Nilai
+            </PrimaryButton>
+        </Fragment>
+    );
+};
