@@ -47,6 +47,7 @@ Route::middleware(['auth', 'verified','ShareFlashes'])
                 Route::get('/create', 'create')->name('create');
                 Route::post('/store', 'store')->name('store');
                 Route::patch('/update/{kelas}', 'update')->name('update');
+                Route::delete('/delete/{kelas}', 'delete')->name('delete');
         });
 
         Route::controller(SiswaController::class)
