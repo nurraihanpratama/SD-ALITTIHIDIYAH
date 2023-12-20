@@ -1,0 +1,117 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    /* height: 100%; */
+    font-family: 'Arial', sans-serif;
+}
+img {
+    max-width: 100%;
+    height: 50%;
+    border-radius: 4px;
+    margin-bottom: 10px; 
+}
+.content {
+    width: 97%;
+    margin: 0 auto;
+    padding: auto;
+    background-color: #f7ffef;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    /* flex-wrap: wrap; */
+    padding: 30px;
+}
+
+.berita h2 {
+    color: #01b671;
+    text-align: center;
+    padding : 20px;
+    font-size: 30px;
+    margin-bottom: 20px;
+}
+
+.berita p {
+    font-size: 24px;
+    text-align: justify;
+    color: #333;
+    line-height: 1.6;
+}
+
+.gallery {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding: 20px;
+}
+
+.image-container {
+    position: relative;
+    width: 300px; /* Atur lebar gambar */
+    height: 200px; /* Atur tinggi gambar */
+    margin-bottom: 20px;
+    overflow: hidden; /* Pastikan gambar tidak melebihi container */
+}
+
+.image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Pastikan gambar menutupi seluruh container tanpa distorsi */
+    display: block;
+}
+.overlay {
+    position: absolute;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    text-align: center; 
+    color: white;
+    width: 100%;
+    transition: .5s ease;
+    opacity: 0;
+    padding: 20px;
+    text-align: center;
+}
+
+.image-container:hover .overlay {
+    opacity: 1;
+}
+
+/*footer */
+footer{
+    height: 60vh;
+    background-color: #282432;
+    padding: 0 50px 50px 0;
+}
+footer{
+    height: auto;
+    background-color: #282432;
+    padding: 0 10px 10px 0;
+    width: 1500px;
+}
+  
+  .footer-box {
+    height: 48vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0px; /* Adjusted to remove margin-bottom */
+  }
+  
+  .footer-about {
+    width: 40%;
+    color: wheat;
+    margin-left: 120px;
+  }
+  
+  .footer-links a:hover {
+    color: white;
+  }
+  
+  .end {
+    text-align: center;
+    color: wheat;
+    margin-top: 0px;
+  }

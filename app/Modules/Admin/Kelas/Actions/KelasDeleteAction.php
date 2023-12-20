@@ -10,7 +10,7 @@ class KelasDeleteAction
 	public $data;
 
     public function delete($id)
-    {   
+    {
         try {
             DB::transaction(function() use($id){
                 // dd($dataKelas);

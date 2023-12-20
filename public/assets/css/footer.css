@@ -1,0 +1,30 @@
+footer{
+    height: 60vh;
+    background-color: #282432;
+    padding: 0 50px 50px 0;
+}
+footer{
+    height: auto;
+    background-color: #282432;
+    padding: 0 10px 10px 0;
+}
+
+.footer-box{
+    height: 50vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.footer-about{
+    width: 40%;
+    color: wheat;
+    margin-left: 120px;
+}
+.footer-links a:hover{
+    color: white;
+}
+
+.end{
+    text-align: center;
+    color: wheat;
+}

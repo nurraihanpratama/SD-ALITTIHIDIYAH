@@ -1,0 +1,195 @@
+*{
+    margin-top: unset;
+    margin-bottom: initial;
+    box-sizing: border-box;
+}
+
+html{
+    scroll-behavior: smooth;
+}
+
+body{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    overflow: hidden;
+}
+
+/*top navbar*/
+.top-header ul{
+    list-style-type: none;
+    margin-left: 25vw;
+}
+.top-header ul li{
+    display: inline-block;
+    margin: 0 15px;
+    /* justify-content: right; */
+}
+.top-header ul li a{
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 18px;
+    transition: 0.4s ease-in-out;
+    color: #000000;
+}
+.top-header ul li a:hover{
+    color: black;
+}
+.btn{
+    background-color: #01b671;
+    padding: 10px 25px;
+    border-radius: 30px;
+    color: black;
+    transition: 0.4s ease-in-out;
+    text-decoration: none;
+}
+.btn:hover{
+    background-color: #0a4608;
+}
+/*top navbar end*/
+
+.top-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #c6d6b7; /* Warna hijau muda */
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    z-index: 1000; /* Pastikan header di atas konten lain saat di-scroll */
+  }
+  
+.logo {
+    max-width: 100px; /* Atur maksimal lebar logo*/
+    max-height: 100px; /* Atur maksimal tinggi logo */
+    height: auto; /* Ini akan memastikan logo tetap proporsional */
+  }
+
+  .header-text h1,
+.header-text p {
+  margin: 0;
+  color: #005f5f; /* Warna teks yang sesuai dengan tema */
+}
+
+.content{
+    margin-top: 0px;
+}
+
+
+
+/*table start*/
+.table{
+    width: 100%;
+}
+.table-header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 150px;
+    background-color: rgb(240, 248, 2481);
+}
+.table-header h2{
+    color: black;
+    width: 500px;
+}
+.button{
+    outline: none;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    padding: 10px;
+}
+.search{
+        font-size: 14px;
+        color: black;
+        padding: 8px 20px;
+        margin: 7px 0;
+}
+input{
+    padding: 10px 20px;
+    margin: 0;
+    outline: none;
+    border: 1px solid #9fe2bd;
+    border-radius: 6px;
+}
+
+.table-section{
+    height: 500px;
+    overflow: auto;
+}
+table{
+    width: 100%;
+    table-layout: fixed;
+    min-width: 1000px;
+}
+
+thead th{
+    position: sticky;
+    top: 0;
+    background-color: beige;
+    color: #0d0f0e;
+    font-size: 15px;
+}
+
+th,td{
+    border-bottom: 1px solid #dddd;
+    padding: 10px 20px;
+    word-break: break-all;
+    text-align: center;
+
+}
+/*table end*/
+
+/*pagination*/
+.pagination {
+    display: flex;
+   list-style: none;
+   padding: 0;
+   margin-top: 10px;
+   margin-bottom: 20px;
+  }
+
+  .page{
+    display: inline-block;
+    padding: 8px 12px;
+    margin: 0 4px;
+    text-decoration: none;
+    color: black;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .page:hover {
+    background-color:  #01b671;
+  }
+  /*pagin end*/
+
+ /*footer */
+footer {
+    height: auto;
+    background-color: #282432;
+    padding: 0 10px 10px 0;
+  }
+  
+  .footer-box {
+    height: 50vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10vh; /* Adjusted to remove margin-bottom */
+  }
+  
+  .footer-about {
+    width: 40%;
+    color: wheat;
+    margin-left: 120px;
+  }
+  
+  .footer-links a:hover {
+    color: white;
+  }
+  
+  .end {
+    text-align: center;
+    color: wheat;
+  }

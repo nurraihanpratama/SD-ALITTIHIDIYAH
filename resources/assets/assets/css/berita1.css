@@ -1,0 +1,104 @@
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+.content {
+    width: 98%;
+    background-color: white;
+    padding-right: 34px;
+}
+
+.berita h2 {
+    color: #01b671;
+    text-align: center;
+    padding : 20px;
+    font-size: 30px;
+    margin-bottom: 20px;
+}
+
+.berita p {
+    font-size: 24px;
+    text-align: justify;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* Tambahkan lebih banyak styling di sini sesuai kebutuhan */
+
+img {
+    margin-top: 0;
+    width: 99vw;
+    height: 36vh;
+    height: auto; /* Untuk menjaga rasio aspek gambar */
+  }
+
+  .Alur {
+    background-color: rgb(52, 153, 52); /* Warna latar belakang yang lembut */
+    border-radius: 10px; /* Tepi bulat */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Bayangan kotak untuk efek 3D */
+    padding: 20px; /* Padding di dalam div */
+    margin: 20px auto; /* Margin atas dan bawah, serta mengatur div ke tengah secara horizontal */
+    max-width: 800px; /* Lebar maksimum div */
+    text-align: center; /* Teks berada di tengah */
+}
+
+
+.Alur h1 {
+    font-family: 'Arial', sans-serif; /* Jenis font */
+    font-size: 24px; /* Ukuran font */
+    font-weight: bold; /* Ketebalan font */
+    color: #e8ff8a; /* Warna teks */
+    text-align: center; /* Posisi teks di tengah */
+    text-transform: uppercase; /* Huruf kapital */
+    margin-bottom: 15px; /* Jarak antara judul dan gambar */
+}
+
+
+.Alur img {
+    max-width: 100%; /* Gambar akan menyesuaikan dengan lebar div */
+    height: auto; /* Tinggi gambar akan menyesuaikan secara otomatis */
+    border-radius: 5px; /* Tepi bulat pada gambar */
+}
+
+/*footer */
+footer{
+    height: 60vh;
+    background-color: #282432;
+    padding: 0 2px 50px 0;
+}
+footer{
+    height: auto;
+    background-color: #282432;
+    width: 1500px;
+    margin-top: -28px;
+    margin-bottom: 0px;
+}
+  
+  .footer-box {
+    height: 48vh;
+    width: 95%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: -40px; /* Adjusted to remove margin-bottom */
+    margin-top: 50px;
+  }
+  
+  .footer-about {
+    width: 40%;
+    color: wheat;
+    margin-left: 120px;
+  }
+  
+  .footer-links a:hover {
+    color: white;
+  }
+  
+  .end {
+    text-align: center;
+    color: wheat;
+  }
+

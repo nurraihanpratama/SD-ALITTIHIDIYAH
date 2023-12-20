@@ -1,0 +1,271 @@
+
+html, body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    margin-top: 10px;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background:rgb(252, 252, 252);
+    display: flex;
+    min-height: 100vh;
+    justify-content:  center;
+    align-items: center;
+    flex-direction: column;
+    
+}
+
+.top-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #f7ffef; /* Warna hijau muda */
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    z-index: 1000; /* Pastikan header di atas konten lain saat di-scroll */
+}
+
+.logo {
+    max-width: 100px; /* Atur maksimal lebar logo*/
+    max-height: 100px; /* Atur maksimal tinggi logo */
+    height: auto; /* Ini akan memastikan logo tetap proporsional */
+}
+
+.header-text h1, .header-text p {
+    margin: 0;
+    color: #005f5f; /* Warna teks yang sesuai dengan tema */
+}
+
+.main-header{
+    position: relative; /* atau 'absolute' jika diperlukan */
+    top: 100%; /* Atur ini agar header berada tepat di bawah navbar */
+    width: 100%;
+}
+
+/*top navbar*/
+.top-header ul{
+    list-style-type: none;
+    margin-left: 25vw;
+}
+.top-header ul li{
+    display: inline-block;
+    margin: 0 15px;
+    /* justify-content: right; */
+}
+.top-header ul li a{
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 18px;
+    transition: 0.4s ease-in-out;
+    color: #000000;
+}
+.top-header ul li a:hover{
+    color: black;
+}
+.btn{
+    background-color: #01b671;
+    padding: 10px 25px;
+    border-radius: 30px;
+    color: black;
+    transition: 0.4s ease-in-out;
+    text-decoration: none;
+}
+.btn:hover{
+    background-color: #0a4608;
+}
+/*top navbar end*/
+
+* {
+    box-sizing: border-box;
+}
+
+p, small {
+    color: wheat;
+}
+
+p {
+    font-size: 0.9em;
+    line-height: 23px;
+}
+
+h1 { margin: 0; }
+
+
+.skewed {
+    aspect-ratio: 16/9;
+    width: 100vw;
+    height: 50vh;
+    color: rgb(241, 241, 241);
+    display: flex;
+    background: #282432;
+    margin-top: 0;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.7);
+}
+
+.text {
+    padding:1.5em;
+    width: 80%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: flex-start;
+    flex-direction: column;
+}
+
+a { 
+    color: #fff;
+    text-decoration: none;
+}
+
+.image {
+    aspect-ratio: 16/9;
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    position: relative;
+    overflow: hidden;
+}
+
+.image::before {
+    content: '';
+    display: block;
+    position: absolute;
+    left: -6.1em;
+    padding-top: 56.25%;
+    transform: 
+        translateY(-50%) rotate(20deg);
+    background: #282432;
+    width: 40%;
+    height: 140%;
+    box-shadow: 
+        0 0 20px rgba(0, 0, 0, 0.7);
+}
+
+.skewed-left .image::before {
+    transform: 
+        translateY(-50%) rotate(-20deg);
+    left: initial;
+    right: -6.1em;
+}
+
+img {
+    width: 100%;
+}
+
+@media (max-width: 750px) {
+    .skewed {
+        height: 100%;
+       width: 100%;
+    }    
+    .image, .text {
+        
+        width: 100%;
+    }
+    img { width: 100%; }
+    .skewed .image::before {
+        width: 120%;
+        height: 60%;
+        top: -5cm;
+        left: 50;
+        transform: 
+            translateX(-50%) rotate(10deg);
+    }
+    .skewed-left .image::before {
+        transform: 
+            translateX(-50%) rotate(-10deg);
+        top: initial;
+        bottom: -5em;
+    }
+}
+
+
+
+html,
+body{
+    font-family: roboto system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    padding-top: 633px;
+}
+
+.card-container{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding: 20px;
+}
+
+.card {
+    flex-basis: calc(33.333% - 20px);
+    background-color: rgb(140, 212, 171); /* Warna hijau muda sesuai tema */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    margin: 10px;
+    overflow: hidden;
+    border-radius: 4px;
+    width: calc(33.333% - 20px); /* Tiga kartu per baris dengan margin */
+    text-align: center;
+}
+
+.card-image {
+    width: 100%; /* Makes the image fill the container */
+    height: 200px; /* Fixed height for all images */
+    object-fit: cover; /* Ensures the image covers the area without stretching */
+}
+
+.card-content {
+    padding: 15px;
+    text-align: center;
+}
+
+@media (max-width: 768px) {
+    .card {
+        width: calc(50% - 20px); /* Dua kartu per baris pada layar tablet */
+    }
+}
+
+@media (max-width: 480px) {
+    .card {
+        width: 100%; /* Satu kartu per baris pada layar ponsel */
+    }
+}
+
+/*footer */
+footer{
+    height: 60vh;
+    background-color: #282432;
+    padding: 0 50px 50px 0;
+}
+footer{
+    height: auto;
+    background-color: #282432;
+    padding: 0 10px 10px 0;
+    width: 1500px;
+}
+  
+  .footer-box {
+    height: 48vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0px; /* Adjusted to remove margin-bottom */
+  }
+  
+  .footer-about {
+    width: 40%;
+    color: wheat;
+    margin-left: 120px;
+  }
+  
+  .footer-links a:hover {
+    color: white;
+  }
+  
+  .end {
+    text-align: center;
+    color: wheat;
+  }

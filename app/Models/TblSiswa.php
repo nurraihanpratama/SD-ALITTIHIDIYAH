@@ -28,19 +28,19 @@ class TblSiswa extends Model
         public static function boot()
         {
             parent::boot();
-    
+
             self::creating(function ($model) {
                 $model->created_at       = now();
             });
-    
+
             self::created(function ($model) {
                 $model->created_at = now();
             });
-    
+
             self::updating(function ($model) {
                 $model->updated_at = now();
             });
-    
+
             self::updated(function ($model) {
                 $model->updated_at = now();
             });
@@ -70,7 +70,7 @@ class TblSiswa extends Model
 
 			});
 		}
-		
+
 	}
 
 	public function scopeWithSort(

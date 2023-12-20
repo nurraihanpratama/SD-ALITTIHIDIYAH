@@ -1,0 +1,65 @@
+
+.top-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #f7ffef; /* Warna hijau muda */
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    z-index: 1000; /* Pastikan header di atas konten lain saat di-scroll */
+}
+
+.logo {
+    max-width: 100px; /* Atur maksimal lebar logo*/
+    max-height: 100px; /* Atur maksimal tinggi logo */
+    height: auto; /* Ini akan memastikan logo tetap proporsional */
+}
+
+.header-text h1, .header-text p {
+    margin: 0;
+    color: #005f5f; /* Warna teks yang sesuai dengan tema */
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.main-header{
+    position: relative; /* atau 'absolute' jika diperlukan */
+    top: 100%; /* Atur ini agar header berada tepat di bawah navbar */
+    width: 100%;
+}
+
+/*top navbar*/
+.top-header ul{
+    list-style-type: none;
+    margin-left: 25vw;
+}
+.top-header ul li{
+    display: inline-block;
+    margin: 0 15px;
+    /* justify-content: right; */
+}
+.top-header ul li a{
+    font-family: Arial, Helvetica, sans-serif;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 18px;
+    transition: 0.4s ease-in-out;
+    color: #000000;
+}
+.top-header ul li a:hover{
+    color: black;
+}
+.btn{
+    background-color: #01b671;
+    padding: 10px 25px;
+    border-radius: 30px;
+    color: black;
+    transition: 0.4s ease-in-out;
+    text-decoration: none;
+}
+.btn:hover{
+    background-color: #0a4608;
+}
+/*top navbar end*/
