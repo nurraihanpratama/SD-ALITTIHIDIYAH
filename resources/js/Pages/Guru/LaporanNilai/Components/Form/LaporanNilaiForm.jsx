@@ -2,6 +2,7 @@ import DataTable from "@/Theme/Components/DataTable/DataTable";
 import StandardFormModalTemplate from "@/Theme/Components/ModalTemplates/StandardFormModalTemplate";
 import FormTextInput from "@/Theme/Form/FormTextInput";
 import { useForm } from "@inertiajs/react";
+import TableInputNilai from "./Section/TableInputNilai";
 
 export default function LaporanNilaiForm({ collection, closeForm }) {
     const form = useForm({
@@ -10,51 +11,46 @@ export default function LaporanNilaiForm({ collection, closeForm }) {
         id_mapel: "",
         id_guru: "",
     });
+    console.log(collection);
     return (
         <StandardFormModalTemplate
             title={"Form Input Nilai"}
             closeForm={closeForm}
         >
-            <DataTable collection={collection} columns={TableInputColumns} />
+            <TableInputNilai
+                collection={collection}
+                form={form}
+                columns={inputColumns}
+            />
         </StandardFormModalTemplate>
     );
 }
 
-const TableInputColumns = [
+const inputColumns = [
     {
         header: "Nama Siswa",
-        sortable: false,
-        searchable: false,
-        render: (row) => row.nama_siswa,
+        field: "nama_siswa",
     },
     {
-        header: "UH1",
-        sortable: false,
-        searchable: false,
-        render: () => <FormTextInput isMobile={true} />,
+        header: "Ulangan Harian 1",
+        render: (row, form) => (
+            <FormTextInput
+                value={form.data.jenis_nilai}
+                ismobile
+                onChange={(val) => form.setData("jenis_nilai", val)}
+            />
+        ),
     },
     {
-        header: "UH2",
-        sortable: false,
-        searchable: false,
-        render: () => <FormTextInput isMobile={true} />,
+        header: "Ulangan Harian 2",
     },
     {
-        header: "UH3",
-        sortable: false,
-        searchable: false,
-        render: () => <FormTextInput isMobile={true} />,
+        header: "Ulangan Harian 3",
     },
     {
-        header: "UTS",
-        sortable: false,
-        searchable: false,
-        render: () => <FormTextInput isMobile={true} />,
+        header: "Ulangan Tengah Semester",
     },
     {
-        header: "UAS",
-        sortable: false,
-        searchable: false,
-        render: () => <FormTextInput isMobile={true} />,
+        header: "Ulangan Akhir Semester",
     },
 ];
