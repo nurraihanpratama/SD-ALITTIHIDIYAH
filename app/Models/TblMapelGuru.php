@@ -9,6 +9,8 @@ class TblMapelGuru extends Model
 {
     use HasFactory;
 
+	protected $table = 'tbl_mapel_gurus';
+
     // * FILTERS
 	public function scopeWithSearch($query, $search, $guard = 'web')
 	{
@@ -19,5 +21,20 @@ class TblMapelGuru extends Model
 		}
 		
 	}
+
+	public function guru()
+    {
+        return $this->belongsTo(TblGuru::class, 'id_guru');
+    }
+
+    public function bidangStudi()
+    {
+        return $this->belongsTo(TblBidangStudi::class, 'id_mapel');
+    }
+
+    public function rosters()
+    {
+        return $this->hasMany(TblRoster::class, 'mapel_guru');
+    }
 
 }

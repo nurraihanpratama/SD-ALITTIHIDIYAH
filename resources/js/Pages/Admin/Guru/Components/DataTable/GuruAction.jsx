@@ -6,6 +6,8 @@ import { FaEdit } from "react-icons/fa";
 import Modal from "@/Theme/Components/Modal";
 import GuruForm from "../Form/GuruForm";
 import { FaTrash } from "react-icons/fa6";
+import { onErrorFeedback } from "@/Helpers/formFeedback";
+import toast from "react-hot-toast";
 
 export default function GuruAction({ row, loadOptions }) {
     const [visible, setVisible] = useState(false);
@@ -13,7 +15,7 @@ export default function GuruAction({ row, loadOptions }) {
     const submitDelete = async (e) => {
         e.preventDefault();
 
-        if (confirm("Yakin Ingin Menghapus Data guru ")) {
+        if (confirm("Yakin Ingin Menghapus Data Guru " + row.nama_guru)) {
             try {
                 const response = await axios.delete(
                     route("admin.guru.delete", row.id_guru),
@@ -22,8 +24,10 @@ export default function GuruAction({ row, loadOptions }) {
                     }
                 );
 
+                console.log(response);
                 if (response.data.success) {
                     toast.success(response.data.message);
+                    window.location.reload();
                     // Handle any additional actions you need on success
                 } else {
                     toast.error(response.data.message);
@@ -51,6 +55,7 @@ export default function GuruAction({ row, loadOptions }) {
                         <MenuItemButtonDropdown
                             icon={<FaTrash size={20} />}
                             label="Delete Data"
+                            deleteAction={true}
                             onClick={submitDelete}
                         />
                     )}

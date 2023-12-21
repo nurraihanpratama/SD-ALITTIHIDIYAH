@@ -6,6 +6,7 @@ import { FaEdit } from "react-icons/fa";
 import Modal from "@/Theme/Components/Modal";
 import PrestasiForm from "../Form/PrestasiForm";
 import { FaTrash } from "react-icons/fa6";
+import toast from "react-hot-toast";
 
 export default function PrestasiAction({ row, loadOptions }) {
     const [visible, setVisible] = useState(false);
@@ -23,6 +24,7 @@ export default function PrestasiAction({ row, loadOptions }) {
 
                 if (response.data.success) {
                     toast.success(response.data.message);
+                    window.location.reload();
                     // Handle any additional actions you need on success
                 } else {
                     toast.error(response.data.message);
@@ -50,6 +52,7 @@ export default function PrestasiAction({ row, loadOptions }) {
                         <MenuItemButtonDropdown
                             icon={<FaTrash size={20} />}
                             label="Delete Data"
+                            deleteAction
                             onClick={submitDelete}
                         />
                     )}

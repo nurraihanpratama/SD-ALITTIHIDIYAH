@@ -2,9 +2,14 @@ import StandardFormModalTemplate from "@/Theme/Components/ModalTemplates/Standar
 import { useForm } from "@inertiajs/react";
 export default function JadwalPelajaranForm({ action, row = null, closeForm }) {
     const form = useForm({});
+
+    function headerTitle() {
+        if (action == "create") return "Tambah data Jadwal Pelajaran";
+        if (action == "update") return "Ubah data Jadwal Pelajaran";
+    }
     return (
         <StandardFormModalTemplate
-            title="Data JadwalPelajaran"
+            title={headerTitle()}
             closeForm={closeForm}
             processing={form.processing}
         >

@@ -18,7 +18,7 @@ class BidangStudiDeleteAction
                 $tblBidangStudi->delete();
             });
 
-            return response()->json(['success' => true, 'message' => 'Berhasil Menghapus data Bidang Studi ' ]);
+            return response()->json(['success' => true, 'message' => 'Berhasil Menghapus data Bidang Studi ' . $this->data->nama_mapel ]);
         } catch (\Throwable $th) {
             dd($th);
         }

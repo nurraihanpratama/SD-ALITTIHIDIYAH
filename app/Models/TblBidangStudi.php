@@ -11,6 +11,9 @@ class TblBidangStudi extends Model
 
 	protected $table = 'tbl_bidang_studis';
     protected $primaryKey = 'id_mapel';
+	protected $fillable = [
+		'nama_mapel',
+	];
 
             // * FILTERS
 	public function scopeWithSearch($query, $search, $guard = 'web')
@@ -22,5 +25,10 @@ class TblBidangStudi extends Model
 		}
 		
 	}
+
+	public function gurus()
+    {
+        return $this->belongsToMany(TblGuru::class, 'tbl_mapel_gurus', 'id_mapel', 'id_guru');
+    }
 
 }

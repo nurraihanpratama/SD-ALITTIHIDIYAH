@@ -17,7 +17,7 @@ class GuruUpdateAction
                 $tblGuru->update($dataGuru);
             });
 
-            return back()->withFlash('Berhasil Mendaftarkan Data Guru Baru');
+            return back()->withFlash('Berhasil Mengubah Data Guru ');
         } catch (\Throwable $th) {
             dd($th);
         }

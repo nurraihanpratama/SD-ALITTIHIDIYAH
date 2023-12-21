@@ -6,6 +6,8 @@ import { FaEdit } from "react-icons/fa";
 import Modal from "@/Theme/Components/Modal";
 import BidangStudiForm from "../Form/BidangStudiForm";
 import { FaTrash } from "react-icons/fa6";
+import { onErrorFeedback } from "@/Helpers/formFeedback";
+import toast from "react-hot-toast";
 
 export default function BidangStudiAction({ row, loadOptions }) {
     const [visible, setVisible] = useState(false);
@@ -13,7 +15,9 @@ export default function BidangStudiAction({ row, loadOptions }) {
     const submitDelete = async (e) => {
         e.preventDefault();
 
-        if (confirm("Yakin Ingin Menghapus Data bidang studi ")) {
+        if (
+            confirm("Yakin Ingin Menghapus Data bidang studi " + row.nama_mapel)
+        ) {
             try {
                 const response = await axios.delete(
                     route("admin.bidang-studi.delete", row.id_mapel),
@@ -24,6 +28,7 @@ export default function BidangStudiAction({ row, loadOptions }) {
 
                 if (response.data.success) {
                     toast.success(response.data.message);
+                    window.location.reload();
                     // Handle any additional actions you need on success
                 } else {
                     toast.error(response.data.message);
@@ -34,6 +39,7 @@ export default function BidangStudiAction({ row, loadOptions }) {
             }
         }
     };
+
     return (
         <Fragment>
             <MenuDropdown>
@@ -51,6 +57,7 @@ export default function BidangStudiAction({ row, loadOptions }) {
                         <MenuItemButtonDropdown
                             icon={<FaTrash size={20} />}
                             label="Delete Data"
+                            deleteAction
                             onClick={submitDelete}
                         />
                     )}
@@ -61,7 +68,6 @@ export default function BidangStudiAction({ row, loadOptions }) {
                     action="update"
                     row={row}
                     closeForm={() => setVisible(false)}
-                    loadOptions={loadOptions}
                 />
             </Modal>
         </Fragment>

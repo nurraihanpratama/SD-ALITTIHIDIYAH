@@ -18,7 +18,7 @@ class SiswaDeleteAction
                 $tblSiswa->delete();
             });
 
-            return response()->json(['success' => true, 'message' => 'Berhasil Menghapus data Prestasi ' ]);
+            return response()->json(['success' => true, 'message' => 'Berhasil Menghapus data Siswa ' . $this->data->nama_siswa ]);
         } catch (\Throwable $th) {
             dd($th);
         }

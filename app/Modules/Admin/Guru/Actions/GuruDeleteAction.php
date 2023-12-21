@@ -18,7 +18,7 @@ class GuruDeleteAction
                 $tblGuru->delete();
             });
 
-            return response()->json(['success' => true, 'message' => 'Berhasil Menghapus data Guru ' ]);
+            return response()->json(['success' => true, 'message' => 'Berhasil Menghapus data Guru ' . $this->data->nama_guru ]);
         } catch (\Throwable $th) {
             dd($th);
         }

@@ -12,11 +12,10 @@ class BidangStudiStoreAction
         try {
             $dataBidangStudi = getValidatedData(new TblBidangStudi, $request->toArray());
             DB::transaction(function() use($dataBidangStudi){
-                dd($dataBidangStudi);
                 TblBidangStudi::create($dataBidangStudi);
             });
 
-            return back()->withFlash('Berhasil Mendaftarkan Siswa Baru');
+            return back()->withFlash('Berhasil Mendaftarkan Bidang Studi Baru');
         } catch (\Throwable $th) {
             dd($th);
         }

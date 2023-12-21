@@ -105,8 +105,8 @@ Route::middleware(['auth', 'verified','ShareFlashes'])
                 Route::get('/', 'index')->name('index');
                 Route::get('/create', 'create')->name('create');
                 Route::post('/store', 'store')->name('store');
-                Route::patch('/update/{bidang-studi}', 'update')->name('update');
-                Route::delete('/delete/{bidang-studi}', 'delete')->name('delete');
+                Route::patch('/update/{bidang_studi}', 'update')->name('update');
+                Route::delete('/delete/{bidang_studi}', 'delete')->name('delete');
 
         });
 
@@ -118,8 +118,8 @@ Route::middleware(['auth', 'verified','ShareFlashes'])
                 Route::get('/', 'index')->name('index');
                 Route::get('/create', 'create')->name('create');
                 Route::post('/store', 'store')->name('store');
-                Route::patch('/update/{jadwal-pelajaran}', 'update')->name('update');
-                Route::delete('/delete/{jadwal-pelajaran}', 'delete')->name('delete');
+                Route::patch('/update/{jadwal_pelajaran}', 'update')->name('update');
+                Route::delete('/delete/{jadwal_pelajaran}', 'delete')->name('delete');
 
         });
 
@@ -157,7 +157,7 @@ Route::middleware(['auth', 'verified','ShareFlashes'])
                 Route::get('/', 'index')->name('index');
                 Route::get('/create', 'create')->name('create');
                 Route::post('/store', 'store')->name('store');
-                Route::patch('/update/{ekstrakurikuler}', 'update')->name('update');
+                Route::post('/update/{ekstrakurikuler}', 'update')->name('update');
                 Route::delete('/delete/{ekstrakurikuler}', 'delete')->name('delete');
 
         });
@@ -170,7 +170,7 @@ Route::middleware(['auth', 'verified','ShareFlashes'])
                 Route::get('/', 'index')->name('index');
                 Route::get('/create', 'create')->name('create');
                 Route::post('/store', 'store')->name('store');
-                Route::patch('/update/{fasilitas}', 'update')->name('update');
+                Route::post('/update/{fasilitas}', 'update')->name('update');
                 Route::delete('/delete/{fasilitas}', 'delete')->name('delete');
 
         });
@@ -183,7 +183,7 @@ Route::middleware(['auth', 'verified','ShareFlashes'])
                 Route::get('/', 'index')->name('index');
                 Route::get('/create', 'create')->name('create');
                 Route::post('/store', 'store')->name('store');
-                Route::patch('/update/{berita}', 'update')->name('update');
+                Route::post('/update/{berita}', 'update')->name('update');
                 Route::delete('/delete/{berita}', 'delete')->name('delete');
 
         });

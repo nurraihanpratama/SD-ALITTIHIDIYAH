@@ -31,10 +31,24 @@ return [
     'disks' => [
 
         'local' => [
-            'driver' => 'local',
-            'root' => storage_path('app'),
-            'throw' => false,
-        ],
+			'driver' => 'local',
+			'root' => public_path(),
+			'throw' => false,
+		],
+
+		// 'public' => [
+		// 	'driver' => 'local',
+		// 	'root' => public_path(), // Use the symlinked path
+		// 	'url' => env('APP_URL') . '/storage',
+		// 	'visibility' => 'public',
+		// 	'throw' => false,
+		// ],
+
+        // 'local' => [
+        //     'driver' => 'local',
+            // 'root' => storage_path('app'),
+        //     'throw' => false,
+        // ],
 
         'public' => [
             'driver' => 'local',

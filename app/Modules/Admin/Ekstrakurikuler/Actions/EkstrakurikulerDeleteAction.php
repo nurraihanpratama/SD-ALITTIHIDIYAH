@@ -18,7 +18,7 @@ class EkstrakurikulerDeleteAction
                 $tblEkstrakurikuler->delete();
             });
 
-            return response()->json(['success' => true, 'message' => 'Berhasil Menghapus data Bidang Studi ' ]);
+            return response()->json(['success' => true, 'message' => 'Berhasil Menghapus data Ekskul '.$this->data->nama_ekstrakurikuler ]);
         } catch (\Throwable $th) {
             dd($th);
         }

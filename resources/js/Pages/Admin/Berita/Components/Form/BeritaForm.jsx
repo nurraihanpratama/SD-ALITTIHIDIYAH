@@ -13,7 +13,8 @@ export default function BeritaForm({
 }) {
     const form = useForm({
         judul: row?.judul ?? "",
-        foto_filename: "", // Initialize foto as an empty string
+        foto_img: "",
+        foto_filename: "",
         deskripsi: row?.deskripsi ?? "",
         // ... (existing form fields)
     });
@@ -75,10 +76,17 @@ export default function BeritaForm({
 
                 {/* Foto */}
                 <FormUploadInput
-                    id={"foto_filename"}
+                    id={"foto_img"}
                     label="Gambar Berita"
-                    onChange={(val) => form.setData("foto_filename", val)}
-                    onRemoveImage={() => form.setData("foto_filename", null)}
+                    onChange={(val) => form.setData("foto_img", val)}
+                    currentImage={
+                        form.data.foto_filename
+                            ? form.data.foto_filename === "no_img.png"
+                                ? null
+                                : `/storage/upload/berita/foto/${form.data.foto_filename}`
+                            : null
+                    }
+                    onRemoveImage={() => form.setData("foto_img", null)}
                     withChange={action != "show"}
                     withRemove={action != "show"}
                     disabled={action == "show"}

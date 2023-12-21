@@ -12,10 +12,10 @@ class TblPegawai extends Model
     protected $primaryKey = 'id_pegawai';
 	protected $fillable = [
 		'nama_pegawai',
-		'jns_kelamin',
+		'jk_pegawai',
 		'ket_pegawai',
 		'status_pegawai',
-		'created_at',
+	// 	'created_at',
 	];
 	public static function boot()
         {
@@ -58,7 +58,7 @@ class TblPegawai extends Model
 
     public function jk()
     {
-        return $this->belongsTo(JenisKelamin::class, "jns_kelamin");
+        return $this->belongsTo(JenisKelamin::class, "jk_pegawai");
     }
 
 }

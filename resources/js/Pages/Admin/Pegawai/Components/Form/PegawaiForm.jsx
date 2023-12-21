@@ -16,7 +16,7 @@ export default function PegawaiForm({
     console.log(row);
     const form = useForm({
         nama_pegawai: row?.nama_pegawai ?? "",
-        jns_kelamin: row?.jk?.id ?? loadOptions?.jk[0].id,
+        jk_pegawai: row?.jk?.id ?? loadOptions?.jk[0].id,
         ket_pegawai: row?.ket_pegawai ?? "",
         status_pegawai: row?.status?.id ?? loadOptions?.status[0].id,
         // ... (existing form fields)
@@ -73,12 +73,12 @@ export default function PegawaiForm({
 
                 {/* Jenis Kelamin */}
                 <FormSelectInput
-                    name="jns_kelamin"
+                    name="jk_pegawai"
                     label="Jenis Kelamin"
                     options={loadOptions?.jk}
-                    value={form.data.jns_kelamin}
-                    onChange={(val) => form.setData("jns_kelamin", val.id)}
-                    error={form.errors.jns_kelamin}
+                    value={form.data.jk_pegawai}
+                    onChange={(val) => form.setData("jk_pegawai", val.id)}
+                    error={form.errors.jk_pegawai}
                     isRequired={true}
                 />
 

@@ -18,7 +18,7 @@ class FasilitasDeleteAction
                 $tblFasilitas->delete();
             });
 
-            return response()->json(['success' => true, 'message' => 'Berhasil Menghapus data Bidang Studi ' ]);
+            return response()->json(['success' => true, 'message' => 'Berhasil Menghapus data fasilitas ' .$this->data->nama_fasilitas ]);
         } catch (\Throwable $th) {
             dd($th);
         }
