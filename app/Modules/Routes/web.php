@@ -14,6 +14,7 @@ use App\Modules\Admin\LaporanNilai\Tables\DataSiswaDataTable;
 use App\Modules\Admin\Pegawai\Controllers\PegawaiController;
 use App\Modules\Admin\Prestasi\Controllers\PrestasiController;
 use App\Modules\Admin\Siswa\Controllers\SiswaController;
+use App\Modules\Guru\Dashboard\Controllers\GuruDashboardController;
 use App\Modules\MyProfile\Controllers\MyProfileController;
 use App\Modules\Siswa\Dashboard\Controllers\SiswaDashboardController;
 use App\Modules\Siswa\DataNilai\Controllers\DataNilaiController;
@@ -196,6 +197,14 @@ Route::middleware(['auth', 'verified','ShareFlashes'])
     ->prefix('guru')
     ->name('guru.')
     ->group(function() {
+
+        // * Dashboard Guru
+        Route::controller(GuruDashboardController::class)
+            ->name('dashboard.')
+            ->prefix('/dashboard')
+            ->group(function(){
+                Route::get('/', 'index')->name('index');
+            });
 
         // * Data Siswa
         Route::controller(DataSiswaController::class)
