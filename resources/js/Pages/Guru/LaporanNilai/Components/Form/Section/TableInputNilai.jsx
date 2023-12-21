@@ -69,11 +69,7 @@ const TableBody = ({ row, i, columns, form }) => {
                                     
                                     `}
                     >
-                        {col.render ? (
-                            col.render(row, form)
-                        ) : (
-                            <p>{row[col.field]}</p>
-                        )}
+                        {col.render ? col.render(row) : <p>{row[col.field]}</p>}
                     </td>
                 );
             })}
