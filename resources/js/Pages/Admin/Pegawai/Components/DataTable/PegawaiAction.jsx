@@ -6,6 +6,8 @@ import { FaEdit } from "react-icons/fa";
 import Modal from "@/Theme/Components/Modal";
 import PegawaiForm from "../Form/PegawaiForm";
 import { FaTrash } from "react-icons/fa6";
+import toast from "react-hot-toast";
+import { onErrorFeedback } from "@/Helpers/formFeedback";
 
 export default function PegawaiAction({ row, loadOptions }) {
     const [visible, setVisible] = useState(false);
@@ -23,6 +25,7 @@ export default function PegawaiAction({ row, loadOptions }) {
 
                 if (response.data.success) {
                     toast.success(response.data.message);
+                    window.location.reload();
                     // Handle any additional actions you need on success
                 } else {
                     toast.error(response.data.message);
@@ -50,6 +53,7 @@ export default function PegawaiAction({ row, loadOptions }) {
                         <MenuItemButtonDropdown
                             icon={<FaTrash size={20} />}
                             label="Delete Data"
+                            deleteAction
                             onClick={submitDelete}
                         />
                     )}

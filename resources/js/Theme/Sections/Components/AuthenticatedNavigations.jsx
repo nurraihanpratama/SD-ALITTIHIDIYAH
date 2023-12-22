@@ -1,6 +1,12 @@
 import { Fragment } from "react";
 import { FiCodesandbox, FiTag } from "react-icons/fi";
-import { FaBook, FaBookAtlas, FaBookOpen, FaDoorOpen } from "react-icons/fa6";
+import {
+    FaBook,
+    FaBookAtlas,
+    FaBookOpen,
+    FaDoorOpen,
+    FaUsers,
+} from "react-icons/fa6";
 import { FaChalkboardTeacher, FaUserCircle, FaUsersCog } from "react-icons/fa";
 import NavLink from "@/Theme/Components/NavLink/NavLink";
 import { LuSchool } from "react-icons/lu";
@@ -136,13 +142,22 @@ export default function AuthenticatedNavigations({ user }) {
                 />
             )}
 
+            {isGuru() && (
+                <NavLink
+                    navRoute={route("guru.dashboard.index")}
+                    components={["guru.dashboard.index"]}
+                    label="Dashboard"
+                    icon={<FiCodesandbox />}
+                />
+            )}
+
             {/* Data Siswa */}
             {isGuru() && (
                 <NavLink
                     navRoute={route("guru.data-siswa.index")}
                     components={["guru.data-siswa.index"]}
                     label="Data Siswa"
-                    icon={<FaUserCircle />}
+                    icon={<FaUsers />}
                 />
             )}
 

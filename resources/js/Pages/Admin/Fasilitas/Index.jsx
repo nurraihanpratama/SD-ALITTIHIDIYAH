@@ -15,28 +15,12 @@ export default function Index(props) {
     const [showCreateForm, setShowCreateForm] = useState(false);
     const [data, setData] = useState([]);
 
-    const loadOptions = async () => {
-        try {
-            const response = await axios.get(route("admin.fasilitas.create"));
-            setData(response.data);
-        } catch (error) {
-            console.error("Error fetching data:", error);
-        }
-    };
-
-    useEffect(() => {
-        // Panggil loadOptions() saat komponen pertama kali dirender
-        loadOptions();
-    }, []);
-    console.log(data);
-
     return (
         <ThemeLayout title={title}>
             <ContentCard title={title} />
 
             <FasilitasDataTable
                 collection={collection}
-                loadOptions={data}
                 onClickNew={() => setShowCreateForm(true)} // Sesuaikan dengan aksi yang sesuai untuk form Fasilitas
                 withNewButton
             />
@@ -53,7 +37,6 @@ export default function Index(props) {
                     <FasilitasForm
                         action="create"
                         closeForm={() => setShowCreateForm(false)}
-                        loadOptions={data}
                     />
                 </Modal>
             </Fragment>

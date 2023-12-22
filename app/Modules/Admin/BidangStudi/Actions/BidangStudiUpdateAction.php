@@ -13,11 +13,10 @@ class BidangStudiUpdateAction
             $dataBidangStudi = getValidatedData(new TblBidangStudi, $request->toArray());
             DB::transaction(function() use($dataBidangStudi, $id){
                 $tbl_BidangStudi = TblBidangStudi::find($id);
-                dd($dataBidangStudi);
-                $tbl_BidangStudi::update($dataBidangStudi);
+                $tbl_BidangStudi->update($dataBidangStudi);
             });
 
-            return back()->withFlash('Berhasil Mendaftarkan Siswa Baru');
+            return back()->withFlash('Berhasil Mengubah Bidang Studi');
         } catch (\Throwable $th) {
             dd($th);
         }

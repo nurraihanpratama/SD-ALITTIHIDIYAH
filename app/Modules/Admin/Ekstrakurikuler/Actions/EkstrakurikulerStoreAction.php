@@ -12,11 +12,11 @@ class EkstrakurikulerStoreAction
         try {
             $dataEkstrakurikuler = getValidatedData(new TblEkstrakurikuler, $request->toArray());
             DB::transaction(function() use($dataEkstrakurikuler){
-                dd($dataEkstrakurikuler);
+                // dd($dataEkstrakurikuler);
                 TblEkstrakurikuler::create($dataEkstrakurikuler);
             });
 
-            return back()->withFlash('Berhasil Mendaftarkan Siswa Baru');
+            return back()->withFlash('Berhasil Mendaftarkan Ekstrakurikuler Baru');
         } catch (\Throwable $th) {
             dd($th);
         }

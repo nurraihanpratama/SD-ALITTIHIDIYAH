@@ -11,6 +11,11 @@ class TblEkstrakurikuler extends Model
 
 	protected $table = 'tbl_ekstrakurikulers';
     protected $primaryKey = 'id_ekskul';
+	protected $fillable = [
+		'nama_ekstrakurikuler',
+		'pembina_ekskul',
+		'ikon'
+	];
 
             // * FILTERS
 	public function scopeWithSearch($query, $search, $guard = 'web')

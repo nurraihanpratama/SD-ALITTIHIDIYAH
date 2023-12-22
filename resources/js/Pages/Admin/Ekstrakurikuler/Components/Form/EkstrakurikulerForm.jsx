@@ -1,3 +1,4 @@
+import { onErrorFeedback, onSuccessFeedback } from "@/Helpers/formFeedback";
 import StandardFormModalTemplate from "@/Theme/Components/ModalTemplates/StandardFormModalTemplate";
 import FormSelectInput from "@/Theme/Form/FormSelectInput";
 import FormTextInput from "@/Theme/Form/FormTextInput";
@@ -13,7 +14,7 @@ export default function EkstrakurikulerForm({
     const form = useForm({
         nama_ekstrakurikuler: row?.nama_ekstrakurikuler ?? "",
         pembina_ekskul: row?.pembina_ekskul ?? "",
-        ikon: row?.ikon ?? "", // Anda mungkin perlu menyesuaikan ini tergantung pada bagaimana ikon disimpan di database
+        ikon: row?.ikon ?? "",
     });
 
     const handleOnChange = (event) => {
@@ -29,11 +30,24 @@ export default function EkstrakurikulerForm({
         e.preventDefault();
 
         if (action === "create") {
-            if (window.confirm("Yakin untuk menambahkan Data Ekstrakurikuler baru?")) {
+            if (confirm("Yakin untuk menambahkan Data Ekstrakurikuler baru?")) {
                 form.post(route("admin.ekstrakurikuler.store"), {
-                    onSuccess: (response) => console.log(response),
-                    onError: (err) => console.log("err", err),
+                    onSuccess: (response) =>
+                        onSuccessFeedback(response, closeForm()),
+                    onError: onErrorFeedback,
                 });
+            }
+        }
+        if (action === "update") {
+            if (confirm("Yakin untuk Mengubah Data Ekstrakurikuler?")) {
+                form.post(
+                    route("admin.ekstrakurikuler.update", row.id_ekskul),
+                    {
+                        onSuccess: (response) =>
+                            onSuccessFeedback(response, closeForm()),
+                        onError: onErrorFeedback,
+                    }
+                );
             }
         }
     };

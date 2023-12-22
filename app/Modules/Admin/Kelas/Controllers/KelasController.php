@@ -36,8 +36,8 @@ class KelasController extends Controller
     }
 
     // Delete Data 
-    public function delete(string $id)
+    public function delete(Request $request, string $id)
     {
-        return (New KelasDeleteAction)->delete($id);
+        return (New KelasDeleteAction)->delete($request, $id);
     }
 }

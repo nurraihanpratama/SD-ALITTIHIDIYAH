@@ -7,51 +7,37 @@ import EkstrakurikulerForm from "./Components/Form/EkstrakurikulerForm"; // Impo
 import Modal from "@/Theme/Components/Modal";
 
 export default function Index(props) {
-  const { page, collection } = props;
-  const { title } = page;
+    const { page, collection } = props;
+    const { title } = page;
 
-  const [processing, setProcessing] = useState(false);
-  const [showCreateForm, setShowCreateForm] = useState(false);
-  const [data, setData] = useState([]);
+    const [processing, setProcessing] = useState(false);
+    const [showCreateForm, setShowCreateForm] = useState(false);
 
-  const loadOptions = async () => {
-    try {
-      const response = await axios.get(route("admin.ekstrakurikuler.create"));
-      setData(response.data);
-    } catch (error) {
-      console.error("Error fetching data:", error);
-    }
-  };
+    return (
+        <ThemeLayout title={title}>
+            <ContentCard title={title} />
 
-  useEffect(() => {
-    // Panggil loadOptions() saat komponen pertama kali dirender
-    loadOptions();
-  }, []);
-  console.log(data);
+            <EkstrakurikulerDataTable
+                collection={collection}
+                onClickNew={() => setShowCreateForm(true)} // Ganti dengan aksi yang sesuai untuk form Ekstrakurikuler
+                withNewButton
+            />
 
-  return (
-    <ThemeLayout title={title}>
-      <ContentCard title={title} />
-
-      <EkstrakurikulerDataTable
-        collection={collection}
-        loadOptions={data}
-        onClickNew={() => setShowCreateForm(true)} // Ganti dengan aksi yang sesuai untuk form Ekstrakurikuler
-        withNewButton
-      />
-
-      <Fragment>
-        <Modal visible={processing} setVisible={setProcessing} noescape>
-          <ProcessingLoader visible={processing} />
-        </Modal>
-        <Modal visible={showCreateForm} setVisible={setShowCreateForm} noescape>
-          <EkstrakurikulerForm
-            action="create"
-            closeForm={() => setShowCreateForm(false)}
-            loadOptions={data}
-          />
-        </Modal>
-      </Fragment>
-    </ThemeLayout>
-  );
+            <Fragment>
+                <Modal visible={processing} setVisible={setProcessing} noescape>
+                    <ProcessingLoader visible={processing} />
+                </Modal>
+                <Modal
+                    visible={showCreateForm}
+                    setVisible={setShowCreateForm}
+                    noescape
+                >
+                    <EkstrakurikulerForm
+                        action="create"
+                        closeForm={() => setShowCreateForm(false)}
+                    />
+                </Modal>
+            </Fragment>
+        </ThemeLayout>
+    );
 }

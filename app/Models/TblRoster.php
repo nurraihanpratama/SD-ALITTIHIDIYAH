@@ -29,6 +29,11 @@ class TblRoster extends Model
 
     public function guru()
     {
-        return $this->belongsToMany(TblGuru::class, 'tbl_mapel_gurus', 'id_guru', 'id_mapel');
+        return $this->belongsToMany(TblGuru::class, 'tbl_mapel_gurus', 'id_guru', 'id_guru');
     }
+
+
+
+
+    
 }

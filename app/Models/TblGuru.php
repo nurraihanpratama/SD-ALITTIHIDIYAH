@@ -28,4 +28,9 @@ class TblGuru extends Model
 		
 	}
 
+    public function bidangStudis()
+    {
+        return $this->belongsToMany(TblBidangStudi::class, 'tbl_mapel_gurus', 'id_guru', 'id_mapel');
+    }
+
 }

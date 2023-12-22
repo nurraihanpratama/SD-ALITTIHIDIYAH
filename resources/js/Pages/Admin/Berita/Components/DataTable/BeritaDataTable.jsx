@@ -3,7 +3,8 @@ import PrimaryButton from "@/Theme/Components/Buttons/PrimaryButton";
 import DataTable from "@/Theme/Components/DataTable/DataTable";
 import { Fragment } from "react";
 import { BiPlus } from "react-icons/bi";
-import BeritaAction from "./BeritaAction"; 
+import BeritaAction from "./BeritaAction";
+import CellImageTemplate from "@/Theme/Components/DataTable/Cell/CellImageTemplate";
 
 export default function BeritaDataTable({
     collection,
@@ -18,7 +19,9 @@ export default function BeritaDataTable({
             sortable: false,
             searchable: false,
             bodyAlignment: "center",
-            render: (row) => <BeritaAction row={row} loadOptions={loadOptions} />, 
+            render: (row) => (
+                <BeritaAction row={row} loadOptions={loadOptions} />
+            ),
         },
         {
             header: "Nama Berita",
@@ -27,7 +30,15 @@ export default function BeritaDataTable({
         {
             header: "Foto",
             field: "foto",
-            render: (row) => <img src={row.foto} alt="Berita Foto" style={{ maxWidth: "100px", maxHeight: "100px" }} />,
+            render: (row) =>
+                row.foto_filename ? (
+                    <CellImageTemplate
+                        filename={row.proof_filename}
+                        path={"/storage/upload/berita/foto/"}
+                        alt="Foto Berita"
+                        className="h-10"
+                    />
+                ) : null,
         },
         {
             header: "Deskripsi",

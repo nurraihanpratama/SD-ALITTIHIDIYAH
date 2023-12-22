@@ -1,3 +1,4 @@
+
 <?php
 
 namespace App\Modules\Admin\Kelas\Actions;
@@ -9,7 +10,10 @@ class KelasDeleteAction
 {
 	public $data;
 
-    public function delete($id)
+    public function delete($id);
+
+    public function delete($request, $id)
+
     {
         try {
             DB::transaction(function() use($id){
@@ -19,7 +23,7 @@ class KelasDeleteAction
                 $tblKelas->delete();
             });
 
-            return response()->json(['success' => true, 'message' => 'Berhasil Menghapus data Kelas ' . $this->data->nama]);
+            return response()->json(['success' => true, 'message' => 'Berhasil Menghapus data Kelas ' . $this->data->nama ]);
         } catch (\Throwable $th) {
             dd($th);
         }

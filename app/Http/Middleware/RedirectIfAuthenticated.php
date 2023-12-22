@@ -24,9 +24,11 @@ class RedirectIfAuthenticated
                 if(auth()->user()->role == 'Admin'){
                     return redirect(RouteServiceProvider::ADMIN);
                 }
+                if(auth()->user()->role == 'Guru'){
+                    return redirect(RouteServiceProvider::GURU);
+                }
                 if(auth()->user()->role == 'Siswa'){
                     return redirect(RouteServiceProvider::SISWA);
-
                 }
             }
         }

@@ -13,17 +13,21 @@ import toast from "react-hot-toast";
 export default function KelasAction({ row, loadOptions }) {
     const [visible, setVisible] = useState(false);
 
-    const submitDelete = (e) => {
+    const submitDelete = async (e) => {
         e.preventDefault();
 
         if (confirm("Yakin Ingin Menghapus Data Kelas " + row.nama)) {
             try {
-                const response = axios.delete(
-                    route("admin.kelas.delete", row.id_kelas)
+                const response = await axios.delete(
+                    route("admin.kelas.delete", row.id_kelas),
+                    {
+                        // additional configurations
+                    }
                 );
 
                 if (response.data.success) {
                     toast.success(response.data.message);
+                    window.location.reload();
                     // Handle any additional actions you need on success
                 } else {
                     toast.error(response.data.message);

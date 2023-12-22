@@ -12,11 +12,11 @@ class FasilitasStoreAction
         try {
             $dataFasilitas = getValidatedData(new TblFasilitas, $request->toArray());
             DB::transaction(function() use($dataFasilitas){
-                dd($dataFasilitas);
+                // dd($dataFasilitas);
                 TblFasilitas::create($dataFasilitas);
             });
 
-            return back()->withFlash('Berhasil Mendaftarkan Siswa Baru');
+            return back()->withFlash('Berhasil Mendaftarkan Fasilitas Baru');
         } catch (\Throwable $th) {
             dd($th);
         }

@@ -5,6 +5,8 @@ import FormSelectInput from "@/Theme/Form/FormSelectInput";
 import { useForm } from "@inertiajs/react";
 import dayjs from "dayjs";
 import { useState } from "react";
+import FormUploadInput from "@/Theme/Form/FormUploadInput";
+import { onErrorFeedback, onSuccessFeedback } from "@/Helpers/formFeedback";
 
 export default function FasilitasForm({
     action,
@@ -31,13 +33,20 @@ export default function FasilitasForm({
         e.preventDefault();
 
         if (action === "create") {
-            // Lakukan operasi submit create
-            if (
-                window.confirm("Yakin untuk menambahkan Data Fasilitas baru?")
-            ) {
+            if (confirm("Yakin untuk menambahkan Data Fasilitas baru?")) {
                 form.post(route("admin.fasilitas.store"), {
-                    onSuccess: (response) => console.log(response),
-                    onError: (err) => console.log("err", err),
+                    onSuccess: (response) =>
+                        onSuccessFeedback(response, closeForm()),
+                    onError: onErrorFeedback,
+                });
+            }
+        }
+        if (action === "update") {
+            if (confirm("Yakin untuk mengubah Data Fasilitas?")) {
+                form.post(route("admin.fasilitas.update", row.id_fasilitas), {
+                    onSuccess: (response) =>
+                        onSuccessFeedback(response, closeForm()),
+                    onError: onErrorFeedback,
                 });
             }
         }
@@ -61,14 +70,15 @@ export default function FasilitasForm({
                 />
 
                 {/* FOTO FASILITAS */}
-                {/* <FormFileInput
-                    name="foto_fasilitas"
-                    label={"FOTO FASILITAS"}
-                    value={form.data.foto_fasilitas}
+                <FormUploadInput
+                    id={"foto_fasilitas"}
+                    label="Gambar Fasilitas"
                     onChange={(val) => form.setData("foto_fasilitas", val)}
-                    error={form.errors.foto_fasilitas}
-                /> */}
-
+                    onRemoveImage={() => form.setData("foto_fasilitas", null)}
+                    withChange={action != "show"}
+                    withRemove={action != "show"}
+                    disabled={action == "show"}
+                />
                 {/* DESKRIPSI */}
                 <FormTextInput
                     name="deskripsi"

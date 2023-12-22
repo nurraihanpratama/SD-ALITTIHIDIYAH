@@ -10,6 +10,11 @@ class TblFasilitas extends Model
     use HasFactory;
 	protected $table = 'tbl_fasilitas';
     protected $primaryKey = 'id_fasilitas';
+	protected $fillable = [
+		'nama_fasilitas',
+		'foto_fasilitas',
+		'deskripsi'
+	];
 
             // * FILTERS
 	public function scopeWithSearch($query, $search, $guard = 'web')

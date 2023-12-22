@@ -15,7 +15,7 @@ export default function SiswaAction({ row, loadOptions }) {
     const submitDelete = async (e) => {
         e.preventDefault();
 
-        if (confirm("Yakin Ingin Menghapus Data Siswa ")) {
+        if (confirm("Yakin Ingin Menghapus Data Siswa " + row.nama_siswa)) {
             try {
                 const response = await axios.delete(
                     route("admin.siswa.delete", row.nisn),
@@ -26,6 +26,7 @@ export default function SiswaAction({ row, loadOptions }) {
 
                 if (response.data.success) {
                     toast.success(response.data.message);
+                    window.location.reload();
                     // Handle any additional actions you need on success
                 } else {
                     toast.error(response.data.message);
@@ -53,6 +54,7 @@ export default function SiswaAction({ row, loadOptions }) {
                         <MenuItemButtonDropdown
                             icon={<FaTrash size={20} />}
                             label="Delete Data"
+                            deleteAction={true}
                             onClick={submitDelete}
                         />
                     )}

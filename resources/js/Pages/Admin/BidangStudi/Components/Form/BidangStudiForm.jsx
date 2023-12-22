@@ -21,7 +21,7 @@ export default function BidangStudiForm({
 
     const titleHeader = () => {
         if (action === "create") return "Tambah Bidang Studi";
-        else return `Ubah Bidang Studi`;
+        if (action === "update") return `Ubah Bidang Studi`;
     };
 
     const submit = (e) => {
@@ -29,7 +29,7 @@ export default function BidangStudiForm({
 
         if (action === "create") {
             if (confirm("Yakin untuk menambahkan Bidang Studi baru?")) {
-                form.post(route("admin.bidangstudi.store"), {
+                return form.post(route("admin.bidang-studi.store"), {
                     onSuccess: (response) =>
                         onSuccessFeedback(response, closeForm()),
                     onError: (err) => onErrorFeedback,
@@ -37,12 +37,20 @@ export default function BidangStudiForm({
             }
         }
         if (action === "update") {
-            if (confirm("Yakin untuk mengubah Bidang Studi?")) {
-                form.post(route("admin.bidangstudi.update", row.id_mapel), {
-                    onSuccess: (response) =>
-                        onSuccessFeedback(response, closeForm()),
-                    onError: (err) => onErrorFeedback,
-                });
+            if (
+                confirm("Yakin untuk mengubah Bidang Studi?" + row.nama_mapel)
+            ) {
+                return form.patch(
+                    route("admin.bidang-studi.update", row.id_mapel),
+                    {
+                        onSuccess: (response) =>
+                            onSuccessFeedback(response, closeForm()),
+                        onError: (err) => {
+                            console.error(err);
+                            onErrorFeedback(err);
+                        },
+                    }
+                );
             }
         }
         // ... (handle update case if needed)

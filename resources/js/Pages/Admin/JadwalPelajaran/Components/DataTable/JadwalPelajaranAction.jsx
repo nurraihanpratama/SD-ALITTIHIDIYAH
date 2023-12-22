@@ -4,10 +4,10 @@ import { Menu } from "@headlessui/react";
 import MenuItemButtonDropdown from "@/Components/MenuItemButtonDropdown";
 import { FaEdit } from "react-icons/fa";
 import Modal from "@/Theme/Components/Modal";
-import KelasForm from "../Form/JadwalPelajaranForm";
 import { FaTrash } from "react-icons/fa6";
+import JadwalPelajaranForm from "../Form/JadwalPelajaranForm";
 
-export default function KelasAction({ row }) {
+export default function JadwalPelajaranAction({ row }) {
     const [visible, setVisible] = useState(false);
 
     const submitDelete = async (e) => {
@@ -51,13 +51,14 @@ export default function KelasAction({ row }) {
                         <MenuItemButtonDropdown
                             icon={<FaTrash size={20} />}
                             label="Delete Data"
+                            deleteAction
                             onClick={submitDelete}
                         />
                     )}
                 </Menu.Item>
             </MenuDropdown>
             <Modal visible={visible} setVisible={setVisible} noescape>
-                <KelasForm
+                <JadwalPelajaranForm
                     action="update"
                     row={row}
                     closeForm={() => setVisible(false)}

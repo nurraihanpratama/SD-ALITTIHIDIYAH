@@ -41,7 +41,7 @@ export default function GuruForm({
         }
         if (action === "update") {
             if (confirm("Yakin untuk mengubah Data Guru?")) {
-                return form.post(route("admin.guru.update", row.id_guru), {
+                return form.patch(route("admin.guru.update", row.id_guru), {
                     preserveScroll: true,
                     onSuccess: (response) =>
                         onSuccessFeedback(response, closeForm()),

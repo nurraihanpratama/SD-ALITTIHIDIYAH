@@ -14,6 +14,7 @@ use App\Modules\Admin\LaporanNilai\Tables\DataSiswaDataTable;
 use App\Modules\Admin\Pegawai\Controllers\PegawaiController;
 use App\Modules\Admin\Prestasi\Controllers\PrestasiController;
 use App\Modules\Admin\Siswa\Controllers\SiswaController;
+use App\Modules\Guru\Dashboard\Controllers\GuruDashboardController;
 use App\Modules\MyProfile\Controllers\MyProfileController;
 use App\Modules\Siswa\Dashboard\Controllers\SiswaDashboardController;
 use App\Modules\Siswa\DataNilai\Controllers\DataNilaiController;
@@ -105,8 +106,8 @@ Route::middleware(['auth', 'verified','ShareFlashes'])
                 Route::get('/', 'index')->name('index');
                 Route::get('/create', 'create')->name('create');
                 Route::post('/store', 'store')->name('store');
-                Route::patch('/update/{bidang-studi}', 'update')->name('update');
-                Route::delete('/delete/{bidang-studi}', 'delete')->name('delete');
+                Route::patch('/update/{bidang_studi}', 'update')->name('update');
+                Route::delete('/delete/{bidang_studi}', 'delete')->name('delete');
 
         });
 
@@ -118,8 +119,8 @@ Route::middleware(['auth', 'verified','ShareFlashes'])
                 Route::get('/', 'index')->name('index');
                 Route::get('/create', 'create')->name('create');
                 Route::post('/store', 'store')->name('store');
-                Route::patch('/update/{jadwal-pelajaran}', 'update')->name('update');
-                Route::delete('/delete/{jadwal-pelajaran}', 'delete')->name('delete');
+                Route::patch('/update/{jadwal_pelajaran}', 'update')->name('update');
+                Route::delete('/delete/{jadwal_pelajaran}', 'delete')->name('delete');
 
         });
 
@@ -157,7 +158,7 @@ Route::middleware(['auth', 'verified','ShareFlashes'])
                 Route::get('/', 'index')->name('index');
                 Route::get('/create', 'create')->name('create');
                 Route::post('/store', 'store')->name('store');
-                Route::patch('/update/{ekstrakurikuler}', 'update')->name('update');
+                Route::post('/update/{ekstrakurikuler}', 'update')->name('update');
                 Route::delete('/delete/{ekstrakurikuler}', 'delete')->name('delete');
 
         });
@@ -170,7 +171,7 @@ Route::middleware(['auth', 'verified','ShareFlashes'])
                 Route::get('/', 'index')->name('index');
                 Route::get('/create', 'create')->name('create');
                 Route::post('/store', 'store')->name('store');
-                Route::patch('/update/{fasilitas}', 'update')->name('update');
+                Route::post('/update/{fasilitas}', 'update')->name('update');
                 Route::delete('/delete/{fasilitas}', 'delete')->name('delete');
 
         });
@@ -183,7 +184,7 @@ Route::middleware(['auth', 'verified','ShareFlashes'])
                 Route::get('/', 'index')->name('index');
                 Route::get('/create', 'create')->name('create');
                 Route::post('/store', 'store')->name('store');
-                Route::patch('/update/{berita}', 'update')->name('update');
+                Route::post('/update/{berita}', 'update')->name('update');
                 Route::delete('/delete/{berita}', 'delete')->name('delete');
 
         });
@@ -196,6 +197,14 @@ Route::middleware(['auth', 'verified','ShareFlashes'])
     ->prefix('guru')
     ->name('guru.')
     ->group(function() {
+
+        // * Dashboard Guru
+        Route::controller(GuruDashboardController::class)
+            ->name('dashboard.')
+            ->prefix('/dashboard')
+            ->group(function(){
+                Route::get('/', 'index')->name('index');
+            });
 
         // * Data Siswa
         Route::controller(DataSiswaController::class)

@@ -10,6 +10,12 @@ class TblBerita extends Model
     use HasFactory;
 	protected $table = 'tbl_beritas';
     protected $primaryKey = 'id_berita';
+	protected $fillable = [
+		'judul',
+		'id_akun',
+		'foto_filename',
+		'deskripsi'
+	];
             // * FILTERS
 	public function scopeWithSearch($query, $search, $guard = 'web')
 	{
