@@ -58,7 +58,7 @@ body{
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
     z-index: 1000; /* Pastikan header di atas konten lain saat di-scroll */
   }
-  
+
 .logo {
     max-width: 100px; /* Atur maksimal lebar logo*/
     max-height: 100px; /* Atur maksimal tinggi logo */
@@ -158,38 +158,10 @@ th,td{
     border: 1px solid #ccc;
     border-radius: 4px;
   }
-  
+
   .page:hover {
     background-color:  #01b671;
   }
   /*pagin end*/
 
- /*footer */
-footer {
-    height: auto;
-    background-color: #282432;
-    padding: 0 10px 10px 0;
-  }
-  
-  .footer-box {
-    height: 50vh;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 10vh; /* Adjusted to remove margin-bottom */
-  }
-  
-  .footer-about {
-    width: 40%;
-    color: wheat;
-    margin-left: 120px;
-  }
-  
-  .footer-links a:hover {
-    color: white;
-  }
-  
-  .end {
-    text-align: center;
-    color: wheat;
-  }
+ 

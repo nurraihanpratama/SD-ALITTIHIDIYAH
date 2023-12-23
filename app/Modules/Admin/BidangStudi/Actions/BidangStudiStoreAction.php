@@ -5,7 +5,7 @@ namespace App\Modules\Admin\BidangStudi\Actions;
 use App\Models\TblBidangStudi;
 use Illuminate\Support\Facades\DB;
 
-class BidangStudiStoreAction 
+class BidangStudiStoreAction
 {
     public function store($request)
     {

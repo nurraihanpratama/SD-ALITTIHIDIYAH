@@ -52,11 +52,11 @@
         </div>
 
         <div class="table-section">
-            <div class="content">
+
                 <table>
                     <thead>
                         <tr>
-                            <th>NIS</th>
+                            <th>NISN</th>
                             <th>Nama</th>
                             <th>Jenis Kelamin</th>
                             <th>Kelas</th>
@@ -83,7 +83,7 @@
                 <a href="#" class="page">4</a>
                 <a href="#" class="page">5</a>
             </div>
-        </div>
+        
     </div>
 </body>
 

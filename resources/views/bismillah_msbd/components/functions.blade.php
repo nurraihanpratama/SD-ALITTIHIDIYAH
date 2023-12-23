@@ -8,5 +8,5 @@ $koneksi = mysqli_connect("localhost", "root", "", "tubes_msbd");
 //     echo "berhasil koneksi";
 // }
 
- $main_url = "http://localhost/tubes_msbd/";
+ $main_url = "http://localhost/tubes_msbd_last/";
 

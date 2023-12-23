@@ -10,6 +10,7 @@
         <div class="header-text">
         <ul style="align-items: right;">
             <li><a href="/home">Beranda</a></li>
+            <li><a href="/berita">Berita</a></li>
             <li><a href="/facilitate">Fasilitas</a></li>
             <li><a href="/directory">Direktori</a></li>
             <li><a href="{{ route('login') }}" class="btn">Masuk</a></li>

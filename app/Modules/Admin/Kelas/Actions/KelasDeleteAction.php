@@ -1,4 +1,3 @@
-
 <?php
 
 namespace App\Modules\Admin\Kelas\Actions;
@@ -8,12 +7,8 @@ use Illuminate\Support\Facades\DB;
 
 class KelasDeleteAction
 {
-	public $data;
-
-    public function delete($id);
-
+    public $data;
     public function delete($request, $id)
-
     {
         try {
             DB::transaction(function() use($id){
