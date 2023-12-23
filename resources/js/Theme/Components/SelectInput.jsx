@@ -1,3 +1,4 @@
+// FormSelectInput.jsx
 import { Fragment } from "react";
 import { Listbox, Transition } from "@headlessui/react";
 import { CheckIcon, ChevronUpDownIcon } from "@heroicons/react/20/solid";
@@ -6,33 +7,28 @@ export default function SelectInput({
     options,
     value,
     onChange,
-    defaultLabel = "name",
+    idKey = "id",
+    nameKey = "name",
     disabled = false,
 }) {
-    const selected = options.find((f) => f.id == value);
+    const selected = options.find((f) => f[idKey] == value);
+
     return (
         <div className="relative w-full">
             <Listbox
                 value={selected}
-                by="id"
+                by={idKey}
                 onChange={onChange}
                 disabled={disabled}
             >
                 <div className="relative mt-1">
-                    <Listbox.Button
-                        className="relative w-full sm:text-sm cursor-pointer rounded-lg py-2 pl-3 pr-10 text-left shadow-md focus:outline-none focus:ring-2  
-            bg-white dark:bg-black/40 text-gray-700 dark:text-white
-            disabled:bg-gray-200 dark:disabled:bg-gray-700
-            disabled:text-gray-700 dark:disabled:text-gray-300
-            disabled:shadow-none
-            "
-                    >
+                    <Listbox.Button className="relative w-full py-2 pl-3 pr-10 text-left text-gray-700 bg-white rounded-lg shadow-md cursor-pointer sm:text-sm focus:outline-none focus:ring-2 dark:bg-black/40 dark:text-white disabled:bg-gray-200 dark:disabled:bg-gray-700 disabled:text-gray-700 dark:disabled:text-gray-300 disabled:shadow-none">
                         <span className="block truncate">
-                            {selected[defaultLabel]}
+                            {selected[nameKey]}
                         </span>
-                        <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
+                        <span className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
                             <ChevronUpDownIcon
-                                className="h-5 w-5 text-gray-400"
+                                className="w-5 h-5 text-gray-400"
                                 aria-hidden="true"
                             />
                         </span>
@@ -43,13 +39,7 @@ export default function SelectInput({
                         leaveFrom="opacity-100"
                         leaveTo="opacity-0"
                     >
-                        <Listbox.Options
-                            className="absolute mt-1 max-h-60 w-full overflow-auto rounded-md py-1 text-base shadow-lg ring-1 ring-opacity-5 focus:outline-none sm:text-sm 
-              text-gray-700 dark:text-white
-            bg-white dark:bg-black
-            ring-black z-50 
-            "
-                        >
+                        <Listbox.Options className="absolute z-50 w-full py-1 mt-1 overflow-auto text-base text-gray-700 bg-white rounded-md shadow-lg max-h-60 ring-1 ring-opacity-5 focus:outline-none sm:text-sm dark:text-white dark:bg-black ring-black">
                             {options.map((option, i) => (
                                 <Listbox.Option
                                     key={i}
@@ -71,12 +61,12 @@ export default function SelectInput({
                                                         : "font-normal"
                                                 }`}
                                             >
-                                                {option[defaultLabel]}
+                                                {option[nameKey]}
                                             </span>
                                             {selected ? (
                                                 <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-amber-600">
                                                     <CheckIcon
-                                                        className="h-5 w-5"
+                                                        className="w-5 h-5"
                                                         aria-hidden="true"
                                                     />
                                                 </span>

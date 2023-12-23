@@ -1,27 +1,113 @@
-import DataTable from "@/Theme/Components/DataTable/DataTable";
 import StandardFormModalTemplate from "@/Theme/Components/ModalTemplates/StandardFormModalTemplate";
 import FormTextInput from "@/Theme/Form/FormTextInput";
 import { useForm } from "@inertiajs/react";
 import TableInputNilai from "./Section/TableInputNilai";
+import FormNumberInput from "@/Theme/Form/FormNumberInput";
+import FormSelectInput from "@/Theme/Form/FormSelectInput";
+import FormSelectInputPrimeReact from "@/Theme/Form/FormSelectInputPrimeReact";
 
-export default function LaporanNilaiForm({ collection, closeForm }) {
+export default function LaporanNilaiForm({
+    collection,
+    closeForm,
+    loadOptions = null,
+    nilai = null,
+}) {
+    // const form = useForm({
+    //     nisn: "",
+    //     jenis_nilai: "",
+    //     id_mapel: "",
+    //     id_guru: "",
+    // });
     const form = useForm({
         nisn: "",
-        jenis_nilai: "",
+        id_guru: loadOptions?.gurus.id_guru ?? loadOptions.gurus[6].id_guru,
         id_mapel: "",
-        id_guru: "",
+        tahun_ajaran: nilai?.tahun_ajaran ?? "",
+        uh1: nilai?.uh1 ?? 0,
+        uh2: nilai?.uh2 ?? 0,
+        uh3: nilai?.uh3 ?? 0,
+        uts: nilai?.uts ?? 0,
+        uas: nilai?.uas ?? 0,
     });
-    console.log(collection);
+
+    const onChangeOption = (item) => {
+        // Mencari guru yang dipilih berdasarkan ID
+        const selectedGuru = loadOptions?.gurus.find(
+            (guru) => guru.id_guru === form.data.id_guru
+        );
+
+        if (selectedGuru) {
+            // Mencari bidang studi yang dipilih berdasarkan ID dalam guru yang dipilih
+            const selectedBidangStudi = selectedGuru.bidang_studis.find(
+                (bidangStudi) => bidangStudi.id_mapel === item.value.id_mapel
+            );
+
+            if (selectedBidangStudi) {
+                // Mengatur bidang studi yang dipilih dalam form jika ditemukan
+                form.setData((prevData) => ({
+                    ...prevData,
+                    id_mapel: selectedBidangStudi.id_mapel,
+                }));
+            } else {
+                // Jika bidang studi tidak ditemukan, mengatur bidang studi menjadi null
+                form.setData((prevData) => ({
+                    ...prevData,
+                    id_mapel: null,
+                }));
+            }
+        }
+    };
     return (
         <StandardFormModalTemplate
             title={"Form Input Nilai"}
             closeForm={closeForm}
         >
-            <TableInputNilai
-                collection={collection}
-                form={form}
-                columns={inputColumns}
-            />
+            <div className="flex flex-col gap-4">
+                <div className="gap-4 flex-between">
+                    <FormSelectInput
+                        name={"id_guru"}
+                        label={"Guru Mapel"}
+                        options={loadOptions.gurus}
+                        value={form.data.id_guru}
+                        onChange={(val) => form.setData("id_guru", val.id_guru)}
+                        error={form.errors.id_guru}
+                        idKey="id_guru"
+                        nameKey="nama_guru"
+                    />
+
+                    {form.data.id_guru && (
+                        <FormSelectInput
+                            name={"id_mapel"}
+                            label={"Bidang Studi"}
+                            value={loadOptions?.gurus
+                                ?.find(
+                                    (guru) => guru.id_guru == form.data.id_guru
+                                )
+                                ?.bidang_studis.find((item) =>
+                                    console.log(item)
+                                )}
+                            options={
+                                loadOptions?.gurus?.find(
+                                    (guru) =>
+                                        guru?.id_guru === form.data.id_guru
+                                )?.bidang_studis || []
+                            }
+                            onChange={(val) =>
+                                form.setData("id_mapel", val.id_mapel)
+                            }
+                            idKey="id_mapel"
+                            nameKey="nama_mapel"
+                        />
+                    )}
+
+                    <FormTextInput name={"test"} label={"Tahun Ajaran"} />
+                </div>
+                <TableInputNilai
+                    collection={collection}
+                    form={form}
+                    columns={inputColumns}
+                />
+            </div>
         </StandardFormModalTemplate>
     );
 }
@@ -34,23 +120,44 @@ const inputColumns = [
     {
         header: "Ulangan Harian 1",
         render: (row, form) => (
-            <FormTextInput
-                value={form.data.jenis_nilai}
-                ismobile
-                onChange={(val) => form.setData("jenis_nilai", val)}
-            />
+            <InputData siswa={row} form={form} jenisNilai={"uh1"} />
         ),
     },
     {
         header: "Ulangan Harian 2",
+        render: (row, form) => (
+            <InputData siswa={row} form={form} jenisNilai={"uh2"} />
+        ),
     },
     {
         header: "Ulangan Harian 3",
+        render: (row, form) => (
+            <InputData siswa={row} form={form} jenisNilai={"uh3"} />
+        ),
     },
     {
         header: "Ulangan Tengah Semester",
+        render: (row, form) => (
+            <InputData siswa={row} form={form} jenisNilai={"uts"} />
+        ),
     },
     {
         header: "Ulangan Akhir Semester",
+        render: (row, form) => (
+            <InputData siswa={row} form={form} jenisNilai={"uas"} />
+        ),
     },
 ];
+
+const InputData = ({ siswa, nilai = null, form, jenisNilai }) => {
+    // function idJenisNilai() {}
+    return (
+        <FormNumberInput
+            name={jenisNilai}
+            value={form.data.jenisNilai}
+            onChange={(val) => form.setData(jenisNilai, val.target.value)}
+            // ismobile
+            nolabel
+        />
+    );
+};

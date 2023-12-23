@@ -44,11 +44,27 @@ class HandleInertiaRequests extends Middleware
             // ],
             'app' => [
                 'name' => config('app.name'),
-                'subname' => "ADMIN",
+                'subname' => $this->getPanelName($request),
                 'current_route' => Route::currentRouteName()
             ],
             'response' => $request->session()->get('response')
             
         ];
     }
+
+    public function getPanelName($request)
+	{
+		if ($request->user()) {
+			$current_route = Route::currentRouteName();
+
+			$siswaPanel = ['siswa.dashboard.index', 'siswa.data-nilai.index'];
+			$guruPanel = ['guru.dashboard.index', 'guru.data-siswa.index','guru.laporan-nilai.index', 'guru.laporan-nilai.datatable'];
+
+			if (in_array($current_route, $siswaPanel)) return 'SISWA';
+			if (in_array($current_route, $guruPanel)) return 'GURU';
+
+			return 'ADMIN';
+		}
+		return null;
+	}
 }
