@@ -10,12 +10,11 @@ export default function Index(props) {
     const { page, collection } = props;
     const [showCreateForm, setShowCreateForm] = useState(false);
     const [processing, setProcessing] = useState(false);
-
+    const [data, setData] = useState([]);
+    const [loadOptions, setLoadOptions] = useState([]);
     const { title } = page;
 
-    const [data, setData] = useState([]);
-
-    const loadOptions = async () => {
+    const loadData = async () => {
         try {
             const response = await axios.get(
                 route("guru.laporan-nilai.datatable")
@@ -26,22 +25,36 @@ export default function Index(props) {
         }
     };
 
+    function onClickNew() {
+        setProcessing(true);
+
+        const url = route("guru.laporan-nilai.create");
+
+        axios
+            .get(url)
+            .then((response) => {
+                setLoadOptions(response.data);
+                setProcessing(false);
+                setShowCreateForm(true);
+            })
+            .catch((error) => fetchErrorCatch(error, setProcessing(false)));
+    }
+
     useEffect(() => {
-        // Panggil loadOptions() saat komponen pertama kali dirender
-        loadOptions();
+        loadData();
     }, []);
-    console.log(data);
+    console.log(loadOptions);
     return (
         <ThemeLayout title={title}>
             <ContentCard title={title} />
             <LaporanNilaiDataTable
                 collection={collection}
                 withNewButton
-                onClickNew={() => setShowCreateForm(true)}
+                onClickNew={onClickNew}
             />
 
             <Fragment>
-                <Modal visible={processing} setVisible={setProcessing} noescape>
+                <Modal visible={processing} setVisible={setProcessing}>
                     <ProcessingLoader visible={processing} />
                 </Modal>
                 <Modal
@@ -53,6 +66,7 @@ export default function Index(props) {
                         action="create"
                         closeForm={() => setShowCreateForm(false)}
                         collection={data}
+                        loadOptions={loadOptions}
 
                         // loadOptions={data}
                     />

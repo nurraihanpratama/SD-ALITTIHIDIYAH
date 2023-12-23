@@ -10,7 +10,7 @@ export default function LogoSection({ place = "header" }) {
                 place == "header" ? "hidden lg:flex mt-2" : "md:flex"
             }`}
         >
-            <Logo subname={app.subname} />
+            {auth?.user && <Logo subname={app.subname} />}
         </div>
     );
 }

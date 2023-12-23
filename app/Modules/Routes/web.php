@@ -220,6 +220,7 @@ Route::middleware(['auth', 'verified','ShareFlashes'])
             ->prefix('/laporan-nilai')
             ->group(function() {
                 Route::get('/', 'index')->name('index');
+                Route::get('/create', 'create')->name('create');
             });
         Route::get('laporan-nilai/datatabel', [DataSiswaDataTable::class, 'generate'])->name('laporan-nilai.datatable');
     });

@@ -41,7 +41,6 @@ const TableHeader = ({ column }) => {
 };
 
 const TableBody = ({ row, i, columns, form }) => {
-    console.log("test", form);
     return (
         <tr
             key={i}
@@ -69,7 +68,11 @@ const TableBody = ({ row, i, columns, form }) => {
                                     
                                     `}
                     >
-                        {col.render ? col.render(row) : <p>{row[col.field]}</p>}
+                        {col.render ? (
+                            col.render(row, form)
+                        ) : (
+                            <p>{row[col.field]}</p>
+                        )}
                     </td>
                 );
             })}
