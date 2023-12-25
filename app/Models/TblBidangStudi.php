@@ -31,4 +31,9 @@ class TblBidangStudi extends Model
         return $this->belongsToMany(TblGuru::class, 'tbl_mapel_gurus', 'id_mapel', 'id_guru');
     }
 
+	public function nilais()
+	{
+		return $this->hasMany(TblNilai::class, 'id_mapel', 'id_mapel');
+	}
+
 }

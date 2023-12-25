@@ -28,9 +28,19 @@ class TblGuru extends Model
 		
 	}
 
+    public function kelas()
+    {
+        return $this->hasOne(TblKelas::class, 'wali_kelas', 'id_guru');
+    }
+
     public function bidangStudis()
     {
         return $this->belongsToMany(TblBidangStudi::class, 'tbl_mapel_gurus', 'id_guru', 'id_mapel');
+    }
+
+    public function nilai()
+    {
+        return $this->hasMany(TblNilai::class, 'id_guru', 'id_guru');
     }
 
 }

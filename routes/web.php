@@ -7,6 +7,7 @@ use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Modules\Admin\JadwalPelajaran\Actions\JadwalPelajaranIndexAction;
+use App\Modules\Homepage\Controllers\HomepageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,14 +20,16 @@ use App\Modules\Admin\JadwalPelajaran\Actions\JadwalPelajaranIndexAction;
 |
 */
 
-Route::get('/', function () {
-    return Inertia::render('Welcome', [
-        'canLogin' => Route::has('login'),
-        'canRegister' => Route::has('register'),
-        'laravelVersion' => Application::VERSION,
-        'phpVersion' => PHP_VERSION,
-    ]);
-});
+// Route::get('/', function () {
+//     return Inertia::render('Welcome', [
+//         'canLogin' => Route::has('login'),
+//         'canRegister' => Route::has('register'),
+//         'laravelVersion' => Application::VERSION,
+//         'phpVersion' => PHP_VERSION,
+//     ]);
+// });
+
+Route::get('/', [HomepageController::class, 'index'])->name('homepage.index');
 
 // Homepage
 Route::get('/home', [ProfileController::class,'index']);

@@ -92,9 +92,9 @@ class TblSiswa extends Model
 			$q->whereIn($field, makeArray($filter));
 		});
 	}
+
     public function kelas()
     {
-
         return $this->belongsTo(TblKelas::class, 'id_kelas', 'id_kelas');
         // ->as('kelas');
     }
@@ -112,5 +112,10 @@ class TblSiswa extends Model
     public function agama()
     {
         return $this->belongsTo(DataAgama::class, 'agama_siswa');
+    }
+
+    public function nilais()
+    {
+        return $this->hasMany(TblNilai::class, 'nisn_siswa', 'nisn');
     }
 }

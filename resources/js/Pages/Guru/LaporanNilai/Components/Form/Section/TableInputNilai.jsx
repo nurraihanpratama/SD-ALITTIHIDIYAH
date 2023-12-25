@@ -13,6 +13,7 @@ export default function TableInputNilai({ collection, columns, form = null }) {
                     {collection.data.map((row, i) => {
                         return (
                             <TableBody
+                                key={i}
                                 row={row}
                                 columns={columns}
                                 form={form}

@@ -43,13 +43,13 @@ export default function Index(props) {
     useEffect(() => {
         loadData();
     }, []);
-    console.log(loadOptions);
     return (
         <ThemeLayout title={title}>
             <ContentCard title={title} />
             <LaporanNilaiDataTable
                 collection={collection}
                 withNewButton
+                loadOptions={loadOptions}
                 onClickNew={onClickNew}
             />
 

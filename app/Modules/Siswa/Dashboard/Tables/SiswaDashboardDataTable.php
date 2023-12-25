@@ -4,10 +4,9 @@ namespace App\Modules\Siswa\Dashboard\Tables;
 
 use App\Models\viewRosterKelas;
 use App\Modules\Siswa\Dashboard\Resources\SiswaDashboardResource;
-use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Http\Request;
 
-class SiswaDashboardDataTable extends JsonResource
+class SiswaDashboardDataTable
 {
     public function generate()
     {

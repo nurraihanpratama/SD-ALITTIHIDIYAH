@@ -13,6 +13,7 @@ use App\Models\TblPrestasi;
 use App\Models\TblEkstrakurikuler;
 use App\Models\TblFasilitas;
 use App\Models\TblBerita;
+use App\Modules\Siswa\Dashboard\Tables\SiswaDashboardDataTable;
 
 class SiswaDashboardIndexAction
 {
@@ -36,7 +37,10 @@ class SiswaDashboardIndexAction
             'Data Berita' => TblBerita::count(),
         ];
 
-        $props = compact('page', 'dashboardData');
+
+        $collection = (new SiswaDashboardDataTable)->generate();
+
+        $props = compact('page', 'dashboardData', 'collection');
 
         return Inertia::render('Siswa/Dashboard/Index', $props);
     }

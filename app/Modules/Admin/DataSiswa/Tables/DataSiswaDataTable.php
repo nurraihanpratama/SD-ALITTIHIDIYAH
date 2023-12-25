@@ -14,7 +14,7 @@ class DataSiswaDataTable
         // dd(getIdGuru());
         $data = TblSiswa::query()
                 ->with(['kelas','jk', 'status' , 'agama'])
-                ->inhouse(getIdGuru())
+                ->inhouse(getIdUser())
                 ->paginate(15);
                 // ->appends()
 

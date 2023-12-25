@@ -38,4 +38,9 @@ class TblNilai extends Model
     {
         return $this->belongsTo(DataJenisNilai::class, 'jenis_nilai', 'id');
     }
+
+    public function bidangStudi()
+    {
+        return $this->belongsTo(TblBidangStudi::class, 'id_mapel', 'id_mapel');
+    }
 }

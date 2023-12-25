@@ -5,6 +5,7 @@ import TableInputNilai from "./Section/TableInputNilai";
 import FormNumberInput from "@/Theme/Form/FormNumberInput";
 import FormSelectInput from "@/Theme/Form/FormSelectInput";
 import FormSelectInputPrimeReact from "@/Theme/Form/FormSelectInputPrimeReact";
+import { useState } from "react";
 
 export default function LaporanNilaiForm({
     collection,
@@ -12,16 +13,13 @@ export default function LaporanNilaiForm({
     loadOptions = null,
     nilai = null,
 }) {
-    // const form = useForm({
-    //     nisn: "",
-    //     jenis_nilai: "",
-    //     id_mapel: "",
-    //     id_guru: "",
-    // });
+    const [selectedGuru, setSelectedGuru] = useState(
+        loadOptions?.gurus[0] || null
+    );
     const form = useForm({
         nisn: "",
-        id_guru: loadOptions?.gurus.id_guru ?? loadOptions.gurus[6].id_guru,
-        id_mapel: "",
+        id_mapel: loadOptions.mapel?.id_mapel ?? loadOptions.mapel[0].id_mapel,
+        id_guru: "",
         tahun_ajaran: nilai?.tahun_ajaran ?? "",
         uh1: nilai?.uh1 ?? 0,
         uh2: nilai?.uh2 ?? 0,
@@ -30,75 +28,61 @@ export default function LaporanNilaiForm({
         uas: nilai?.uas ?? 0,
     });
 
-    const onChangeOption = (item) => {
-        // Mencari guru yang dipilih berdasarkan ID
+    const onChangeGuru = (val) => {
         const selectedGuru = loadOptions?.gurus.find(
-            (guru) => guru.id_guru === form.data.id_guru
+            (guru) => guru.id_guru === val.id_guru
         );
+        setSelectedGuru(selectedGuru);
 
-        if (selectedGuru) {
-            // Mencari bidang studi yang dipilih berdasarkan ID dalam guru yang dipilih
-            const selectedBidangStudi = selectedGuru.bidang_studis.find(
-                (bidangStudi) => bidangStudi.id_mapel === item.value.id_mapel
-            );
-
-            if (selectedBidangStudi) {
-                // Mengatur bidang studi yang dipilih dalam form jika ditemukan
-                form.setData((prevData) => ({
-                    ...prevData,
-                    id_mapel: selectedBidangStudi.id_mapel,
-                }));
-            } else {
-                // Jika bidang studi tidak ditemukan, mengatur bidang studi menjadi null
-                form.setData((prevData) => ({
-                    ...prevData,
-                    id_mapel: null,
-                }));
-            }
-        }
+        // Jika ingin mengatur nilai mapel secara default, misalnya mapel pertama dari guru yang dipilih
+        form.setData(
+            "id_mapel",
+            selectedGuru?.bidang_studis[0]?.id_mapel || null
+        );
     };
+
+    const submit = (e) => {
+        e.preventDefault;
+
+        return console.log(form.data);
+    };
+    console.log(
+        loadOptions.mapel.find((mapel) => mapel.id_mapel == form.data.id_mapel)
+    );
     return (
         <StandardFormModalTemplate
             title={"Form Input Nilai"}
             closeForm={closeForm}
+            submit={submit}
         >
             <div className="flex flex-col gap-4">
                 <div className="gap-4 flex-between">
                     <FormSelectInput
+                        name={"id_mapel"}
+                        label={"Bidang Studi"}
+                        value={form.data.id_mapel}
+                        options={loadOptions?.mapel}
+                        onChange={(val) =>
+                            form.setData("id_mapel", val.id_mapel)
+                        }
+                        idKey="id_mapel"
+                        nameKey="nama_mapel"
+                    />
+
+                    <FormSelectInput
                         name={"id_guru"}
                         label={"Guru Mapel"}
-                        options={loadOptions.gurus}
-                        value={form.data.id_guru}
+                        options={
+                            loadOptions.mapel?.find(
+                                (mapel) => mapel.id_mapel == form.data.id_mapel
+                            )?.gurus || []
+                        }
+                        value={1}
                         onChange={(val) => form.setData("id_guru", val.id_guru)}
                         error={form.errors.id_guru}
                         idKey="id_guru"
                         nameKey="nama_guru"
                     />
-
-                    {form.data.id_guru && (
-                        <FormSelectInput
-                            name={"id_mapel"}
-                            label={"Bidang Studi"}
-                            value={loadOptions?.gurus
-                                ?.find(
-                                    (guru) => guru.id_guru == form.data.id_guru
-                                )
-                                ?.bidang_studis.find((item) =>
-                                    console.log(item)
-                                )}
-                            options={
-                                loadOptions?.gurus?.find(
-                                    (guru) =>
-                                        guru?.id_guru === form.data.id_guru
-                                )?.bidang_studis || []
-                            }
-                            onChange={(val) =>
-                                form.setData("id_mapel", val.id_mapel)
-                            }
-                            idKey="id_mapel"
-                            nameKey="nama_mapel"
-                        />
-                    )}
 
                     <FormTextInput name={"test"} label={"Tahun Ajaran"} />
                 </div>
@@ -136,13 +120,13 @@ const inputColumns = [
         ),
     },
     {
-        header: "Ulangan Tengah Semester",
+        header: "Ujian Tengah Semester",
         render: (row, form) => (
             <InputData siswa={row} form={form} jenisNilai={"uts"} />
         ),
     },
     {
-        header: "Ulangan Akhir Semester",
+        header: "Ujian Akhir Semester",
         render: (row, form) => (
             <InputData siswa={row} form={form} jenisNilai={"uas"} />
         ),
@@ -153,6 +137,7 @@ const InputData = ({ siswa, nilai = null, form, jenisNilai }) => {
     // function idJenisNilai() {}
     return (
         <FormNumberInput
+            key={siswa.nisn}
             name={jenisNilai}
             value={form.data.jenisNilai}
             onChange={(val) => form.setData(jenisNilai, val.target.value)}

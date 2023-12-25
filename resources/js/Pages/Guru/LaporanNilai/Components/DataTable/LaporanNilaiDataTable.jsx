@@ -2,6 +2,8 @@ import PrimaryButton from "@/Components/PrimaryButton";
 import DataTable from "@/Theme/Components/DataTable/DataTable";
 import { Fragment } from "react";
 import { BiPlus } from "react-icons/bi";
+import LaporanNilaiAction from "./LaporanNilaiAction";
+import CellTemplateNilai from "@/Theme/Components/DataTable/Cell/CellTemplateNilai";
 
 export default function LaporanNilaiDataTable({
     collection,
@@ -17,32 +19,42 @@ export default function LaporanNilaiDataTable({
             searchable: false,
             bodyAlignment: "center",
             // render: (row) => (
-            //     <SiswaAction row={row} loadOptions={loadOptions} />
+            //     <LaporanNilaiAction row={row} loadOptions={loadOptions} />
             // ),
         },
         {
             header: "Nama siswa",
-            field: "siswa",
-            render: (row) => row.siswa.nama_siswa,
+            field: "nama_siswa",
         },
         {
-            header: "Jenis Nilai",
+            header: "Ulangan Harian 1",
             field: "jenis_nilai",
-            render: (row) => row.jenis_nilai.name,
+            bodyAlignment: "center",
+            render: (row) => <CellTemplateNilai row={row} jenis={"uh1"} />,
         },
         {
-            header: "Mata Pelajaran",
-            field: "id_mapel",
-            render: (row) => row.mapel.nama_mapel,
+            header: "Ulangan Harian 2",
+            field: "jenis_nilai",
+            bodyAlignment: "center",
+            render: (row) => <CellTemplateNilai row={row} jenis={"uh2"} />,
         },
         {
-            header: "Guru Mapel",
-            field: "id_guru",
-            render: (row) => row.guru.nama_guru,
+            header: "Ulangan Harian 3",
+            field: "jenis_nilai",
+            bodyAlignment: "center",
+            render: (row) => <CellTemplateNilai row={row} jenis={"uh3"} />,
         },
         {
-            header: "Nilai Siswa",
-            field: "nilai",
+            header: "Ujian Tengah Semester",
+            field: "jenis_nilai",
+            bodyAlignment: "center",
+            render: (row) => <CellTemplateNilai row={row} jenis={"uts"} />,
+        },
+        {
+            header: "Ujian Akhir Semester",
+            field: "jenis_nilai",
+            bodyAlignment: "center",
+            render: (row) => <CellTemplateNilai row={row} jenis={"uas"} />,
         },
     ];
 

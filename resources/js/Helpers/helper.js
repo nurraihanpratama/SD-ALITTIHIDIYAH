@@ -84,13 +84,6 @@ export const getIdFromSelectOption = (data, array, check, fallback) => {
         : fallback;
 };
 
-export const countProrateDays = (start_date) => {
-    const start = dayjs(start_date, "YYYY-MM-DD");
-    const end = dayjs(start_date, "YYYY-MM-DD").endOf("month");
-    const count = end.diff(start, "days") + 1;
-    return count;
-};
-
 export const insertFieldAfterThisField = (
     array,
     fieldToInsertAfter,
@@ -99,30 +92,6 @@ export const insertFieldAfterThisField = (
     const index = array.findIndex((item) => item.field === fieldToInsertAfter);
     if (index !== -1) {
         array.splice(index + 1, 0, newObj);
-    }
-};
-
-export const getRecommendDateForAdjustment = (subscription) => {
-    if (
-        subscription.unpaid_invoices &&
-        subscription.unpaid_invoices.length > 0
-    ) {
-        return dayjs(subscription.unpaid_invoices[0].inv_date).format(
-            "YYYY-MM-DD"
-        );
-    } else if (
-        subscription.finished_invoices &&
-        subscription.finished_invoices.length > 0
-    ) {
-        const last_finished_invoice_date = dayjs(
-            subscription.finished_invoices[0].inv_date
-        );
-        const recommend_date = last_finished_invoice_date
-            .add(1, "month")
-            .startOf("month");
-        return dayjs(recommend_date).format("YYYY-MM-DD");
-    } else {
-        return null;
     }
 };
 

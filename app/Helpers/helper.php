@@ -12,14 +12,14 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Str;
 
 
-function getIdGuru()
+function getIdUser()
 {
 	return auth()->user()->user_id;
 }
 
 function getInhouseGuru(): array
 {
-    $guru = TblGuru::find(getIdGuru());
+    $guru = TblGuru::find(getIdUser());
 
     if ($guru) {
         return [$guru->id_guru];
