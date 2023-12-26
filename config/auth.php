@@ -63,6 +63,7 @@ return [
         'users' => [
             'driver' => 'eloquent',
             'model' => App\Models\TblAkun::class,
+            // 'model' => App\Modules\NewModels\User::class,
         ],
 
         // 'users' => [

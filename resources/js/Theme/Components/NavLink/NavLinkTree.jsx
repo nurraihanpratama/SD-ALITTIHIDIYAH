@@ -15,7 +15,7 @@ export default function NavLinkTree({
 }) {
     const { app, auth } = usePage().props;
 
-    const team_slug = auth.user.current_team.slug;
+    // const team_slug = auth.user.current_team.slug;
 
     const { current_route } = app;
 
@@ -23,7 +23,7 @@ export default function NavLinkTree({
 
     const isActive = components.includes(current_route);
 
-    const canAccess = components.some((c) => permissions().includes(c));
+    // const canAccess = components.some((c) => permissions().includes(c));
 
     const expanded = childs.some((c) => c.child_route == current_route);
 
@@ -84,7 +84,7 @@ export default function NavLinkTree({
                                 isActive={isActive}
                                 theme={theme}
                                 label={item.label}
-                                team_slug={team_slug}
+                                // team_slug={team_slug}
                                 icon={item.icon}
                             />
                         );
@@ -104,7 +104,7 @@ const NavChild = ({
     icon,
 }) => {
     const isActive = child_route == current_route;
-    const canAccess = permissions().includes(child_route);
+    // const canAccess = permissions().includes(child_route);
 
     const isDashboard = child_route == "dashboard.index";
 
@@ -113,7 +113,7 @@ const NavChild = ({
     // if (canAccess || isDashboard || isProfile)
     return (
         <Link
-            href={route(child_route, team_slug)}
+            href={route(child_route)}
             className={`pl-2 flex-start gap-0 font-semibold text-gray-700 dark:text-white 
 ${isActive ? "text-white" : "hover:text-primary dark:hover:text-primary"}
 `}

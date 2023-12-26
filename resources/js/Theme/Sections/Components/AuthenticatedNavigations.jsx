@@ -5,6 +5,7 @@ import {
     FaBookAtlas,
     FaBookOpen,
     FaDoorOpen,
+    FaServer,
     FaUsers,
 } from "react-icons/fa6";
 import { FaChalkboardTeacher, FaUserCircle, FaUsersCog } from "react-icons/fa";
@@ -16,6 +17,7 @@ import { MdLibraryBooks, MdOutlineSportsGymnastics } from "react-icons/md";
 import { GiJeweledChalice } from "react-icons/gi";
 import { BsHouses } from "react-icons/bs";
 import { RiNewspaperLine } from "react-icons/ri";
+import NavLinkTree from "@/Theme/Components/NavLink/NavLinkTree";
 
 export default function AuthenticatedNavigations({ user }) {
     // const isAdmin = user.role == "Admin";
@@ -39,6 +41,30 @@ export default function AuthenticatedNavigations({ user }) {
                     components={["admin.dashboard.index"]}
                     label="Dashboard"
                     icon={<FiCodesandbox />}
+                />
+            )}
+
+            {isAdmin() && (
+                <NavLinkTree
+                    components={[
+                        "admin.kelas.index",
+                        "admin.guru.index",
+                        "admin.siswa.index",
+                        "admin.bidang-studi.index",
+                        "admin.pegawai.index",
+                        "admin.prestasi.index",
+                        "admin.ekstrakurikuler.index",
+                        "admin.fasilitas.index",
+                        "admin.berita.index",
+                    ]}
+                    label="Data Master"
+                    icon={<FaServer />}
+                    childs={[
+                        {
+                            label: "Data Guru",
+                            icon: <FaChalkboardTeacher />,
+                        },
+                    ]}
                 />
             )}
 

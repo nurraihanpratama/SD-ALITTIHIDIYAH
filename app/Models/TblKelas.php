@@ -38,4 +38,9 @@ class TblKelas extends Model
     {
         return $this->hasMany(TblSiswa::class, 'id_kelas', 'id_kelas');
     }
+
+    public function tahunAjaran()
+    {
+        return $this->belongsTo(TblTahunAjaran::class, 'tahun_ajaran_id');
+    }
 }

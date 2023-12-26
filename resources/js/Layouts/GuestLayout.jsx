@@ -6,12 +6,12 @@ export default function Guest({ children }) {
     return (
         <div
             className="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100 dark:bg-[#0A1727]"
-            style={{
-                backgroundImage: `url('/images/bg.png')`,
-                backgroundPosition: "bottom",
-                backgroundSize: "contain",
-                backgroundRepeat: "no-repeat",
-            }}
+            // style={{
+            //     backgroundImage: `url('/images/bg.png')`,
+            //     backgroundPosition: "bottom",
+            //     backgroundSize: "contain",
+            //     backgroundRepeat: "no-repeat",
+            // }}
         >
             <div>
                 <Link href="/">

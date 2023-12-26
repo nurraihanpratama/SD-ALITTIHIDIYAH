@@ -2,7 +2,7 @@ import PrimaryButton from "@/Theme/Components/Buttons/PrimaryButton";
 import DataTable from "@/Theme/Components/DataTable/DataTable";
 import { Fragment } from "react";
 import { BiPlus } from "react-icons/bi";
-import KelasAction from "./KelasAction"; 
+import KelasAction from "./KelasAction";
 
 export default function KelasDataTable({
     collection,
@@ -17,7 +17,13 @@ export default function KelasDataTable({
             sortable: false,
             searchable: false,
             bodyAlignment: "center",
-            render: (row) => <KelasAction row={row} loadOptions={loadOptions} />, 
+            render: (row) => (
+                <KelasAction row={row} loadOptions={loadOptions} />
+            ),
+        },
+        {
+            header: "Tahun Ajaran",
+            render: (row) => <TemplateTahunAjaran row={row} />,
         },
         {
             header: "Nama Kelas",
@@ -50,5 +56,18 @@ const ActionsButton = ({ onClickNew }) => {
                 New
             </PrimaryButton>
         </Fragment>
+    );
+};
+
+const TemplateTahunAjaran = ({ row }) => {
+    function getSemester() {
+        if (row.tahun_ajaran.semester == 1) return "Ganjil";
+        if (row.tahun_ajaran.semester == 2) return "Genap";
+    }
+
+    return (
+        <p>
+            {row.tahun_ajaran.tahun_ajaran} - {getSemester()}
+        </p>
     );
 };

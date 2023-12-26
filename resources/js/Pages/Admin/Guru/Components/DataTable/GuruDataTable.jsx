@@ -2,7 +2,7 @@ import PrimaryButton from "@/Theme/Components/Buttons/PrimaryButton";
 import DataTable from "@/Theme/Components/DataTable/DataTable";
 import { Fragment } from "react";
 import { BiPlus } from "react-icons/bi";
-import GuruAction from "./GuruAction"; 
+import GuruAction from "./GuruAction";
 
 export default function GuruDataTable({
     collection,
@@ -17,11 +17,12 @@ export default function GuruDataTable({
             sortable: false,
             searchable: false,
             bodyAlignment: "center",
-            render: (row) => <GuruAction row={row} loadOptions={loadOptions} />, 
+            render: (row) => <GuruAction row={row} loadOptions={loadOptions} />,
         },
         {
             header: "Nama Guru",
             field: "nama_guru",
+            render: (row) => <TemplateNamaGuru row={row} />,
         },
         {
             header: "Keterangan Guru",
@@ -53,5 +54,14 @@ const ActionsButton = ({ onClickNew }) => {
                 New
             </PrimaryButton>
         </Fragment>
+    );
+};
+
+const TemplateNamaGuru = ({ row }) => {
+    return (
+        <p>
+            {row.nama_guru}{" "}
+            {row.gelar_guru != null ? `, ${row.gelar_guru}` : ""}
+        </p>
     );
 };

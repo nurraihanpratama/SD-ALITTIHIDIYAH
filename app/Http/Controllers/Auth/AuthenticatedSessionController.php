@@ -9,6 +9,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Validator;
 use Inertia\Inertia;
 use Inertia\Response;
 
@@ -34,6 +35,14 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
+        $validator = Validator::make($request->all(), [
+            'username' => 'required|exists:user',
+            'password' => 'required|min:6',
+            'kurikulum' => 'required',
+            'tahun_pelajaran' => 'required',
+        ]);
+
+        
         if(auth()->user()->role == 'Admin')
         {
             return redirect()->intended(RouteServiceProvider::ADMIN);
@@ -46,6 +55,8 @@ class AuthenticatedSessionController extends Controller
         {
             return redirect()->intended(RouteServiceProvider::SISWA);
         }
+
+
     }
 
     /**
