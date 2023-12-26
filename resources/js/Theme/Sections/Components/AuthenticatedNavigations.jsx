@@ -61,100 +61,51 @@ export default function AuthenticatedNavigations({ user }) {
                     icon={<FaServer />}
                     childs={[
                         {
+                            label: "Data Kelas",
+                            icon: <LuSchool />,
+                            child_route: "admin.kelas.index",
+                        },
+                        {
                             label: "Data Guru",
                             icon: <FaChalkboardTeacher />,
+                            child_route: "admin.guru.index",
+                        },
+                        {
+                            label: "Data Siswa",
+                            icon: <PiStudentBold />,
+                            child_route: "admin.siswa.index",
+                        },
+                        {
+                            label: "Data Bidang Studi",
+                            icon: <MdLibraryBooks />,
+                            child_route: "admin.bidang-studi.index",
+                        },
+                        {
+                            label: "Data Jadwal Pelajaran",
+                            icon: <AiOutlineSchedule />,
+                            child_route: "admin.jadwal-pelajaran.index",
+                        },
+                        {
+                            label: "Data Pegawai",
+                            icon: <PiUserFill />,
+                            child_route: "admin.pegawai.index",
+                        },
+                        {
+                            label: "Data Prestasi",
+                            icon: <GiJeweledChalice />,
+                            child_route: "admin.prestasi.index",
+                        },
+                        {
+                            label: "Data Ekstrakurikuler",
+                            icon: <MdOutlineSportsGymnastics />,
+                            child_route: "admin.ekstrakurikuler.index",
+                        },
+                        {
+                            label: "Data Fasilitas",
+                            icon: <BsHouses />,
+                            child_route: "admin.fasilitas.index",
                         },
                     ]}
-                />
-            )}
-
-            {/* Kelas */}
-            {isAdmin() && (
-                <NavLink
-                    navRoute={route("admin.kelas.index")}
-                    components={["admin.kelas.index"]}
-                    label="Data Kelas"
-                    icon={<LuSchool />}
-                />
-            )}
-
-            {/* guru */}
-            {isAdmin() && (
-                <NavLink
-                    navRoute={route("admin.guru.index")}
-                    components={["admin.guru.index"]}
-                    label="Data Guru"
-                    icon={<FaChalkboardTeacher />}
-                />
-            )}
-
-            {/* siswa */}
-            {isAdmin() && (
-                <NavLink
-                    navRoute={route("admin.siswa.index")}
-                    components={["admin.siswa.index"]}
-                    label="Data Siswa"
-                    icon={<PiStudentBold />}
-                />
-            )}
-
-            {/* bidang studi */}
-            {isAdmin() && (
-                <NavLink
-                    navRoute={route("admin.bidang-studi.index")}
-                    components={["admin.bidang-studi.index"]}
-                    label="Data Bidang Studi"
-                    icon={<MdLibraryBooks />}
-                />
-            )}
-
-            {/* jadwal pelajaran */}
-            {isAdmin() && (
-                <NavLink
-                    navRoute={route("admin.jadwal-pelajaran.index")}
-                    components={["admin.jadwal-pelajaran.index"]}
-                    label="Data Jadwal Pelajaran"
-                    icon={<AiOutlineSchedule />}
-                />
-            )}
-
-            {/* pegawai */}
-            {isAdmin() && (
-                <NavLink
-                    navRoute={route("admin.pegawai.index")}
-                    components={["admin.pegawai.index"]}
-                    label="Data Pegawai"
-                    icon={<PiUserFill />}
-                />
-            )}
-
-            {/* prestasi */}
-            {isAdmin() && (
-                <NavLink
-                    navRoute={route("admin.prestasi.index")}
-                    components={["admin.prestasi.index"]}
-                    label="Data Prestasi"
-                    icon={<GiJeweledChalice />}
-                />
-            )}
-
-            {/* ekstrakurikuler */}
-            {isAdmin() && (
-                <NavLink
-                    navRoute={route("admin.ekstrakurikuler.index")}
-                    components={["admin.ekstrakurikuler.index"]}
-                    label="Data Ekstrakurikuler"
-                    icon={<MdOutlineSportsGymnastics />}
-                />
-            )}
-
-            {/* fasilitas */}
-            {isAdmin() && (
-                <NavLink
-                    navRoute={route("admin.fasilitas.index")}
-                    components={["admin.fasilitas.index"]}
-                    label="Data Fasilitas"
-                    icon={<BsHouses />}
                 />
             )}
 
