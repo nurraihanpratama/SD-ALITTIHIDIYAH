@@ -3,6 +3,7 @@ import DataTable from "@/Theme/Components/DataTable/DataTable";
 import { Fragment } from "react";
 import { BiPlus } from "react-icons/bi";
 import GuruAction from "./GuruAction";
+import CellTemplateNamaGuru from "@/Theme/Components/DataTable/Cell/CellTemplateNamaGuru";
 
 export default function GuruDataTable({
     collection,
@@ -22,7 +23,7 @@ export default function GuruDataTable({
         {
             header: "Nama Guru",
             field: "nama_guru",
-            render: (row) => <TemplateNamaGuru row={row} />,
+            render: (row) => <CellTemplateNamaGuru row={row} />,
         },
         {
             header: "Keterangan Guru",

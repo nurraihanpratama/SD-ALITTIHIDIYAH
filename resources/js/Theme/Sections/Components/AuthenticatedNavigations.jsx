@@ -45,6 +45,15 @@ export default function AuthenticatedNavigations({ user }) {
             )}
 
             {isAdmin() && (
+                <NavLink
+                    navRoute={route("admin.user.index")}
+                    components={["admin.user.index"]}
+                    label="Data User"
+                    icon={<FaUsers />}
+                />
+            )}
+
+            {isAdmin() && (
                 <NavLinkTree
                     components={[
                         "admin.kelas.index",

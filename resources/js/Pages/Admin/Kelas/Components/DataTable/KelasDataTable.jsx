@@ -3,6 +3,8 @@ import DataTable from "@/Theme/Components/DataTable/DataTable";
 import { Fragment } from "react";
 import { BiPlus } from "react-icons/bi";
 import KelasAction from "./KelasAction";
+import { AiOutlineBars } from "react-icons/ai";
+import CellTemplateNamaGuru from "@/Theme/Components/DataTable/Cell/CellTemplateNamaGuru";
 
 export default function KelasDataTable({
     collection,
@@ -22,17 +24,31 @@ export default function KelasDataTable({
             ),
         },
         {
-            header: "Tahun Ajaran",
-            render: (row) => <TemplateTahunAjaran row={row} />,
+            header: "Tingkat Kelas",
+            searchable: false,
+            field: "tingkat_kelas",
         },
         {
             header: "Nama Kelas",
             field: "nama",
         },
         {
+            header: "Tahun Ajaran",
+            render: (row) => <TemplateTahunAjaran row={row} />,
+        },
+        {
             header: "Wali Kelas",
             field: "wali_kelas",
-            render: (row) => row.guru.nama_guru,
+            render: (row) => <CellTemplateNamaGuru row={row.guru} />,
+        },
+        {
+            header: "Jumlah Siswa",
+            field: "anggota_kelas",
+            render: (row) => (
+                <PrimaryButton>
+                    <AiOutlineBars /> {row.siswa.length}
+                </PrimaryButton>
+            ),
         },
     ];
 

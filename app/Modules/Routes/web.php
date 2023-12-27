@@ -14,6 +14,7 @@ use App\Modules\Admin\LaporanNilai\Tables\DataSiswaDataTable;
 use App\Modules\Admin\Pegawai\Controllers\PegawaiController;
 use App\Modules\Admin\Prestasi\Controllers\PrestasiController;
 use App\Modules\Admin\Siswa\Controllers\SiswaController;
+use App\Modules\Admin\User\Controllers\UserController;
 use App\Modules\Guru\Dashboard\Controllers\GuruDashboardController;
 use App\Modules\MyProfile\Controllers\MyProfileController;
 use App\Modules\Siswa\Dashboard\Controllers\SiswaDashboardController;
@@ -46,212 +47,195 @@ Route::prefix('/')
 	});
 
 
+
+// * ADMIN PANEL
 Route::middleware(['auth', 'verified','ShareFlashes'])
-    ->prefix('admin')
-    ->name('admin.')
-    ->group(function() {
-
-        Route::controller(DashboardController::class)
-            ->middleware(['auth', 'verified'])
-            ->name('dashboard.')
-            ->prefix('/dashboard')
-            ->group(function() {
-                Route::get('/', 'index')->name('index');
-        });
-
-
-        Route::controller(KelasController::class)
-            ->middleware(['auth', 'verified'])
-            ->name('kelas.')
-            ->prefix('/kelas')
-            ->group(function() {
-                Route::get('/', 'index')->name('index');
-                Route::get('/create', 'create')->name('create');
-                Route::post('/store', 'store')->name('store');
-                Route::patch('/update/{kelas}', 'update')->name('update');
-                Route::delete('/delete/{kelas}', 'delete')->name('delete');
-        });
-
-        Route::controller(SiswaController::class)
-            ->middleware(['auth', 'verified'])
-            ->name('siswa.')
-            ->prefix('/siswa')
-            ->group(function() {
-                Route::get('/', 'index')->name('index');
-                Route::get('/create', 'create')->name('create');
-                Route::post('/store', 'store')->name('store');
-                Route::patch('/update/{siswa}', 'update')->name('update');
-                Route::delete('/delete/{siswa}', 'delete')->name('delete');
-
-        });
-
-        Route::controller(GuruController::class)
-            ->middleware(['auth', 'verified'])
-            ->name('guru.')
-            ->prefix('/guru')
-            ->group(function() {
-                Route::get('/', 'index')->name('index');
-                Route::get('/create', 'create')->name('create');
-                Route::post('/store', 'store')->name('store');
-                Route::patch('/update/{guru}', 'update')->name('update');
-                Route::delete('/delete/{guru}', 'delete')->name('delete');
-
-        });
-
-        Route::controller(BidangStudiController::class)
-            ->middleware(['auth', 'verified'])
-            ->name('bidang-studi.')
-            ->prefix('/bidang-studi')
-            ->group(function() {
-                Route::get('/', 'index')->name('index');
-                Route::get('/create', 'create')->name('create');
-                Route::post('/store', 'store')->name('store');
-                Route::patch('/update/{bidang_studi}', 'update')->name('update');
-                Route::delete('/delete/{bidang_studi}', 'delete')->name('delete');
-
-        });
-
-        Route::controller(JadwalPelajaranController::class)
-            ->middleware(['auth', 'verified'])
-            ->name('jadwal-pelajaran.')
-            ->prefix('/jadwal-pelajaran')
-            ->group(function() {
-                Route::get('/', 'index')->name('index');
-                Route::get('/create', 'create')->name('create');
-                Route::post('/store', 'store')->name('store');
-                Route::patch('/update/{jadwal_pelajaran}', 'update')->name('update');
-                Route::delete('/delete/{jadwal_pelajaran}', 'delete')->name('delete');
-
-        });
-
-        Route::controller(PegawaiController::class)
-            ->middleware(['auth', 'verified'])
-            ->name('pegawai.')
-            ->prefix('/pegawai')
-            ->group(function() {
-                Route::get('/', 'index')->name('index');
-                Route::get('/create', 'create')->name('create');
-                Route::post('/store', 'store')->name('store');
-                Route::patch('/update/{pegawai}', 'update')->name('update');
-                Route::delete('/delete/{pegawai}', 'delete')->name('delete');
-                
-        });
-
-        Route::controller(PrestasiController::class)
-            ->middleware(['auth', 'verified'])
-            ->name('prestasi.')
-            ->prefix('/prestasi')
-            ->group(function() {
-                Route::get('/', 'index')->name('index');
-                Route::get('/create', 'create')->name('create');
-                Route::post('/store', 'store')->name('store');
-                Route::patch('/update/{prestasi}', 'update')->name('update');
-                Route::delete('/delete/{prestasi}', 'delete')->name('delete');
-
-        });
-
-        Route::controller(EkstrakurikulerController::class)
-            ->middleware(['auth', 'verified'])
-            ->name('ekstrakurikuler.')
-            ->prefix('/ekstrakurikuler')
-            ->group(function() {
-                Route::get('/', 'index')->name('index');
-                Route::get('/create', 'create')->name('create');
-                Route::post('/store', 'store')->name('store');
-                Route::post('/update/{ekstrakurikuler}', 'update')->name('update');
-                Route::delete('/delete/{ekstrakurikuler}', 'delete')->name('delete');
-
-        });
-
-        Route::controller(FasilitasController::class)
-            ->middleware(['auth', 'verified'])
-            ->name('fasilitas.')
-            ->prefix('/fasilitas')
-            ->group(function() {
-                Route::get('/', 'index')->name('index');
-                Route::get('/create', 'create')->name('create');
-                Route::post('/store', 'store')->name('store');
-                Route::post('/update/{fasilitas}', 'update')->name('update');
-                Route::delete('/delete/{fasilitas}', 'delete')->name('delete');
-
-        });
-
-        Route::controller(BeritaController::class)
-            ->middleware(['auth', 'verified'])
-            ->name('berita.')
-            ->prefix('/berita')
-            ->group(function() {
-                Route::get('/', 'index')->name('index');
-                Route::get('/create', 'create')->name('create');
-                Route::post('/store', 'store')->name('store');
-                Route::post('/update/{berita}', 'update')->name('update');
-                Route::delete('/delete/{berita}', 'delete')->name('delete');
-
-        });
-        
-    });
-
-    
-    // * UNTUK ROUTES GURU PANEL
-    Route::middleware(['auth', 'verified','ShareFlashes'])
-    ->prefix('guru')
-    ->name('guru.')
-    ->group(function() {
-
-        // * Dashboard Guru
-        Route::controller(GuruDashboardController::class)
-            ->name('dashboard.')
-            ->prefix('/dashboard')
-            ->group(function(){
-                Route::get('/', 'index')->name('index');
-            });
-
-        // * Data Siswa
-        Route::controller(DataSiswaController::class)
-            ->name('data-siswa.')
-            ->prefix('/data-siswa')
-            ->group(function () {
-                Route::get('/', 'index')->name('index');
-            });
-
-        // * Laporan Nilai
-        Route::controller(LaporanNilaiController::class)
-            ->name('laporan-nilai.')
-            ->prefix('/laporan-nilai')
-            ->group(function() {
-                Route::get('/', 'index')->name('index');
-                Route::get('/create', 'create')->name('create');
-            });
-        Route::get('laporan-nilai/datatabel', [DataSiswaDataTable::class, 'generate'])->name('laporan-nilai.datatable');
-    });
-    
-
-        // * UNTUK ROUTES SISWA PANEL
-        Route::middleware(['auth', 'verified','ShareFlashes'])
-        ->prefix('siswa')
-        ->name('siswa.')
+->prefix('admin')
+->name('admin.')
+->group(function() {
+    Route::controller(DashboardController::class)
+        ->middleware(['auth', 'verified'])
+        ->name('dashboard.')
+        ->prefix('/dashboard')
         ->group(function() {
+            Route::get('/', 'index')->name('index');
+    });
+    Route::controller(KelasController::class)
+        ->middleware(['auth', 'verified'])
+        ->name('kelas.')
+        ->prefix('/kelas')
+        ->group(function() {
+            Route::get('/', 'index')->name('index');
+            Route::get('/create', 'create')->name('create');
+            Route::post('/store', 'store')->name('store');
+            Route::patch('/update/{kelas}', 'update')->name('update');
+            Route::delete('/delete/{kelas}', 'delete')->name('delete');
+    });
+    Route::controller(SiswaController::class)
+        ->middleware(['auth', 'verified'])
+        ->name('siswa.')
+        ->prefix('/siswa')
+        ->group(function() {
+            Route::get('/', 'index')->name('index');
+            Route::get('/create', 'create')->name('create');
+            Route::post('/store', 'store')->name('store');
+            Route::patch('/update/{siswa}', 'update')->name('update');
+            Route::delete('/delete/{siswa}', 'delete')->name('delete');
+    });
+    Route::controller(GuruController::class)
+        ->middleware(['auth', 'verified'])
+        ->name('guru.')
+        ->prefix('/guru')
+        ->group(function() {
+            Route::get('/', 'index')->name('index');
+            Route::get('/create', 'create')->name('create');
+            Route::post('/store', 'store')->name('store');
+            Route::patch('/update/{guru}', 'update')->name('update');
+            Route::delete('/delete/{guru}', 'delete')->name('delete');
+    });
+    Route::controller(BidangStudiController::class)
+        ->middleware(['auth', 'verified'])
+        ->name('bidang-studi.')
+        ->prefix('/bidang-studi')
+        ->group(function() {
+            Route::get('/', 'index')->name('index');
+            Route::get('/create', 'create')->name('create');
+            Route::post('/store', 'store')->name('store');
+            Route::patch('/update/{bidang_studi}', 'update')->name('update');
+            Route::delete('/delete/{bidang_studi}', 'delete')->name('delete');
+    });
+    Route::controller(JadwalPelajaranController::class)
+        ->middleware(['auth', 'verified'])
+        ->name('jadwal-pelajaran.')
+        ->prefix('/jadwal-pelajaran')
+        ->group(function() {
+            Route::get('/', 'index')->name('index');
+            Route::get('/create', 'create')->name('create');
+            Route::post('/store', 'store')->name('store');
+            Route::patch('/update/{jadwal_pelajaran}', 'update')->name('update');
+            Route::delete('/delete/{jadwal_pelajaran}', 'delete')->name('delete');
+    });
+    Route::controller(PegawaiController::class)
+        ->middleware(['auth', 'verified'])
+        ->name('pegawai.')
+        ->prefix('/pegawai')
+        ->group(function() {
+            Route::get('/', 'index')->name('index');
+            Route::get('/create', 'create')->name('create');
+            Route::post('/store', 'store')->name('store');
+            Route::patch('/update/{pegawai}', 'update')->name('update');
+            Route::delete('/delete/{pegawai}', 'delete')->name('delete');
             
-            Route::controller(SiswaDashboardController::class)
-                ->name('dashboard.')
-                ->prefix('/dashboard')
-                ->group(function() {
-                    Route::get('/', 'index')->name('index');
-                });
+    });
+    Route::controller(PrestasiController::class)
+        ->middleware(['auth', 'verified'])
+        ->name('prestasi.')
+        ->prefix('/prestasi')
+        ->group(function() {
+            Route::get('/', 'index')->name('index');
+            Route::get('/create', 'create')->name('create');
+            Route::post('/store', 'store')->name('store');
+            Route::patch('/update/{prestasi}', 'update')->name('update');
+            Route::delete('/delete/{prestasi}', 'delete')->name('delete');
+    });
+    Route::controller(EkstrakurikulerController::class)
+        ->middleware(['auth', 'verified'])
+        ->name('ekstrakurikuler.')
+        ->prefix('/ekstrakurikuler')
+        ->group(function() {
+            Route::get('/', 'index')->name('index');
+            Route::get('/create', 'create')->name('create');
+            Route::post('/store', 'store')->name('store');
+            Route::post('/update/{ekstrakurikuler}', 'update')->name('update');
+            Route::delete('/delete/{ekstrakurikuler}', 'delete')->name('delete');
+    });
+    Route::controller(FasilitasController::class)
+        ->middleware(['auth', 'verified'])
+        ->name('fasilitas.')
+        ->prefix('/fasilitas')
+        ->group(function() {
+            Route::get('/', 'index')->name('index');
+            Route::get('/create', 'create')->name('create');
+            Route::post('/store', 'store')->name('store');
+            Route::post('/update/{fasilitas}', 'update')->name('update');
+            Route::delete('/delete/{fasilitas}', 'delete')->name('delete');
+    });
+    Route::controller(BeritaController::class)
+        ->middleware(['auth', 'verified'])
+        ->name('berita.')
+        ->prefix('/berita')
+        ->group(function() {
+            Route::get('/', 'index')->name('index');
+            Route::get('/create', 'create')->name('create');
+            Route::post('/store', 'store')->name('store');
+            Route::post('/update/{berita}', 'update')->name('update');
+            Route::delete('/delete/{berita}', 'delete')->name('delete');
+    });
+    
+    Route::controller(UserController::class)
+        ->name('user.')
+        ->prefix('/user')
+        ->group(function(){
+            Route::get('/', 'index')->name('index');
+    });
+    
+    });
 
-            // * Data Mapel
-            Route::controller(MapelController::class)
-                ->name('mapel.')
-                ->prefix('/mapel')
-                ->group(function () {
-                    Route::get('/', 'index')->name('index');
-                });
 
-            Route::controller(DataNilaiController::class)
-                ->name('data-nilai.')
-                ->prefix('/data-nilai')
-                ->group(function () {
-                    Route::get('/', 'index')->name('index');
-                });
+// * UNTUK ROUTES GURU PANEL
+Route::middleware(['auth', 'verified','ShareFlashes'])
+->prefix('guru')
+->name('guru.')
+->group(function() {
+    // * Dashboard Guru
+    Route::controller(GuruDashboardController::class)
+        ->name('dashboard.')
+        ->prefix('/dashboard')
+        ->group(function(){
+            Route::get('/', 'index')->name('index');
         });
-        
+    // * Data Siswa
+    Route::controller(DataSiswaController::class)
+        ->name('data-siswa.')
+        ->prefix('/data-siswa')
+        ->group(function () {
+            Route::get('/', 'index')->name('index');
+        });
+    // * Laporan Nilai
+    Route::controller(LaporanNilaiController::class)
+        ->name('laporan-nilai.')
+        ->prefix('/laporan-nilai')
+        ->group(function() {
+            Route::get('/', 'index')->name('index');
+            Route::get('/create', 'create')->name('create');
+        });
+    Route::get('laporan-nilai/datatabel', [DataSiswaDataTable::class, 'generate'])->name('laporan-nilai.datatable');
+});
+
+// * UNTUK ROUTES SISWA PANEL
+Route::middleware(['auth', 'verified','ShareFlashes'])
+->prefix('siswa')
+->name('siswa.')
+->group(function() {
+    
+    Route::controller(SiswaDashboardController::class)
+        ->name('dashboard.')
+        ->prefix('/dashboard')
+        ->group(function() {
+            Route::get('/', 'index')->name('index');
+        });
+    // * Data Mapel
+    Route::controller(MapelController::class)
+        ->name('mapel.')
+        ->prefix('/mapel')
+        ->group(function () {
+            Route::get('/', 'index')->name('index');
+        });
+    Route::controller(DataNilaiController::class)
+        ->name('data-nilai.')
+        ->prefix('/data-nilai')
+        ->group(function () {
+            Route::get('/', 'index')->name('index');
+        });
+});
+    

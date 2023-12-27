@@ -11,7 +11,7 @@ class KelasDataTable
     {
         $search = $request->get('search');
         $data = TblKelas::query()
-                ->with(['guru', 'tahunAjaran'])
+                ->with(['guru', 'tahunAjaran', 'siswa'])
                 ->withSearch($search)
                 ->paginate(15)
                 ->appends([

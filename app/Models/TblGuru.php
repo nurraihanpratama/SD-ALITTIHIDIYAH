@@ -13,6 +13,7 @@ class TblGuru extends Model
     public $timestamps = false;
 	protected $fillable = [
         'nama_guru',
+        'user_id',
         'ket_guru',
         'status_guru'
         ];

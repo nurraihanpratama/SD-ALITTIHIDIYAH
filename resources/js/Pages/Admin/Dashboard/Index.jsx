@@ -19,14 +19,14 @@ const Index = (props) => {
                         ([label, count], index) => (
                             <div
                                 key={label}
-                                className="w-full h-full p-4 overflow-hidden text-center rounded-md shadow-md h-fit bg-primary-600" // Ganti nilai bg-green-500 dengan bg-green-400 atau bg-green-600
+                                className="w-full h-full p-2 overflow-hidden text-center rounded-md shadow-md bg-primary-600" // Ganti nilai bg-green-500 dengan bg-green-400 atau bg-green-600
                             >
                                 <div className="flex">
                                     <span className="flex items-center h-fit rounded-xl p-3 bg-white dark:bg-[#162231]">
                                         <FiUser size={50} />
                                     </span>
                                     <span className="flex flex-col items-center w-full">
-                                        <p className="mb-2 text-lg font-semibold text-white">
+                                        <p className="mb-2 font-normal text-white text-md">
                                             {label}
                                         </p>
                                         <p className="text-2xl font-bold text-white">
