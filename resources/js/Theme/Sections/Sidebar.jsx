@@ -38,7 +38,7 @@ const SidebarBigScreen = ({ theme, children }) => {
     return (
         <div
             id="sidebar"
-            className={`fixed h-screen overflow-y-auto pt-4 pb-20 hover:border-r-2 border-primary-400  bg-[#EDF2F9] dark:bg-[#0A1727] ${
+            className={`fixed h-screen overflow-y-auto pt-4 pb-20 hover:border-r-2 bg-[#EDF2F9] dark:bg-[#0A1727] ${
                 theme.sidebarOpen ? "w-60" : "w-10"
             }`}
         >
@@ -51,7 +51,7 @@ const SidebarSmallScreen = ({ theme, children }) => {
     return (
         <div
             id="sidebar"
-            className={`fixed px-2 h-screen overflow-y-auto pt-4 pb-20 hover:border-r-2 border-primary-400 bg-[#EDF2F9] dark:bg-[#0A1727] w-60  ${
+            className={`fixed px-2 h-screen overflow-y-auto pt-4 pb-20 hover:border-r-2 bg-[#EDF2F9] dark:bg-[#0A1727] w-60  ${
                 !theme.sidebarShow && "hidden"
             }`}
         >

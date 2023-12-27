@@ -54,7 +54,6 @@ export default function LaporanNilaiForm({
             const selectedGuru = selectedMapel.gurus.find(
                 (guru) => guru.id_guru == item.value.id_guru
             );
-            console.log("inimapl", selectedGuru);
 
             if (selectedGuru) {
                 form.setData((prevData) => ({

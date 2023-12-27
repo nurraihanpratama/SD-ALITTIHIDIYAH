@@ -13,9 +13,13 @@ export default function UserHeaderMenu({ user }) {
             {/* TODO NANTI DIBENARIN */}
             <div className="px-4 text-gray-700  dark:text-gray-800">
                 <p>
-                    {user?.role == "guru"
-                        ? user?.guru.nama_guru
-                        : user?.guru.nama_siswa}
+                    {user?.role === "guru"
+                        ? user?.guru?.nama_guru
+                            ? user?.siswa
+                                ? user?.siswa?.nama_siswa
+                                : "admin"
+                            : undefined
+                        : undefined}
                 </p>
                 <p className="text-xs">{user.email}</p>
             </div>
