@@ -12,6 +12,8 @@ class TblKelas extends Model
     protected $primaryKey = 'id_kelas';
     public $timestamps = false;
     protected $fillable = [
+        'tahun_ajaran_id',
+        'tingkat_kelas',
         'nama',
         'wali_kelas',
         'created_at'

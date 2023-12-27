@@ -36,13 +36,13 @@ return [
 			'throw' => false,
 		],
 
-		// 'public' => [
-		// 	'driver' => 'local',
-		// 	'root' => public_path(), // Use the symlinked path
-		// 	'url' => env('APP_URL') . '/storage',
-		// 	'visibility' => 'public',
-		// 	'throw' => false,
-		// ],
+		'public' => [
+			'driver' => 'local',
+			'root' => public_path(), // Use the symlinked path
+			'url' => env('APP_URL') . '/storage',
+			'visibility' => 'public',
+			'throw' => false,
+		],
 
         // 'local' => [
         //     'driver' => 'local',
@@ -50,13 +50,13 @@ return [
         //     'throw' => false,
         // ],
 
-        'public' => [
-            'driver' => 'local',
-            'root' => storage_path('app/public'),
-            'url' => env('APP_URL').'/storage',
-            'visibility' => 'public',
-            'throw' => false,
-        ],
+        // 'public' => [
+        //     'driver' => 'local',
+        //     'root' => storage_path('app/public'),
+        //     'url' => env('APP_URL').'/storage',
+        //     'visibility' => 'public',
+        //     'throw' => false,
+        // ],
 
         's3' => [
             'driver' => 's3',

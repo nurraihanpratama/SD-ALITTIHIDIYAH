@@ -13,6 +13,7 @@ class SiswaDataTable
         $data = TblSiswa::query()
         ->with(['kelas', 'status', 'jk'])
         ->withSearch($search)
+        ->orderBy('created_at', "asc")
         ->paginate(15)
         ->appends([
             'search' => $search,

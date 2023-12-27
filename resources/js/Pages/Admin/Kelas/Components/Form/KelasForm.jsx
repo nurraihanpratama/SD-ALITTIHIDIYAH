@@ -11,7 +11,10 @@ export default function KelasForm({
     row = null,
     closeForm,
 }) {
+    console.log(loadOptions);
     const form = useForm({
+        tahun_ajaran_id: loadOptions.tahun_ajaran[0].id,
+        tingkat_kelas: row?.tingkat_kelas ?? "",
         nama: row?.nama ?? "",
         wali_kelas: row?.guru.id_guru ?? loadOptions?.gurus[0]?.id,
     });
@@ -65,6 +68,28 @@ export default function KelasForm({
         >
             <div className="flex flex-col gap-4 text-gray-700 dark:text-white">
                 {/* NAMA KELAS */}
+                <FormSelectInput
+                    name="tahun_ajaran_id"
+                    label={"TAHUN AJARAN"}
+                    value={form.data.tahun_ajaran_id}
+                    options={loadOptions?.tahun_ajaran}
+                    onChange={handleOnChange}
+                    idKey="id"
+                    nameKey="tahun_ajaran"
+                    disabled
+                    error={form.errors.tahun_ajaran_id}
+                />
+
+                <FormTextInput
+                    name="tingkat_kelas"
+                    type="number"
+                    min={1}
+                    max={9}
+                    label={"TINGKAT KELAS"}
+                    value={form.data.tingkat_kelas}
+                    onChange={handleOnChange}
+                    error={form.errors.tingkat_kelas}
+                />
                 <FormTextInput
                     name="nama"
                     label={"NAMA KELAS"}

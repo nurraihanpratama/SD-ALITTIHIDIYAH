@@ -13,6 +13,7 @@ export default function GuruForm({
 }) {
     const form = useForm({
         nama_guru: row?.nama_guru ?? "",
+        gelar_guru: row?.gelar_guru ?? "",
         ket_guru: row?.ket_guru ?? loadOptions.ket_guru[0].id,
         status_guru: row?.status?.id ?? loadOptions?.status[0].id,
     });
@@ -66,6 +67,15 @@ export default function GuruForm({
                     value={form.data.nama_guru}
                     onChange={handleOnChange}
                     error={form.errors.nama_guru}
+                />
+
+                {/* NAMA GURU */}
+                <FormTextInput
+                    name="gelar_guru"
+                    label={"GELAR GURU"}
+                    value={form.data.gelar_guru}
+                    onChange={handleOnChange}
+                    error={form.errors.gelar_guru}
                 />
 
                 {/* KETERANGAN GURU */}

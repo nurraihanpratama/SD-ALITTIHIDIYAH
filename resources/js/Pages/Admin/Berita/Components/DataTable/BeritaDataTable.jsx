@@ -33,7 +33,7 @@ export default function BeritaDataTable({
             render: (row) =>
                 row.foto_filename ? (
                     <CellImageTemplate
-                        filename={row.proof_filename}
+                        filename={row.foto_filename}
                         path={"/storage/upload/berita/foto/"}
                         alt="Foto Berita"
                         className="h-10"
