@@ -23,13 +23,13 @@ export default function AuthenticatedNavigations({ user }) {
     // const isAdmin = user.role == "Admin";
 
     function isAdmin() {
-        return user?.role == "Admin";
+        return user?.role == "admin";
     }
     function isGuru() {
-        return user?.role == "Guru";
+        return user?.role == "guru";
     }
     function isSiswa() {
-        return user?.role == "Siswa";
+        return user?.role == "siswa";
     }
 
     return (

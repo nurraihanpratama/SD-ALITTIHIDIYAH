@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use App\Models\TblAkun;
 use App\Models\TblSiswa;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Inertia\Middleware;
@@ -36,7 +37,7 @@ class HandleInertiaRequests extends Middleware
         return [
             ...parent::share($request),
             'auth' => [
-                'user' => $request->user() ? TblAkun::with(['guru'])->find($request->user()->id) : null ,
+                'user' => $request->user() ? User::with(['guru'])->find($request->user()->id) : null ,
             ],
             // 'ziggy' => fn () => [
             //     ...(new Ziggy)->toArray(),

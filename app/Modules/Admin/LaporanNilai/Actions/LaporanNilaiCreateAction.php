@@ -13,8 +13,13 @@ class LaporanNilaiCreateAction
     {
         $gurus = TblGuru::with(['bidangStudis'])->get();
 
-        $mapel = TblBidangStudi::with(['gurus'])->get();
-        $options = compact('gurus', 'mapel');
+        $mapels = TblBidangStudi::with(['gurus'])->get();
+
+        foreach($mapels as $mapel){
+            $mapel->gurus;
+        }
+
+        $options = compact('gurus', 'mapels');
 
         return $options;
     }

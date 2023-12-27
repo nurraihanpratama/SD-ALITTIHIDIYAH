@@ -17,14 +17,18 @@ export default function Index() {
 
     const { user } = auth;
 
-    console.log(user.nama);
     const title = page.title;
+
+    function getNama() {
+        if (user?.role == "guru") return user?.guru.nama_guru;
+        if (user?.role == "siswa") return user?.guru.nama_siswa;
+    }
 
     const [processing, setProcessing] = useState(false);
     const [showUpdatePasswordForm, setShowUpdatePasswordForm] = useState(false);
 
     const form = useForm({
-        nama: user?.nama ?? "",
+        nama: getNama() ?? "",
         email: user?.email ?? "",
     });
 

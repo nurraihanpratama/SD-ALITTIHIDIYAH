@@ -11,8 +11,12 @@ export default function UserHeaderMenu({ user }) {
                 <HeaderTogglerButtons className="flex md:hidden" />
             </div>
             {/* TODO NANTI DIBENARIN */}
-            <div className="px-4 text-gray-700 dark:text-gray-800">
-                <p>{user.nama}</p>
+            <div className="px-4 text-gray-700  dark:text-gray-800">
+                <p>
+                    {user?.role == "guru"
+                        ? user?.guru.nama_guru
+                        : user?.guru.nama_siswa}
+                </p>
                 <p className="text-xs">{user.email}</p>
             </div>
             {/* <Dropdown.Link href={route("profile.edit")}>Profile</Dropdown.Link> */}

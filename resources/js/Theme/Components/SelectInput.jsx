@@ -40,46 +40,41 @@ export default function SelectInput({
                         leaveTo="opacity-0"
                     >
                         <Listbox.Options className="absolute z-50 w-full py-1 mt-1 overflow-auto text-base text-gray-700 bg-white rounded-md shadow-lg max-h-60 ring-1 ring-opacity-5 focus:outline-none sm:text-sm dark:text-white dark:bg-black ring-black">
-                            {options.map(
-                                (option, i) => (
-                                    console.log(option),
-                                    (
-                                        <Listbox.Option
-                                            key={i}
-                                            className={({ active }) =>
-                                                `relative text-left cursor-pointer select-none py-2 pl-10 pr-4 ${
-                                                    active
-                                                        ? "bg-amber-100 text-amber-900"
-                                                        : "text-gray-900 dark:text-white"
-                                                }`
-                                            }
-                                            value={option}
-                                        >
-                                            {({ selected }) => (
-                                                <Fragment>
-                                                    <span
-                                                        className={`w-fit text-left ${
-                                                            selected
-                                                                ? "font-medium"
-                                                                : "font-normal"
-                                                        }`}
-                                                    >
-                                                        {option[nameKey]}
-                                                    </span>
-                                                    {selected ? (
-                                                        <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-amber-600">
-                                                            <CheckIcon
-                                                                className="w-5 h-5"
-                                                                aria-hidden="true"
-                                                            />
-                                                        </span>
-                                                    ) : null}
-                                                </Fragment>
-                                            )}
-                                        </Listbox.Option>
-                                    )
-                                )
-                            )}
+                            {options.map((option, i) => (
+                                <Listbox.Option
+                                    key={i}
+                                    className={({ active }) =>
+                                        `relative text-left cursor-pointer select-none py-2 pl-10 pr-4 ${
+                                            active
+                                                ? "bg-amber-100 text-amber-900"
+                                                : "text-gray-900 dark:text-white"
+                                        }`
+                                    }
+                                    value={option}
+                                >
+                                    {({ selected }) => (
+                                        <Fragment>
+                                            <span
+                                                className={`w-fit text-left ${
+                                                    selected
+                                                        ? "font-medium"
+                                                        : "font-normal"
+                                                }`}
+                                            >
+                                                {option[nameKey]}
+                                            </span>
+                                            {selected ? (
+                                                <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-amber-600">
+                                                    <CheckIcon
+                                                        className="w-5 h-5"
+                                                        aria-hidden="true"
+                                                    />
+                                                </span>
+                                            ) : null}
+                                        </Fragment>
+                                    )}
+                                </Listbox.Option>
+                            ))}
                         </Listbox.Options>
                     </Transition>
                 </div>

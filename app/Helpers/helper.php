@@ -3,6 +3,7 @@
 use App\Models\InvoicesWhatsappStatus;
 use App\Models\LogError;
 use App\Models\TblGuru;
+use App\Models\TblSiswa;
 use App\Models\Team;
 use App\Services\UniqueIdGenerator;
 use Carbon\Carbon;
@@ -14,7 +15,19 @@ use Illuminate\Support\Str;
 
 function getIdUser()
 {
-	return auth()->user()->user_id;
+	if(auth()->user()->role == 'guru'){
+
+		$guru = TblGuru::where('user_id', getUserUUID())->first();
+		$guru = $guru->id_guru;
+		return $guru;
+	}else if(auth()->user()->role == 'siswa'){
+		$siswa = TblSiswa::where('user_id', getUserUUID())->first();
+		return $siswa->nisn;
+	}
+}
+function getUserUUID()
+{
+	return auth()->user()->uuid;
 }
 
 function getInhouseGuru(): array

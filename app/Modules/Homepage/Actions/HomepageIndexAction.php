@@ -2,6 +2,7 @@
 
 namespace App\Modules\Homepage\Actions;
 
+use App\Models\TblSiswa;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -14,4 +15,6 @@ class HomepageIndexAction
 
         ]);
     }
+
+    
 }

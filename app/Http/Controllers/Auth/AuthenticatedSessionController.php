@@ -47,11 +47,11 @@ class AuthenticatedSessionController extends Controller
         {
             return redirect()->intended(RouteServiceProvider::ADMIN);
         }
-        if(auth()->user()->role == 'auru')
+        if(auth()->user()->role == 'guru')
         {
             return redirect()->intended(RouteServiceProvider::GURU);
         }
-        if(auth()->user()->role == 'aiswa')
+        if(auth()->user()->role == 'siswa')
         {
             return redirect()->intended(RouteServiceProvider::SISWA);
         }

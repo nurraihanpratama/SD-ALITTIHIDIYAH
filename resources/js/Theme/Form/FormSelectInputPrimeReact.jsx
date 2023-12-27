@@ -1,6 +1,7 @@
 import InputError from "@/Components/InputError";
-import InputLabel from "@/Components/InputLabel";
+// import InputLabel from "@/Components/InputLabel";
 import { Dropdown } from "primereact/dropdown";
+import InputLabel from "../Components/InputLabel";
 
 export default function FormSelectInputPrimeReact({
     name,
@@ -13,13 +14,22 @@ export default function FormSelectInputPrimeReact({
     itemTemplate,
     valueTemplate,
     className,
+    nolabel = false,
+    isRequired = false,
     error,
     note,
     ...props
 }) {
     return (
-        <div className="relative w-full">
-            <InputLabel htmlFor={name} value={label} />
+        <div className=" block w-full">
+            {!nolabel && (
+                <InputLabel
+                    htmlFor={name}
+                    value={label}
+                    isRequired={isRequired}
+                    className="whitespace-nowrap"
+                />
+            )}
             <Dropdown
                 name={name}
                 value={value}

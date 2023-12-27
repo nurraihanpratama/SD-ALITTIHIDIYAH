@@ -13,6 +13,8 @@ use App\Models\TblPrestasi;
 use App\Models\TblEkstrakurikuler;
 use App\Models\TblFasilitas;
 use App\Models\TblBerita;
+use App\Models\TblMapelGuru;
+use Illuminate\Support\Facades\Auth;
 
 class GuruDashboardIndexAction
 {
@@ -22,9 +24,12 @@ class GuruDashboardIndexAction
             "title" => "Dashboard"
         ];
 
-        // ... sesuaikan dengan kebutuhan Anda untuk mendapatkan data dashboard
+        $guru = TblGuru::where('user_id', Auth::user()->uuid)->first();
+        $id_kelas = TblKelas::get('id_kelas');
+        $data_kelas = count(TblRoster::with(['guru'])->get());
+        // dd($data_kelas);
         $dashboardData = [
-            'Data Kelas' => TblKelas::count(),
+            
             'Data Guru' => TblGuru::count(),
             'Data Siswa' => TblSiswa::count(),
             'Data Bidang Studi' => TblBidangStudi::count(),

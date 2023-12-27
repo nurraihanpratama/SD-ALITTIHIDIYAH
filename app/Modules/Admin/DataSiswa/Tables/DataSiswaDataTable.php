@@ -11,7 +11,8 @@ class DataSiswaDataTable
     public function generate($request)
     {
 
-        // dd(getIdGuru());
+
+        // dd(getIdUser());
         $data = TblSiswa::query()
                 ->with(['kelas','jk', 'status' , 'agama'])
                 ->inhouse(getIdUser())

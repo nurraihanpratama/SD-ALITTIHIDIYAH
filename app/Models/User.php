@@ -50,4 +50,14 @@ class User extends Authenticatable
     {
         return $this->belongsTo(UserStatus::class, 'status');
     }
+    
+    public function guru()
+    {
+        return $this->belongsTo(TblGuru::class, 'uuid', 'user_id');
+    }
+
+    public function siswa()
+    {
+        return $this->belongsTo(TblSiswa::class, 'uuid', 'user_id');
+    }
 }

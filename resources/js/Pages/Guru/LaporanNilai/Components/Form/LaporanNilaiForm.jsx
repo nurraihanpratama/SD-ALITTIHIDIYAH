@@ -13,13 +13,11 @@ export default function LaporanNilaiForm({
     loadOptions = null,
     nilai = null,
 }) {
-    const [selectedGuru, setSelectedGuru] = useState(
-        loadOptions?.gurus[0] || null
-    );
     const form = useForm({
         nisn: "",
-        id_mapel: loadOptions.mapel?.id_mapel ?? loadOptions.mapel[0].id_mapel,
-        id_guru: "",
+        id_mapel:
+            loadOptions.mapels?.id_mapel ?? loadOptions.mapels[0].id_mapel,
+        id_guru: nilai?.id_guru ?? null,
         tahun_ajaran: nilai?.tahun_ajaran ?? "",
         uh1: nilai?.uh1 ?? 0,
         uh2: nilai?.uh2 ?? 0,
@@ -28,27 +26,53 @@ export default function LaporanNilaiForm({
         uas: nilai?.uas ?? 0,
     });
 
-    const onChangeGuru = (val) => {
-        const selectedGuru = loadOptions?.gurus.find(
-            (guru) => guru.id_guru === val.id_guru
-        );
-        setSelectedGuru(selectedGuru);
-
-        // Jika ingin mengatur nilai mapel secara default, misalnya mapel pertama dari guru yang dipilih
-        form.setData(
-            "id_mapel",
-            selectedGuru?.bidang_studis[0]?.id_mapel || null
-        );
-    };
-
     const submit = (e) => {
         e.preventDefault;
 
         return console.log(form.data);
     };
+
+    console.info("form", form.data);
     console.log(
-        loadOptions.mapel.find((mapel) => mapel.id_mapel == form.data.id_mapel)
+        "test",
+        loadOptions.mapels.find((mapel) => mapel.id_mapel == form.data.id_mapel)
     );
+
+    const onChangeMapel = (item) => {
+        form.setData((prevData) => ({
+            ...prevData,
+            id_mapel: item.id_mapel,
+        }));
+    };
+
+    const onChangeGuru = (item) => {
+        const selectedMapel = loadOptions?.mapels.find(
+            (mapel) => mapel.id_mapel == form.data.id_mapel
+        );
+
+        if (selectedMapel) {
+            const selectedGuru = selectedMapel.gurus.find(
+                (guru) => guru.id_guru == item.value.id_guru
+            );
+            console.log("inimapl", selectedGuru);
+
+            if (selectedGuru) {
+                form.setData((prevData) => ({
+                    ...prevData,
+                    id_guru: selectedGuru.id_guru,
+                }));
+            } else {
+                form.setData((prevData) => ({
+                    ...prevData,
+                    id_guru: null,
+                }));
+            }
+        }
+    };
+
+    const optionTemplate = (option) => {
+        return <p>{option.nama_guru}</p>;
+    };
     return (
         <StandardFormModalTemplate
             title={"Form Input Nilai"}
@@ -61,28 +85,54 @@ export default function LaporanNilaiForm({
                         name={"id_mapel"}
                         label={"Bidang Studi"}
                         value={form.data.id_mapel}
-                        options={loadOptions?.mapel}
-                        onChange={(val) =>
-                            form.setData("id_mapel", val.id_mapel)
-                        }
+                        options={loadOptions?.mapels}
+                        onChange={(e) => onChangeMapel(e)}
                         idKey="id_mapel"
                         nameKey="nama_mapel"
                     />
 
-                    <FormSelectInput
-                        name={"id_guru"}
+                    <FormSelectInputPrimeReact
                         label={"Guru Mapel"}
+                        name={"id_guru"}
+                        value={loadOptions?.mapels
+                            .find((item) => item.mapel_id == form.data.mapel)
+                            ?.gurus.find(
+                                (item) => item.id_guru == form.data.id_guru
+                            )}
+                        onChange={(e) => onChangeGuru(e)}
                         options={
-                            loadOptions.mapel?.find(
+                            loadOptions.mapels?.find(
                                 (mapel) => mapel.id_mapel == form.data.id_mapel
                             )?.gurus || []
                         }
-                        value={1}
-                        onChange={(val) => form.setData("id_guru", val.id_guru)}
+                        optionLabel={"nama_guru"}
+                        itemTemplate={(option) => <p>{option.nama_guru}</p>}
+                        className={
+                            " relative w-full h-[36px]  bg-white text-gray-700 dark:text-white dark:bg-black/40"
+                        }
+                        panelClassName={
+                            "text-gray-700 bg-white dark:bg-black dark:text-white "
+                        }
+                    />
+
+                    {/* <FormSelectInput
+                        name={"id_guru"}
+                        label={"Guru Mapel"}
+                        options={
+                            loadOptions.mapels?.find(
+                                (mapel) => mapel.id_mapel == form.data.id_mapel
+                            )?.gurus || []
+                        }
+                        value={loadOptions?.mapels
+                            .find((item) => item.mapel_id == form.data.mapel)
+                            ?.gurus.find(
+                                (item) => item.id_guru == form.data.id_guru
+                            )}
+                        onChange={(e) => onChangeGuru(e)}
                         error={form.errors.id_guru}
                         idKey="id_guru"
                         nameKey="nama_guru"
-                    />
+                    /> */}
 
                     <FormTextInput name={"test"} label={"Tahun Ajaran"} />
                 </div>
@@ -138,7 +188,7 @@ const InputData = ({ siswa, nilai = null, form, jenisNilai }) => {
     return (
         <FormNumberInput
             key={siswa.nisn}
-            name={jenisNilai}
+            name={jenisNilai[siswa.nisn]}
             value={form.data.jenisNilai}
             onChange={(val) => form.setData(jenisNilai, val.target.value)}
             // ismobile

@@ -29,15 +29,15 @@ use App\Modules\Homepage\Controllers\HomepageController;
 //     ]);
 // });
 
-Route::get('/', [HomepageController::class, 'index'])->name('homepage.index');
+// Route::get('/', [HomepageController::class, 'index'])->name('homepage.index');
 
 // Homepage
-Route::get('/home', [ProfileController::class,'index']);
-Route::get('/b1', [ProfileController::class,'news']);
-Route::get('/b2', [ProfileController::class,'news2']);
-Route::get('/b3', [ProfileController::class,'news3']);
-Route::get('/facilitate', [ProfileController::class,'facilitate']);
-Route::get('/directory', [ProfileController::class,'directory']);
+Route::get('/', [HomepageController::class,'show']);
+Route::get('/b1', [HomepageController::class,'news']);
+Route::get('/b2', [HomepageController::class,'news2']);
+Route::get('/b3', [HomepageController::class,'news3']);
+Route::get('/facilitate', [HomepageController::class,'facilitate']);
+Route::get('/directory', [HomepageController::class,'directory']);
 
 // Route::get('/dashboard', function () {
 //     return Inertia::render('Dashboard');
