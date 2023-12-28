@@ -18,9 +18,9 @@ export default function LaporanNilaiDataTable({
             sortable: false,
             searchable: false,
             bodyAlignment: "center",
-            // render: (row) => (
-            //     <LaporanNilaiAction row={row} loadOptions={loadOptions} />
-            // ),
+            render: (row) => (
+                <LaporanNilaiAction row={row} loadOptions={loadOptions} />
+            ),
         },
         {
             header: "Nama siswa",

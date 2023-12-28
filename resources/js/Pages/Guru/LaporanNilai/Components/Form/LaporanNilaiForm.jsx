@@ -113,7 +113,7 @@ export default function LaporanNilaiForm({
                         }
                     /> */}
 
-                    <FormSelectInput
+                    {/* <FormSelectInput
                         name={"id_guru"}
                         label={"Guru Mapel"}
                         options={
@@ -130,9 +130,9 @@ export default function LaporanNilaiForm({
                             )}
                         onChange={(e) => onChangeGuru(e)}
                         error={form.errors.id_guru}
-                        idKey="id_guru"
+                        // idKey="id_guru"
                         nameKey="nama_guru"
-                    />
+                    /> */}
 
                     <FormTextInput name={"test"} label={"Tahun Ajaran"} />
                 </div>

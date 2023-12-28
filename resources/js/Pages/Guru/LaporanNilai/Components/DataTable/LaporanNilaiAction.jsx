@@ -2,12 +2,36 @@ import MenuDropdown from "@/Components/MenuDropdown";
 import MenuItemButtonDropdown from "@/Components/MenuItemButtonDropdown";
 import Modal from "@/Theme/Components/Modal";
 import { Menu } from "@headlessui/react";
-import { Fragment, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import LaporanNilaiForm from "../Form/LaporanNilaiForm";
 import { FaEdit } from "react-icons/fa";
+import SingleSendNilaiForm from "../Form/SingleSendNilaiForm";
+import { fetchErrorCatch } from "@/Helpers/helper";
 
-export default function LaporanNilaiAction({ row, loadOptions }) {
+export default function LaporanNilaiAction({ row }) {
     const [visible, setVisible] = useState(false);
+    const [processing, setProcessing] = useState(false);
+
+    const [loadOptions, setLoadOptions] = useState([]);
+
+    function loadData() {
+        setProcessing(true);
+
+        const url = route("guru.laporan-nilai.create");
+
+        axios
+            .get(url)
+            .then((response) => {
+                setLoadOptions(response.data);
+                setProcessing(false);
+            })
+            .catch((error) => console.log(error));
+    }
+
+    useEffect(() => {
+        loadData();
+    }, []);
+
     return (
         <Fragment>
             <MenuDropdown>
@@ -23,9 +47,9 @@ export default function LaporanNilaiAction({ row, loadOptions }) {
             </MenuDropdown>
             {/* Modal */}
             <Modal visible={visible} setVisible={setVisible} noescape>
-                <LaporanNilaiForm
+                <SingleSendNilaiForm
                     action="update"
-                    row={row}
+                    nilai={row}
                     closeForm={() => setVisible(false)}
                     loadOptions={loadOptions}
                 />

@@ -14,6 +14,7 @@ export default function FormSelectInputPrimeReact({
     itemTemplate,
     valueTemplate,
     className,
+    panelClassName,
     nolabel = false,
     isRequired = false,
     error,
@@ -21,7 +22,7 @@ export default function FormSelectInputPrimeReact({
     ...props
 }) {
     return (
-        <div className=" block w-full">
+        <div className="block w-full ">
             {!nolabel && (
                 <InputLabel
                     htmlFor={name}
@@ -39,7 +40,8 @@ export default function FormSelectInputPrimeReact({
                 placeholder={placeholder}
                 itemTemplate={itemTemplate}
                 valueTemplate={valueTemplate}
-                className={className}
+                className={` text-start bg-white dark:bg-black/40 w-full mt-1 drop-shadow-md ${className}`}
+                panelClassName={`bg-white ${panelClassName}`}
                 {...props}
             />
             <p className="text-xs font-semibold text-blue-600 ">{note}</p>

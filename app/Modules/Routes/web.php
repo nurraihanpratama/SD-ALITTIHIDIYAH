@@ -8,6 +8,7 @@ use App\Modules\Admin\Ekstrakurikuler\Controllers\EkstrakurikulerController;
 use App\Modules\Admin\Fasilitas\Controllers\FasilitasController;
 use App\Modules\Admin\Guru\Controllers\GuruController;
 use App\Modules\Admin\JadwalPelajaran\Controllers\JadwalPelajaranController;
+use App\Modules\Admin\JadwalPelajaran\Tables\KelasSelectionDataTable;
 use App\Modules\Admin\Kelas\Controllers\KelasController;
 use App\Modules\Admin\LaporanNilai\Controllers\LaporanNilaiController;
 use App\Modules\Admin\LaporanNilai\Tables\DataSiswaDataTable;
@@ -114,7 +115,10 @@ Route::middleware(['auth', 'verified','ShareFlashes'])
             Route::post('/store', 'store')->name('store');
             Route::patch('/update/{jadwal_pelajaran}', 'update')->name('update');
             Route::delete('/delete/{jadwal_pelajaran}', 'delete')->name('delete');
-    });
+
+        });
+        Route::get('/jadwal-pelajaran/datatable', KelasSelectionDataTable::class)->name('jadwal-pelajaran.datatable');
+        
     Route::controller(PegawaiController::class)
         ->middleware(['auth', 'verified'])
         ->name('pegawai.')
