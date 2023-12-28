@@ -11,8 +11,17 @@ export default function SelectInput({
     nameKey = "name",
     disabled = false,
 }) {
+    console.log(
+        "options",
+        options,
+        "ser",
+        options.find((f) => {
+            return f[nameKey];
+        }),
+        "value",
+        value
+    );
     const selected = options.find((f) => f[idKey] == value);
-
     return (
         <div className="relative w-full">
             <Listbox

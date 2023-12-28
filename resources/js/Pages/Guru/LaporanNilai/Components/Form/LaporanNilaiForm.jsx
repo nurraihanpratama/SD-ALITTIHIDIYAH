@@ -15,9 +15,8 @@ export default function LaporanNilaiForm({
 }) {
     const form = useForm({
         nisn: "",
-        id_mapel:
-            loadOptions.mapels?.id_mapel ?? loadOptions.mapels[0].id_mapel,
-        id_guru: nilai?.id_guru ?? null,
+        id_mapel: nilai?.mapels?.id_mapel ?? loadOptions.mapels[0].id_mapel,
+        id_guru: nilai?.id_guru ?? 1,
         tahun_ajaran: nilai?.tahun_ajaran ?? "",
         uh1: nilai?.uh1 ?? 0,
         uh2: nilai?.uh2 ?? 0,
@@ -32,11 +31,10 @@ export default function LaporanNilaiForm({
         return console.log(form.data);
     };
 
-    console.info("form", form.data);
-    console.log(
-        "test",
-        loadOptions.mapels.find((mapel) => mapel.id_mapel == form.data.id_mapel)
-    );
+    // console.log(
+    //     "test",
+    //     loadOptions.mapels.find((mapel) => mapel.id_mapel == form.data.id_mapel)
+    // );
 
     const onChangeMapel = (item) => {
         form.setData((prevData) => ({
@@ -52,7 +50,7 @@ export default function LaporanNilaiForm({
 
         if (selectedMapel) {
             const selectedGuru = selectedMapel.gurus.find(
-                (guru) => guru.id_guru == item.value.id_guru
+                (guru) => guru.id_guru == item.id_guru
             );
 
             if (selectedGuru) {
@@ -63,7 +61,7 @@ export default function LaporanNilaiForm({
             } else {
                 form.setData((prevData) => ({
                     ...prevData,
-                    id_guru: null,
+                    id_guru: [],
                 }));
             }
         }
@@ -72,6 +70,7 @@ export default function LaporanNilaiForm({
     const optionTemplate = (option) => {
         return <p>{option.nama_guru}</p>;
     };
+    console.log("selectedGuru:", form.data);
     return (
         <StandardFormModalTemplate
             title={"Form Input Nilai"}
@@ -90,11 +89,11 @@ export default function LaporanNilaiForm({
                         nameKey="nama_mapel"
                     />
 
-                    <FormSelectInputPrimeReact
+                    {/* <FormSelectInputPrimeReact
                         label={"Guru Mapel"}
                         name={"id_guru"}
                         value={loadOptions?.mapels
-                            .find((item) => item.mapel_id == form.data.mapel)
+                            .find((item) => item.id_mapel == form.data.mapel)
                             ?.gurus.find(
                                 (item) => item.id_guru == form.data.id_guru
                             )}
@@ -112,26 +111,28 @@ export default function LaporanNilaiForm({
                         panelClassName={
                             "text-gray-700 bg-white dark:bg-black dark:text-white "
                         }
-                    />
+                    /> */}
 
-                    {/* <FormSelectInput
+                    <FormSelectInput
                         name={"id_guru"}
                         label={"Guru Mapel"}
                         options={
                             loadOptions.mapels?.find(
                                 (mapel) => mapel.id_mapel == form.data.id_mapel
-                            )?.gurus || []
+                            ).gurus
                         }
                         value={loadOptions?.mapels
-                            .find((item) => item.mapel_id == form.data.mapel)
-                            ?.gurus.find(
-                                (item) => item.id_guru == form.data.id_guru
+                            ?.find(
+                                (item) => item?.id_mapel == form.data.id_mapel
+                            )
+                            ?.gurus?.find(
+                                (item) => item?.id_guru == form.data.id_guru
                             )}
                         onChange={(e) => onChangeGuru(e)}
                         error={form.errors.id_guru}
                         idKey="id_guru"
                         nameKey="nama_guru"
-                    /> */}
+                    />
 
                     <FormTextInput name={"test"} label={"Tahun Ajaran"} />
                 </div>
